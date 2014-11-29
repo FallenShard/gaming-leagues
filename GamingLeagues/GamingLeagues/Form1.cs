@@ -12,9 +12,13 @@ namespace GamingLeagues
 {
     public partial class Form1 : Form
     {
+        private Mefi m_mefi;
+
         public Form1()
         {
             InitializeComponent();
+            m_mefi = new Mefi();
+            this.Name = "17";
         }
     }
 }
