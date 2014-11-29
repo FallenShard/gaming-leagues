@@ -15,6 +15,7 @@ namespace GamingLeagues
         public Form1()
         {
             InitializeComponent();
+            this.Name = "10";
         }
     }
 }
