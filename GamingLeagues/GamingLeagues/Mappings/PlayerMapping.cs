@@ -20,6 +20,28 @@ namespace GamingLeagues.Mappings
             // Attribute mapping
             Map(x => x.Name);
             Map(x => x.LastName);
+            Map(x => x.NickName);
+            Map(x => x.Gender);
+            Map(x => x.DateOfBirth);
+            Map(x => x.Country);
+            Map(x => x.DateTurnedPro);
+            Map(x => x.CareerEarnings);
+            
+            // Many-to-one mapping
+            References(x => x.CurrentTeam);
+
+            // Many-to-many mapping
+            HasManyToMany(x => x.Games)
+                .Cascade.All()
+                .Table("PlaysGames");
+
+            // Many-to-many mapping
+            //HasManyToMany(x => x.LeaguesPlayed)
+            //    .Cascade.All()
+            //    .Table("CompetesIn");
+
+            // One-to-many mapping
+            // HasMany(x => x.MatchesPlayed;.Cascade.AllDeleteOrphan().Inverse();
         }
     }
 }
