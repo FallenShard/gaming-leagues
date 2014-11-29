@@ -17,8 +17,9 @@ namespace GamingLeagues
         public Form1()
         {
             InitializeComponent();
+
             //m_mefi = new Mefi();
-            this.Name = "17";
+            this.Name = "10";
         }
     }
 }
