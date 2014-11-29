@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="DataAccessLayer\DataAccessLayer.cs" />
     <Compile Include="Entities\Game.cs" />
+    <Compile Include="Entities\Match.cs" />
     <Compile Include="Entities\Platform.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\Sponsor.cs" />
@@ -73,6 +74,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Mappings\GameMapping.cs" />
+    <Compile Include="Mappings\MatchMapping.cs" />
     <Compile Include="Mappings\PlatformMapping.cs" />
     <Compile Include="Mappings\PlayerMapping.cs" />
     <Compile Include="Mappings\SponsorMapping.cs" />
