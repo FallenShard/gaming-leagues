@@ -21,7 +21,7 @@ namespace GamingLeagues.Entities
         public Sponsor()
         {
             Teams = new List<Team>();
-            //Leagues = new List<League>();
+            Leagues = new List<League>();
         }
     }
 }
