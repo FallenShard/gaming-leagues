@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GamingLeagues.Entities
 {
-    class Match
+    public class Match
     {
         // Primary key
         public virtual int Id { get; protected set; }
@@ -19,13 +19,13 @@ namespace GamingLeagues.Entities
         // Many-to-one relationship
         public virtual Player HomePlayer { get; set; }
         public virtual Player AwayPlayer { get; set; }
-        //public virtual League League { get; set; }
+        public virtual League League { get; set; }
 
         public Match()
         {
             HomePlayer = null;
             AwayPlayer = null;
-            //League = null;
+            League = null;
         }
     }
 }

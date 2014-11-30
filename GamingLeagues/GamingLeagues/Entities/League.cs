@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GamingLeagues.Entities
 {
-    class League
+    public class League
     {
         // Primary key
         public virtual int Id { get; protected set; }

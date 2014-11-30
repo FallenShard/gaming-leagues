@@ -25,7 +25,7 @@ namespace GamingLeagues.Mappings
             // Many-to-one mapping
             References(x => x.HomePlayer);
             References(x => x.AwayPlayer);
-            //References(x => x.League);
+            References(x => x.League);
         }
     }
 }

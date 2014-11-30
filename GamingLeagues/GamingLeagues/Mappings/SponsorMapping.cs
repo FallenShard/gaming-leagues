@@ -27,9 +27,9 @@ namespace GamingLeagues.Mappings
                 .Table("SponsorsTeam");
 
             // Many-to-many mapping
-            // HasManyToMany(x => x.Leagues)
-            //    .Cascade.All()
-            //    .Table("SponsorsLeague");
+            HasManyToMany(x => x.Leagues)
+                .Cascade.All()
+                .Table("SponsorsLeague");
         }
     }
 }

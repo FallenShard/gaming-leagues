@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GamingLeagues.Entities
 {
-    class PlaysInLeague
+    public class PlaysInLeague
     {
         // Key attributes
         // Many-to-one relationship
