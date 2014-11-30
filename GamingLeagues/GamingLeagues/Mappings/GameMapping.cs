@@ -23,6 +23,14 @@ namespace GamingLeagues.Mappings
             Map(x => x.ReleaseDate);
             Map(x => x.Genre);
             HasMany(x => x.SupportedPlatforms).Cascade.AllDeleteOrphan().Inverse();
+
+            // Many-to-many mapping
+            HasManyToMany(x => x.Players)
+                .Cascade.All()
+                .Table("PlaysGames");
+
+            // One-to-many
+            HasMany(x => x.Leagues).Inverse().Cascade.All();
         }
     }
 }
