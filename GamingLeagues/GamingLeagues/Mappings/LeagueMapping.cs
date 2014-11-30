@@ -10,26 +10,33 @@ using GamingLeagues.Entities;
 
 namespace GamingLeagues.Mappings
 {
-    public class SponsorMapping : ClassMap<Sponsor>
+    class LeagueMapping : ClassMap<League>
     {
-        public SponsorMapping()
+        public LeagueMapping()
         {
             // Primary key mapping
             Id(x => x.Id);
 
             // Attribute mapping
             Map(x => x.Name);
-            Map(x => x.Logo);
-            
-            // Many-to-many mapping
-            HasManyToMany(x => x.Teams)
-                .Cascade.All()
-                .Table("SponsorsTeam");
+            Map(x => x.StartDate);
+            Map(x => x.EndDate);
+            Map(x => x.Budget);
+
+            // Many-to-one mapping
+            References(x => x.Game);
 
             // Many-to-many mapping
-            HasManyToMany(x => x.Leagues)
+            HasManyToMany(x => x.Sponsors)
                 .Cascade.All()
                 .Table("SponsorsLeague");
+
+
+            // One-to-many mapping
+            HasMany(x => x.Rankings).Inverse().Cascade.All();
+
+            // One-to-many
+            HasMany(x => x.Matches).Inverse().Cascade.All();
         }
     }
 }

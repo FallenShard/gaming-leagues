@@ -20,12 +20,17 @@ namespace GamingLeagues.Entities
         // Multi-valued attribute
         public virtual IList<Platform> SupportedPlatforms { get; set; }
 
-        // Many-to-one relationship
-        // public virtual IList<League> Leagues { get; set; }
+        // One-to-many relationship
+        public virtual IList<League> Leagues { get; set; }
+
+        // Many-to-many relationship
+        public virtual IList<Player> Players { get; set; }
 
         public Game()
         {
             SupportedPlatforms = new List<Platform>();
+            Leagues = new List<League>();
+            Players = new List<Player>();
         }
     }
 }

@@ -35,13 +35,11 @@ namespace GamingLeagues.Mappings
                 .Cascade.All()
                 .Table("PlaysGames");
 
-            // Many-to-many mapping
-            //HasManyToMany(x => x.LeaguesPlayed)
-            //    .Cascade.All()
-            //    .Table("CompetesIn");
+            // One-to-many mapping
+            HasMany(x => x.Rankings).Inverse().Cascade.All();
 
             // One-to-many mapping
-            // HasMany(x => x.MatchesPlayed;.Cascade.AllDeleteOrphan().Inverse();
+            HasMany(x => x.MatchesPlayed).Cascade.AllDeleteOrphan().Inverse();
         }
     }
 }
