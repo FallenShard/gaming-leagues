@@ -66,6 +66,7 @@
     <Compile Include="Entities\Match.cs" />
     <Compile Include="Entities\Platform.cs" />
     <Compile Include="Entities\Player.cs" />
+    <Compile Include="Entities\PlaysInLeague.cs" />
     <Compile Include="Entities\Sponsor.cs" />
     <Compile Include="Entities\Team.cs" />
     <Compile Include="MainForm.cs">
@@ -79,6 +80,7 @@
     <Compile Include="Mappings\MatchMapping.cs" />
     <Compile Include="Mappings\PlatformMapping.cs" />
     <Compile Include="Mappings\PlayerMapping.cs" />
+    <Compile Include="Mappings\PlaysInLeagueMapping.cs" />
     <Compile Include="Mappings\SponsorMapping.cs" />
     <Compile Include="Mappings\TeamMapping.cs" />
     <Compile Include="Program.cs" />
