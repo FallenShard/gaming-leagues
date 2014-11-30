@@ -26,17 +26,17 @@ namespace GamingLeagues.Entities
 
         // Many-to-many relationship
         public virtual IList<Game> Games { get; set; }
-        //public virtual IList<League> LeaguesPlayed; { get; set; }
 
         // One-to-many relationship
-        //public virtual IList<Match> MatchesPlayed; { get; set; }
+        public virtual IList<PlaysInLeague> Rankings { get; set; }
+        public virtual IList<Match> MatchesPlayed { get; set; }
         
         public Player()
         {
             CurrentTeam = null;
             Games = new List<Game>();
-            // LeaguesPlayed = new List<League>();
-            // MatchesPlayed = new List<Match>();
+            Rankings = new List<PlaysInLeague>();
+            MatchesPlayed = new List<Match>();
         }
     }
 }

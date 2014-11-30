@@ -31,10 +31,9 @@ namespace GamingLeagues.Mappings
                 .Cascade.All()
                 .Table("SponsorsLeague");
 
-            // Many-to-many mapping
-            //HasManyToMany(x => x.Players)
-            //    .Cascade.All()
-            //    .Table("CompetesIn");
+
+            // One-to-many mapping
+            HasMany(x => x.Rankings).Inverse().Cascade.All();
 
             // One-to-many
             HasMany(x => x.Matches).Inverse().Cascade.All();
