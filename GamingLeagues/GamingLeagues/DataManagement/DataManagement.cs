@@ -375,5 +375,89 @@ namespace GamingLeagues.DataManagement
         #endregion
 
         #endregion
+
+        #region Connecting
+
+        //An example of what the connecting methods for entity should look like.
+        #region Connecting Player
+
+        public void connect(Player player, Team team)
+        {
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+
+            player.CurrentTeam = team;
+            team.Players.Add(player);
+
+            m_session.SaveOrUpdate(player);
+            m_session.Flush();
+
+            m_session.SaveOrUpdate(team);
+            m_session.Flush();
+
+            m_session.Close();
+        }
+
+        public void connect(Player player, List<Game> games)
+        {
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+
+            foreach (Game g in games)
+            {
+                g.Players.Add(player);
+                player.Games.Add(g);
+
+                m_session.SaveOrUpdate(g);
+                m_session.Flush();
+            }
+
+            m_session.SaveOrUpdate(player);
+            m_session.Flush();
+
+            m_session.Close();
+        }
+
+        //This method actually makes no sense.
+        public void connect(Player player, List<PlaysInLeague> rankings)
+        {
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+
+            foreach (PlaysInLeague r in rankings)
+            {
+                r.Player = player;
+                player.Rankings.Add(r);
+
+                m_session.SaveOrUpdate(r);
+                m_session.Flush();
+            }
+
+            m_session.SaveOrUpdate(player);
+            m_session.Flush();
+
+            m_session.Close();
+        }
+
+        //This method actually makes no sense, so the player will always be home player.
+        public void connect(Player player, List<Match> matchesPlayed)
+        {
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+
+            foreach (Match m in matchesPlayed)
+            {
+                m.HomePlayer = player;
+                player.MatchesPlayed.Add(m);
+
+                m_session.SaveOrUpdate(m);
+                m_session.Flush();
+            }
+
+            m_session.SaveOrUpdate(player);
+            m_session.Flush();
+
+            m_session.Close();
+        }
+
+        #endregion
+
+        #endregion
     }
 }
