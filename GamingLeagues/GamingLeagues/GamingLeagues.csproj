@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccessLayer\DataAccessLayer.cs" />
+    <Compile Include="DataManagement\DataManagement.cs" />
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\League.cs" />
     <Compile Include="Entities\Match.cs" />

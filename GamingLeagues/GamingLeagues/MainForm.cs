@@ -23,7 +23,7 @@ namespace GamingLeagues
         {
             InitializeComponent();
 
-            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+            /*m_session = DataAccessLayer.DataAccessLayer.GetSession();
 
             Player player = new Player();
             player.Name = "Jang";
@@ -33,7 +33,7 @@ namespace GamingLeagues
 
             m_session.Flush();
 
-            m_session.Close();
+            m_session.Close();*/
         }
     }
 }
