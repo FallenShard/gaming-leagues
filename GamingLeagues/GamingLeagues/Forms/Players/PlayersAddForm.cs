@@ -23,14 +23,17 @@ namespace GamingLeagues.Forms.Players
             InitializeComponent();
 
             GetGames();
+
+            clbGames.Items.Clear();
+            clbGames.DataSource = m_games;
+            clbGames.DisplayMember = "Title";
         }
 
         private void GetGames()
         {
             ISession session = DataAccessLayer.DataAccessLayer.GetSession();
 
-            // TO DO: ADD QUERY HERE m_games = session.Q
-            // AND FILL lbGames list box
+            m_games = session.CreateQuery("FROM Game").List<Game>();
 
             session.Close();
         }
@@ -45,6 +48,17 @@ namespace GamingLeagues.Forms.Players
             player.Country = tbCountry.Text;
             player.CareerEarnings = float.Parse(tbCareer.Text, CultureInfo.InvariantCulture);
             player.Gender = rbMale.Checked ? 'M' : 'F';
+
+            // Games
+            CheckedListBox.CheckedItemCollection selectedGames = clbGames.CheckedItems;
+
+            // Iterate the selected games and add them to the new player
+            player.Games.Clear();
+            foreach (var item in selectedGames)
+            {
+                Game game = item as Game;
+                player.Games.Add(game);
+            }
         }
 
         private bool ValidateInput()
