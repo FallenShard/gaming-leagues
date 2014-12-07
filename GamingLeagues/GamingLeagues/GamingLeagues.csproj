@@ -70,6 +70,12 @@
     <Compile Include="Entities\PlaysInLeague.cs" />
     <Compile Include="Entities\Sponsor.cs" />
     <Compile Include="Entities\Team.cs" />
+    <Compile Include="Forms\Players\PlayersAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Players\PlayersAddForm.Designer.cs">
+      <DependentUpon>PlayersAddForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,8 +90,23 @@
     <Compile Include="Mappings\PlaysInLeagueMapping.cs" />
     <Compile Include="Mappings\SponsorMapping.cs" />
     <Compile Include="Mappings\TeamMapping.cs" />
+    <Compile Include="Forms\PlayersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PlayersForm.Designer.cs">
+      <DependentUpon>PlayersForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\Players\PlayersAddForm.resx">
+      <DependentUpon>PlayersAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PlayersForm.resx">
+      <DependentUpon>PlayersForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

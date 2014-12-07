@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using NHibernate;
 using GamingLeagues.DataAccessLayer;
 using GamingLeagues.Entities;
+using GamingLeagues.Forms;
 
 
 namespace GamingLeagues
@@ -34,6 +35,26 @@ namespace GamingLeagues
             m_session.Flush();
 
             m_session.Close();*/
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            bool foundForm = false;
+            foreach (Form frm in fc)
+            {
+                if (frm is PlayersForm)
+                {
+                    foundForm = true;
+                    frm.BringToFront();
+                    break;
+                }
+            }
+            if (!foundForm)
+            {
+                PlayersForm playersForm = new PlayersForm();
+                playersForm.Show();
+            }
         }
     }
 }
