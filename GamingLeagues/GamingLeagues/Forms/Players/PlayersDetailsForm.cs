@@ -87,7 +87,6 @@ namespace GamingLeagues.Forms.Players
             {
                 foreach (Match match in matches)
                 {
-
                     string opponent;
                     string result;
                     if (match.HomePlayer.NickName == player.NickName)
@@ -109,8 +108,6 @@ namespace GamingLeagues.Forms.Players
                             result = "W";
                         else
                             result = "D";
-
-                        
                     }
 
                     ListViewItem lvi = new ListViewItem(opponent);
