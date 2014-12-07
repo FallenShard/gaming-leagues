@@ -545,11 +545,11 @@ namespace GamingLeagues.DataManagement
 
         public void initializeDataBase()
         {
-            insertGame("Warcraft 2", "Blizzard", new DateTime(2002, 7, 1), "Real-time strategy", null, null, null);
-            insertGame("StarCraft 2", "Blizzard", new DateTime(2010, 7, 27), "Real-time strategy", null, null, null);
-            insertGame("Quake III Arena", "id Software", new DateTime(1999, 12, 2), "First-person shooter", null, null, null);
-            insertGame("PES 2015", "PES Productions", new DateTime(2014, 11, 11), "Sport", null, null, null);
-            insertGame("NBA 2K15", "Visual Concepts", new DateTime(2014, 10, 7), "Sport", null, null, null);
+            //insertGame("Warcraft 2", "Blizzard", new DateTime(2002, 7, 1), "Real-time strategy", null, null, null);
+            //insertGame("StarCraft 2", "Blizzard", new DateTime(2010, 7, 27), "Real-time strategy", null, null, null);
+            //insertGame("Quake III Arena", "id Software", new DateTime(1999, 12, 2), "First-person shooter", null, null, null);
+            //insertGame("PES 2015", "PES Productions", new DateTime(2014, 11, 11), "Sport", null, null, null);
+            //insertGame("NBA 2K15", "Visual Concepts", new DateTime(2014, 10, 7), "Sport", null, null, null);
         }
     }
 }
