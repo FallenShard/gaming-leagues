@@ -14,6 +14,9 @@ namespace GamingLeagues.DataManagement
     {
         private ISession m_session;
 
+        //Inserting Player with Leagues, and vice versa creates new PlaysInLeague entity with 0 points.
+        //
+        //Old arguments are commented to show the changes from last version
         #region Inserting
 
         #region Basic Inserting
@@ -144,79 +147,60 @@ namespace GamingLeagues.DataManagement
 
         #endregion
 
-        //This whole region needs to be reimplemented once all connect methods are implemented,
-        //because for now relations are only one sided.
-        //
-        //Some arguments in some methods make no sense(like match and ranking lists in insertPlayerRelations method,
-        //but the code is generically written to show the idea.
         #region Relations Inserting
 
         private void insertPlayerRelations(Player player,
                                             Team currentTeam,
                                             List<Game> games,
-                                            List<PlaysInLeague> rankings,
-                                            List<Match> matchesPlayed)
+                                            /*List<PlaysInLeague> rankings,
+                                            List<Match> matchesPlayed*/
+                                            List<League> leagues)
         {
-            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+            connectPlayerTeam(player, currentTeam);
 
-            player.CurrentTeam = currentTeam;
-            player.Games = games;
-            player.Rankings = rankings;
-            player.MatchesPlayed = matchesPlayed;
+            foreach (Game game in games)
+                connectPlayerGame(player, game);
 
-            m_session.SaveOrUpdate(player);
-            m_session.Flush();
-
-            m_session.Close();
+            foreach (League league in leagues)
+                insertPlaysInLeague(player, league);
         }
 
         private void insertTeamRelations(Team team,
                                         List<Player> players,
                                         List<Sponsor> sponsors)
         {
-            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+            foreach (Player player in players)
+                connectPlayerTeam(player, team);
 
-            team.Players = players;
-            team.Sponsors = sponsors;
-
-            m_session.SaveOrUpdate(team);
-            m_session.Flush();
-
-            m_session.Close();
+            foreach (Sponsor sponsor in sponsors)
+                connectTeamSponsor(team, sponsor);
         }
 
         private void insertLeagueRelations(League league,
                                             Game game,
                                             List<Sponsor> sponsors,
-                                            List<PlaysInLeague> rankings,
-                                            List<Match> matches)
+                                            /*List<PlaysInLeague> rankings,
+                                            List<Match> matches*/
+                                            List<Player> players)
         {
-            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+            connectLeagueGame(league, game);
 
-            league.Game = game;
-            league.Sponsors = sponsors;
-            league.Rankings = rankings;
-            league.Matches = matches;
+            foreach (Sponsor sponsor in sponsors)
+                connectLeagueSponsor(league, sponsor);
 
-            m_session.SaveOrUpdate(league);
-            m_session.Flush();
-
-            m_session.Close();
+            foreach (Player player in players)
+                insertPlaysInLeague(player, league);
         }
 
         private void insertSponsorRelations(Sponsor sponsor,
                                             List<Team> teams,
                                             List<League> leagues)
         {
-            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+            foreach (Team team in teams)
+                connectTeamSponsor(team, sponsor);
 
-            sponsor.Teams = teams;
-            sponsor.Leagues = leagues;
-
-            m_session.SaveOrUpdate(sponsor);
-            m_session.Flush();
-
-            m_session.Close();
+            foreach (League league in leagues)
+                connectLeagueSponsor(league, sponsor);
         }
 
         private void insertGameRelations(Game game,
@@ -224,29 +208,20 @@ namespace GamingLeagues.DataManagement
                                         List<League> leagues,
                                         List<Player> players)
         {
-            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+            foreach (Platform platform in supportedPlatforms)
+                connectGamePlatform(game, platform);
 
-            game.SupportedPlatforms = supportedPlatforms;
-            game.Leagues = leagues;
-            game.Players = players;
+            foreach (League league in leagues)
+                connectLeagueGame(league, game);
 
-            m_session.SaveOrUpdate(game);
-            m_session.Flush();
-
-            m_session.Close();
+            foreach (Player player in players)
+                connectPlayerGame(player, game);
         }
 
         private void insertPlatformRelations(Platform platform,
                                             Game videoGame)
         {
-            m_session = DataAccessLayer.DataAccessLayer.GetSession();
-
-            platform.VideoGame = videoGame;
-
-            m_session.SaveOrUpdate(platform);
-            m_session.Flush();
-
-            m_session.Close();
+            connectGamePlatform(videoGame, platform);
         }
 
         #endregion
@@ -263,14 +238,16 @@ namespace GamingLeagues.DataManagement
                             float careerEarnings,
                             Team currentTeam,
                             List<Game> games,
-                            List<PlaysInLeague> rankings,
-                            List<Match> matchesPlayed)
+                            /*List<PlaysInLeague> rankings,
+                            List<Match> matchesPlayed,*/
+                            List<League> leagues)
         {
             insertPlayerRelations(insertPlayerBasic(name, lastName, nickName, gender, dateOfBirth, country, dateTurnedPro, careerEarnings),
                                     currentTeam,
                                     games,
-                                    rankings,
-                                    matchesPlayed);
+                                    /*rankings,
+                                    matchesPlayed*/
+                                    leagues);
         }
 
         public void insertTeam(string name,
@@ -291,14 +268,16 @@ namespace GamingLeagues.DataManagement
                                 float budget,
                                 Game game,
                                 List<Sponsor> sponsors,
-                                List<PlaysInLeague> rankings,
-                                List<Match> matches)
+                                /*List<PlaysInLeague> rankings,
+                                List<Match> matches*/
+                                List<Player> players)
         {
             insertLeagueRelations(insertLeagueBasic(name, startDate, endDate, budget),
                                     game,
                                     sponsors,
-                                    rankings,
-                                    matches);
+                                    /*rankings,
+                                    matches*/
+                                    players);
         }
 
         public void insertSponsor(string name,
@@ -343,33 +322,41 @@ namespace GamingLeagues.DataManagement
 
             Match match = new Match();
             match.DatePlayed = datePlayed;
-            match.HomePlayer = homePlayer;
-            match.AwayPlayer = awayPlayer;
+            //match.HomePlayer = homePlayer;
+            //match.AwayPlayer = awayPlayer;
             match.HomeScore = homeScore;
             match.AwayScore = awayScore;
-            match.League = league;
+            //match.League = league;
 
             m_session.SaveOrUpdate(match);
             m_session.Flush();
 
             m_session.Close();
+
+            connectHomePlayerMatch(homePlayer, match);
+            connectAwayPlayerMatch(awayPlayer, match);
+            connectLeagueMatch(league, match);
         }
 
+        //Starting points should be default 0
         public void insertPlaysInLeague(Player player,
-                                        League league,
-                                        int points)
+                                        League league/*,
+                                        int points*/)
         {
             m_session = DataAccessLayer.DataAccessLayer.GetSession();
 
-            PlaysInLeague playsInLeague = new PlaysInLeague();
-            playsInLeague.Player = player;
-            playsInLeague.League = league;
-            playsInLeague.Points = points;
+            PlaysInLeague ranking = new PlaysInLeague();
+            //playsInLeague.Player = player;
+            //playsInLeague.League = league;
+            //playsInLeague.Points = points;
 
-            m_session.SaveOrUpdate(playsInLeague);
+            m_session.SaveOrUpdate(ranking);
             m_session.Flush();
 
             m_session.Close();
+
+            connectPlayerRanking(player, ranking);
+            connectLeagueRanking(league, ranking);
         }
 
         #endregion
@@ -410,35 +397,145 @@ namespace GamingLeagues.DataManagement
             m_session.Close();
         }
 
-        //This method actually makes no sense.
         public void connectPlayerRanking(Player player, PlaysInLeague ranking)
         {
             m_session = DataAccessLayer.DataAccessLayer.GetSession();
 
             player.Rankings.Add(ranking);
-            ranking
+            ranking.Player = player;
 
             m_session.SaveOrUpdate(player);
+            m_session.Flush();
+
+            m_session.SaveOrUpdate(ranking);
             m_session.Flush();
 
             m_session.Close();
         }
 
-        //This method actually makes no sense, so the player will always be home player.
-        public void connect(Player player, List<Match> matchesPlayed)
+        public void connectHomePlayerMatch(Player player, Match match)
         {
             m_session = DataAccessLayer.DataAccessLayer.GetSession();
 
-            foreach (Match m in matchesPlayed)
-            {
-                m.HomePlayer = player;
-                player.MatchesPlayed.Add(m);
-
-                m_session.SaveOrUpdate(m);
-                m_session.Flush();
-            }
+            player.MatchesPlayed.Add(match);
+            match.HomePlayer = player;
 
             m_session.SaveOrUpdate(player);
+            m_session.Flush();
+
+            m_session.SaveOrUpdate(match);
+            m_session.Flush();
+
+            m_session.Close();
+        }
+
+        public void connectAwayPlayerMatch(Player player, Match match)
+        {
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+
+            player.MatchesPlayed.Add(match);
+            match.AwayPlayer = player;
+
+            m_session.SaveOrUpdate(player);
+            m_session.Flush();
+
+            m_session.SaveOrUpdate(match);
+            m_session.Flush();
+
+            m_session.Close();
+        }
+
+        public void connectTeamSponsor(Team team, Sponsor sponsor)
+        {
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+
+            team.Sponsors.Add(sponsor);
+            sponsor.Teams.Add(team);
+
+            m_session.SaveOrUpdate(team);
+            m_session.Flush();
+
+            m_session.SaveOrUpdate(sponsor);
+            m_session.Flush();
+
+            m_session.Close();
+        }
+
+        public void connectLeagueGame(League league, Game game)
+        {
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+
+            league.Game = game;
+            game.Leagues.Add(league);
+
+            m_session.SaveOrUpdate(league);
+            m_session.Flush();
+
+            m_session.SaveOrUpdate(game);
+            m_session.Flush();
+
+            m_session.Close();
+        }
+
+        public void connectLeagueSponsor(League league, Sponsor sponsor)
+        {
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+
+            league.Sponsors.Add(sponsor);
+            sponsor.Leagues.Add(league);
+
+            m_session.SaveOrUpdate(league);
+            m_session.Flush();
+
+            m_session.SaveOrUpdate(sponsor);
+            m_session.Flush();
+
+            m_session.Close();
+        }
+
+        public void connectLeagueRanking(League league, PlaysInLeague ranking)
+        {
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+
+            league.Rankings.Add(ranking);
+            ranking.League = league;
+
+            m_session.SaveOrUpdate(league);
+            m_session.Flush();
+
+            m_session.SaveOrUpdate(ranking);
+            m_session.Flush();
+
+            m_session.Close();
+        }
+
+        public void connectLeagueMatch(League league, Match match)
+        {
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+
+            league.Matches.Add(match);
+            match.League = league;
+
+            m_session.SaveOrUpdate(league);
+            m_session.Flush();
+
+            m_session.SaveOrUpdate(match);
+            m_session.Flush();
+
+            m_session.Close();
+        }
+
+        public void connectGamePlatform(Game game, Platform platform)
+        {
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+
+            game.SupportedPlatforms.Add(platform);
+            platform.VideoGame = game;
+
+            m_session.SaveOrUpdate(game);
+            m_session.Flush();
+
+            m_session.SaveOrUpdate(platform);
             m_session.Flush();
 
             m_session.Close();
