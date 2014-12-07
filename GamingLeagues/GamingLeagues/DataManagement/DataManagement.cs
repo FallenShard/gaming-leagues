@@ -378,10 +378,7 @@ namespace GamingLeagues.DataManagement
 
         #region Connecting
 
-        //An example of what the connecting methods for entity should look like.
-        #region Connecting Player
-
-        public void connect(Player player, Team team)
+        public void connectPlayerTeam(Player player, Team team)
         {
             m_session = DataAccessLayer.DataAccessLayer.GetSession();
 
@@ -397,38 +394,29 @@ namespace GamingLeagues.DataManagement
             m_session.Close();
         }
 
-        public void connect(Player player, List<Game> games)
+        public void connectPlayerGame(Player player, Game game)
         {
             m_session = DataAccessLayer.DataAccessLayer.GetSession();
 
-            foreach (Game g in games)
-            {
-                g.Players.Add(player);
-                player.Games.Add(g);
-
-                m_session.SaveOrUpdate(g);
-                m_session.Flush();
-            }
+            player.Games.Add(game);
+            game.Players.Add(player);
 
             m_session.SaveOrUpdate(player);
+            m_session.Flush();
+
+            m_session.SaveOrUpdate(game);
             m_session.Flush();
 
             m_session.Close();
         }
 
         //This method actually makes no sense.
-        public void connect(Player player, List<PlaysInLeague> rankings)
+        public void connectPlayerRanking(Player player, PlaysInLeague ranking)
         {
             m_session = DataAccessLayer.DataAccessLayer.GetSession();
 
-            foreach (PlaysInLeague r in rankings)
-            {
-                r.Player = player;
-                player.Rankings.Add(r);
-
-                m_session.SaveOrUpdate(r);
-                m_session.Flush();
-            }
+            player.Rankings.Add(ranking);
+            ranking
 
             m_session.SaveOrUpdate(player);
             m_session.Flush();
@@ -455,8 +443,6 @@ namespace GamingLeagues.DataManagement
 
             m_session.Close();
         }
-
-        #endregion
 
         #endregion
     }
