@@ -17,23 +17,18 @@ namespace GamingLeagues
 {
     public partial class MainForm : Form
     {
-        private ISession m_session;
+        private DataManagement.DataManagement m_dataManager;
 
         public MainForm()
         {
             InitializeComponent();
+        }
 
-            /*m_session = DataAccessLayer.DataAccessLayer.GetSession();
+        private void onLoad(object sender, EventArgs e)
+        {
+            m_dataManager = new DataManagement.DataManagement();
 
-            Player player = new Player();
-            player.Name = "Jang";
-            player.LastName = "Jae-Ho";
-
-            m_session.SaveOrUpdate(player);
-
-            m_session.Flush();
-
-            m_session.Close();*/
+            m_dataManager.initializeDataBase();
         }
     }
 }
