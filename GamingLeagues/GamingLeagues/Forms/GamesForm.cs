@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,7 +16,7 @@ namespace GamingLeagues.Forms
 {
     public partial class GamesForm : Form
     {
-        private ISession m_session;
+        private DataManagement.DataManagement m_dataManager;
 
         private IList<Game> m_games;
 
@@ -24,7 +24,7 @@ namespace GamingLeagues.Forms
         {
             InitializeComponent();
 
-            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+            m_dataManager = new DataManagement.DataManagement();
 
             lvGames.Clear();
             lvGames.Columns.Add("TITLE");
@@ -33,16 +33,17 @@ namespace GamingLeagues.Forms
             lvGames.Columns.Add("GENRE");
         }
 
+        private void onLoad(object sender, EventArgs e)
+        {
+            RefreshGames();
+        }
+
         private void RefreshGames()
         {
-            // Clear the items inside the listView
             lvGames.Items.Clear();
 
-            // Grab the players with a query from the open session
-            IQuery q = m_session.CreateQuery("FROM Game");
-            m_games = q.List<Game>();
+            m_games = m_dataManager.getGames();
 
-            // Iterate and add data from the players
             foreach (Game game in m_games)
             {
                 ListViewItem lvi = new ListViewItem(game.Title);
@@ -54,7 +55,6 @@ namespace GamingLeagues.Forms
                 lvGames.Items.Add(lvi);
             }
 
-            // Adjust initial column widths
             ListView.ColumnHeaderCollection lch = lvGames.Columns;
             for (int i = 0; i < lch.Count; i++)
             {
@@ -66,9 +66,21 @@ namespace GamingLeagues.Forms
             }
         }
 
+        private Game getSelectedGame()
+        {
+            if (lvGames.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select a game first.", "Error");
+                return null;
+            }
+
+            Game game = (Game)lvGames.SelectedItems[0].Tag;
+            return game;
+        }
+
         #region Button clicks
 
-        private void addGame_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
             GamesAddForm addForm = new GamesAddForm();
 
@@ -76,22 +88,45 @@ namespace GamingLeagues.Forms
                 RefreshGames();
         }
 
-        private void editGame_Click(object sender, EventArgs e)
+        private void btnEdit_Click(object sender, EventArgs e)
         {
-            //To be implemented
+            Game selectedGame = getSelectedGame();
+
+            if (selectedGame != null)
+            {
+                GamesEditForm editForm = new GamesEditForm(selectedGame, m_dataManager);
+
+                if (editForm.ShowDialog() == DialogResult.OK)
+                    RefreshGames();
+            }
         }
 
-        private void deleteGame_Click(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
-            //To be implemented
+            Game selectedGame = getSelectedGame();
+
+            if (selectedGame != null &&
+                MessageBox.Show("Are you sure you want to delete selected game?",
+                                "Delete Game",
+                                MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                m_dataManager.deleteGame(selectedGame);
+                RefreshGames();
+            }
         }
 
-        private void detailsGame_Click(object sender, EventArgs e)
+        private void btnDetails_Click(object sender, EventArgs e)
         {
-            //To be implemented
+            Game selectedGame = getSelectedGame();
+
+            if (selectedGame != null)
+            {
+                GamesDetailsForm detailsForm = new GamesDetailsForm(selectedGame);
+                detailsForm.Show();
+            }
         }
 
-        private void closeGames_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
         }

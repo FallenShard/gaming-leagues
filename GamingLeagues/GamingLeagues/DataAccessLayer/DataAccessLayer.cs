@@ -38,7 +38,7 @@ namespace GamingLeagues.DataAccessLayer
         // else a new file is created
         private static ISessionFactory CreateSessionFactory()
         {
-            if (File.Exists(m_dbFile))
+            if (DatabaseExists())
             {
                 return Fluently.Configure()
                 .Database(SQLiteConfiguration.Standard.UsingFile(m_dbFile))
@@ -62,6 +62,11 @@ namespace GamingLeagues.DataAccessLayer
             // This NHibernate tool takes a configuration (with mapping info in)
             // and exports a database schema from it
             new SchemaExport(config).Create(false, true);
+        }
+
+        public static bool DatabaseExists()
+        {
+            return File.Exists(m_dbFile);
         }
     }
 }

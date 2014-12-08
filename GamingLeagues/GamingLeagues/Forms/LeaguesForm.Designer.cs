@@ -1,4 +1,4 @@
-﻿namespace GamingLeagues.Forms
+namespace GamingLeagues.Forms
 {
     partial class LeaguesForm
     {

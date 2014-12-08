@@ -1,4 +1,4 @@
-﻿namespace GamingLeagues.Forms.Games
+namespace GamingLeagues.Forms.Games
 {
     partial class GamesAddForm
     {
@@ -181,6 +181,7 @@
             this.btnCancle.TabIndex = 15;
             this.btnCancle.Text = "Cancle";
             this.btnCancle.UseVisualStyleBackColor = true;
+            this.btnCancle.Click += new System.EventHandler(this.btnCancle_Click);
             // 
             // GamesAddForm
             // 
