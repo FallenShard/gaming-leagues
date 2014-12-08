@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 using NHibernate;
 using GamingLeagues.DataAccessLayer;
@@ -29,7 +30,10 @@ namespace GamingLeagues
         {
             m_dataManager = new DataManagement.DataManagement();
 
-            m_dataManager.initializeDataBase();
+            if (!DataAccessLayer.DataAccessLayer.DatabaseExists())
+            {
+                m_dataManager.initializeDataBase();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

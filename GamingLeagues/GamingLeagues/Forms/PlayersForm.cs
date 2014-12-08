@@ -31,10 +31,12 @@ namespace GamingLeagues.Forms
             lvPlayers.Columns.Add("NICKNAME");
             lvPlayers.Columns.Add("FIRST NAME");
             lvPlayers.Columns.Add("LAST NAME");
+            lvPlayers.Columns.Add("GENDER");
             lvPlayers.Columns.Add("BIRTH DATE");
             lvPlayers.Columns.Add("COUNTRY");
             lvPlayers.Columns.Add("DATE TURNED PRO");
             lvPlayers.Columns.Add("CAREER EARNINGS");
+            lvPlayers.Columns.Add("TEAM");
         }
 
         private void RefreshPlayers()
@@ -52,10 +54,12 @@ namespace GamingLeagues.Forms
                 ListViewItem lvi = new ListViewItem(pl.NickName);
                 lvi.SubItems.Add(pl.Name);
                 lvi.SubItems.Add(pl.LastName);
+                lvi.SubItems.Add(pl.Gender.ToString());
                 lvi.SubItems.Add(pl.DateOfBirth.ToString("dd/MM/yyyy"));
                 lvi.SubItems.Add(pl.Country);
                 lvi.SubItems.Add(pl.DateTurnedPro.ToString("dd/MM/yyyy"));
                 lvi.SubItems.Add(pl.CareerEarnings.ToString());
+                lvi.SubItems.Add(pl.CurrentTeam != null ? pl.CurrentTeam.Name : "--None--");
                 lvi.Tag = pl;
 
                 lvPlayers.Items.Add(lvi);
@@ -73,7 +77,32 @@ namespace GamingLeagues.Forms
             }
         }
 
-        private void addPlayer_Click(object sender, EventArgs e)
+        private void PlayersForm_Load(object sender, EventArgs e)
+        {
+            // Initial display
+            RefreshPlayers();
+        }
+
+        private void PlayersForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            m_session.Close();
+        }
+
+        public Player GetSelectedPlayer()
+        {
+            // If no designers have been selected, display error message
+            if (lvPlayers.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select a player first.", "Error");
+                return null;
+            }
+
+            // Otherwise, return the first selected one
+            Player player = (Player)lvPlayers.SelectedItems[0].Tag;
+            return player;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
         {
             PlayersAddForm addDesignerForm = new PlayersAddForm();
 
@@ -83,6 +112,91 @@ namespace GamingLeagues.Forms
                 // Refresh the listView if user confirmed the addition
                 RefreshPlayers();
             }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            // Get the selected player
+            Player selPlayer = GetSelectedPlayer();
+
+            if (selPlayer != null)
+            {
+                PlayersEditForm editPlayerForm = new PlayersEditForm(m_session, selPlayer);
+
+                if (editPlayerForm.ShowDialog() == DialogResult.OK)
+                {
+                    // Refresh the listView if user confirmed the edit
+                    RefreshPlayers();
+                }
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            // Get the selected player
+            Player selPlayer = GetSelectedPlayer();
+
+            if (selPlayer != null && MessageBox.Show("Are you sure you want to delete the selected player?",
+                "Delete Player", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                // Remove all links to matches played
+                selPlayer.MatchesPlayed.Clear();
+                m_session.SaveOrUpdate(selPlayer);
+                m_session.Flush();
+
+                // Remove all games associated with player
+                selPlayer.Games.Clear();
+                m_session.SaveOrUpdate(selPlayer);
+                m_session.Flush();
+
+                // Remove this player from all leagues
+                foreach (PlaysInLeague leaguePlays in selPlayer.Rankings)
+                {
+                    leaguePlays.League.Rankings.Remove(leaguePlays);
+                    m_session.SaveOrUpdate(leaguePlays.League);
+                    m_session.Flush();
+                }
+                selPlayer.Rankings.Clear();
+                m_session.SaveOrUpdate(selPlayer);
+                m_session.Flush();
+
+                // Delete the selected designer
+                m_session.Delete(selPlayer);
+                m_session.Flush();
+
+                RefreshPlayers();
+            }
+        }
+
+        private void btnDetails_Click(object sender, EventArgs e)
+        {
+            // Get the selected player
+            Player selPlayer = GetSelectedPlayer();
+
+            if (selPlayer != null)
+            {
+                PlayersDetailsForm playersDetailsForm = new PlayersDetailsForm(selPlayer.Id);
+
+                playersDetailsForm.Show();
+            }
+        }
+
+        private void lvPlayers_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            // Get the selected player
+            Player selPlayer = GetSelectedPlayer();
+
+            if (selPlayer != null)
+            {
+                PlayersDetailsForm playersDetailsForm = new PlayersDetailsForm(selPlayer.Id);
+
+                playersDetailsForm.Show();
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
