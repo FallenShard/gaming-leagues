@@ -33,6 +33,7 @@
             this.btnLeagues = new System.Windows.Forms.Button();
             this.btnSponsors = new System.Windows.Forms.Button();
             this.btnGames = new System.Windows.Forms.Button();
+
             this.SuspendLayout();
             // 
             // btnPlayers
