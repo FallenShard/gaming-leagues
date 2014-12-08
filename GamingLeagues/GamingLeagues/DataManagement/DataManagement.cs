@@ -52,7 +52,7 @@ namespace GamingLeagues.DataManagement
 
         private Team insertTeamBasic(string name,
                                     DateTime dateCreated,
-                                    DateTime dateDisbanded,
+                                    string tag,
                                     string country)
         {
             m_session = DataAccessLayer.DataAccessLayer.GetSession();
@@ -60,7 +60,7 @@ namespace GamingLeagues.DataManagement
             Team team = new Team();
             team.Name = name;
             team.DateCreated = dateCreated;
-            team.DateDisbanded = dateDisbanded;
+            team.Tag = tag;
             team.Country = country;
 
             m_session.SaveOrUpdate(team);
@@ -252,12 +252,12 @@ namespace GamingLeagues.DataManagement
 
         public void insertTeam(string name,
                                 DateTime dateCreated,
-                                DateTime dateDisbanded,
+                                string tag,
                                 string country,
                                 List<Player> players,
                                 List<Sponsor> sponsors)
         {
-            insertTeamRelations(insertTeamBasic(name, dateCreated, dateDisbanded, country),
+            insertTeamRelations(insertTeamBasic(name, dateCreated, tag, country),
                                 players,
                                 sponsors);
         }

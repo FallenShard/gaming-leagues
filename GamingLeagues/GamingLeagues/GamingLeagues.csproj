@@ -179,6 +179,12 @@
     <EmbeddedResource Include="Forms\Players\PlayersEditForm.resx">
       <DependentUpon>PlayersEditForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TeamsForm.resx">
+      <DependentUpon>TeamsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Teams\TeamsAddForm.resx">
+      <DependentUpon>TeamsAddForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
