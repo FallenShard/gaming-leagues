@@ -104,8 +104,8 @@ namespace GamingLeagues.Forms.Players
                 errorMessages.Add("Player should be at least 5 years old");
 
             // Pro date
-            DateTime proDate = dtpBirth.Value;
-            if (pickedDate < proDate)
+            DateTime proDate = dtpPro.Value;
+            if (proDate < pickedDate)
                 errorMessages.Add("Player cannot become pro before being born");
 
             // Country
