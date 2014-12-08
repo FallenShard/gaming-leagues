@@ -100,6 +100,12 @@
     <Compile Include="Forms\LeaguesForm.Designer.cs">
       <DependentUpon>LeaguesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Leagues\LeaguesAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Leagues\LeaguesAddForm.Designer.cs">
+      <DependentUpon>LeaguesAddForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Players\PlayersAddForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +158,21 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\GamesForm.resx">
+      <DependentUpon>GamesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Games\GamesAddForm.resx">
+      <DependentUpon>GamesAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Games\GamesDetailsForm.resx">
+      <DependentUpon>GamesDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Games\GamesEditForm.resx">
+      <DependentUpon>GamesEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LeaguesForm.resx">
+      <DependentUpon>LeaguesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Players\PlayersAddForm.resx">
       <DependentUpon>PlayersAddForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -191,7 +212,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Forms\Leagues\" />
     <Folder Include="Forms\Sponsors\" />
     <Folder Include="Forms\Teams\" />
   </ItemGroup>
