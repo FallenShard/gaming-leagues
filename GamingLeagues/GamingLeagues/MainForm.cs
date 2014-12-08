@@ -51,5 +51,45 @@ namespace GamingLeagues
                 playersForm.Show();
             }
         }
+
+        private void bGames_Click(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            bool foundForm = false;
+            foreach (Form frm in fc)
+            {
+                if (frm is GamesForm)
+                {
+                    foundForm = true;
+                    frm.BringToFront();
+                    break;
+                }
+            }
+            if (!foundForm)
+            {
+                GamesForm gamesForm = new GamesForm();
+                gamesForm.Show();
+            }
+        }
+
+        private void bLeagues_Click(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            bool foundForm = false;
+            foreach (Form frm in fc)
+            {
+                if (frm is LeaguesForm)
+                {
+                    foundForm = true;
+                    frm.BringToFront();
+                    break;
+                }
+            }
+            if (!foundForm)
+            {
+                LeaguesForm leagueForm = new LeaguesForm();
+                leagueForm.Show();
+            }
+        }
     }
 }

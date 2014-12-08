@@ -14,6 +14,12 @@ namespace GamingLeagues.DataManagement
     {
         private ISession m_session;
 
+        public DataManagement()
+        {
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+            m_session.Close();
+        }
+
         //Inserting Player with Leagues, and vice versa creates new PlaysInLeague entity with 0 points.
         //
         //Old arguments are commented to show the changes from last version
@@ -531,6 +537,186 @@ namespace GamingLeagues.DataManagement
 
             game.SupportedPlatforms.Add(platform);
             platform.VideoGame = game;
+
+            m_session.SaveOrUpdate(game);
+            m_session.Flush();
+
+            m_session.SaveOrUpdate(platform);
+            m_session.Flush();
+
+            m_session.Close();
+        }
+
+        #endregion
+
+        #region Disconnecting
+
+        public void disconnectPlayerTeam(Player player, Team team)
+        {
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+
+            player.CurrentTeam = null;
+            team.Players.Remove(player);
+
+            m_session.SaveOrUpdate(player);
+            m_session.Flush();
+
+            m_session.SaveOrUpdate(team);
+            m_session.Flush();
+
+            m_session.Close();
+        }
+
+        public void disconnectPlayerGame(Player player, Game game)
+        {
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+
+            player.Games.Remove(game);
+            game.Players.Remove(player);
+
+            m_session.SaveOrUpdate(player);
+            m_session.Flush();
+
+            m_session.SaveOrUpdate(game);
+            m_session.Flush();
+
+            m_session.Close();
+        }
+
+        public void disconnectPlayerRanking(Player player, PlaysInLeague ranking)
+        {
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+
+            player.Rankings.Remove(ranking);
+            ranking.Player = null;
+
+            m_session.SaveOrUpdate(player);
+            m_session.Flush();
+
+            m_session.SaveOrUpdate(ranking);
+            m_session.Flush();
+
+            m_session.Close();
+        }
+
+        public void disconnectHomePlayerMatch(Player player, Match match)
+        {
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+
+            player.MatchesPlayed.Remove(match);
+            match.HomePlayer = null;
+
+            m_session.SaveOrUpdate(player);
+            m_session.Flush();
+
+            m_session.SaveOrUpdate(match);
+            m_session.Flush();
+
+            m_session.Close();
+        }
+
+        public void disconnectAwayPlayerMatch(Player player, Match match)
+        {
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+
+            player.MatchesPlayed.Remove(match);
+            match.AwayPlayer = null;
+
+            m_session.SaveOrUpdate(player);
+            m_session.Flush();
+
+            m_session.SaveOrUpdate(match);
+            m_session.Flush();
+
+            m_session.Close();
+        }
+
+        public void disconnectTeamSponsor(Team team, Sponsor sponsor)
+        {
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+
+            team.Sponsors.Remove(sponsor);
+            sponsor.Teams.Remove(team);
+
+            m_session.SaveOrUpdate(team);
+            m_session.Flush();
+
+            m_session.SaveOrUpdate(sponsor);
+            m_session.Flush();
+
+            m_session.Close();
+        }
+
+        public void disconnectLeagueGame(League league, Game game)
+        {
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+
+            league.Game = null;
+            game.Leagues.Remove(league);
+
+            m_session.SaveOrUpdate(league);
+            m_session.Flush();
+
+            m_session.SaveOrUpdate(game);
+            m_session.Flush();
+
+            m_session.Close();
+        }
+
+        public void disconnectLeagueSponsor(League league, Sponsor sponsor)
+        {
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+
+            league.Sponsors.Remove(sponsor);
+            sponsor.Leagues.Remove(league);
+
+            m_session.SaveOrUpdate(league);
+            m_session.Flush();
+
+            m_session.SaveOrUpdate(sponsor);
+            m_session.Flush();
+
+            m_session.Close();
+        }
+
+        public void disconnectLeagueRanking(League league, PlaysInLeague ranking)
+        {
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+
+            league.Rankings.Remove(ranking);
+            ranking.League = null;
+
+            m_session.SaveOrUpdate(league);
+            m_session.Flush();
+
+            m_session.SaveOrUpdate(ranking);
+            m_session.Flush();
+
+            m_session.Close();
+        }
+
+        public void disconnectLeagueMatch(League league, Match match)
+        {
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+
+            league.Matches.Remove(match);
+            match.League = null;
+
+            m_session.SaveOrUpdate(league);
+            m_session.Flush();
+
+            m_session.SaveOrUpdate(match);
+            m_session.Flush();
+
+            m_session.Close();
+        }
+
+        public void disconnectGamePlatform(Game game, Platform platform)
+        {
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+
+            game.SupportedPlatforms.Remove(platform);
+            platform.VideoGame = null;
 
             m_session.SaveOrUpdate(game);
             m_session.Flush();
