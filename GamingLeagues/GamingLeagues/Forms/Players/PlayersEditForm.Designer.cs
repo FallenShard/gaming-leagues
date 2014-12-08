@@ -33,7 +33,7 @@
             this.clbGames = new System.Windows.Forms.CheckedListBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.cbTeam = new System.Windows.Forms.ComboBox();
+            this.cbTeams = new System.Windows.Forms.ComboBox();
             this.tbCareer = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -95,13 +95,13 @@
             this.label8.TabIndex = 43;
             this.label8.Text = "Team";
             // 
-            // cbTeam
+            // cbTeams
             // 
-            this.cbTeam.FormattingEnabled = true;
-            this.cbTeam.Location = new System.Drawing.Point(190, 273);
-            this.cbTeam.Name = "cbTeam";
-            this.cbTeam.Size = new System.Drawing.Size(200, 21);
-            this.cbTeam.TabIndex = 42;
+            this.cbTeams.FormattingEnabled = true;
+            this.cbTeams.Location = new System.Drawing.Point(190, 273);
+            this.cbTeams.Name = "cbTeams";
+            this.cbTeams.Size = new System.Drawing.Size(200, 21);
+            this.cbTeams.TabIndex = 42;
             // 
             // tbCareer
             // 
@@ -260,7 +260,7 @@
             this.Controls.Add(this.clbGames);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.cbTeam);
+            this.Controls.Add(this.cbTeams);
             this.Controls.Add(this.tbCareer);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnCancel);
@@ -278,8 +278,9 @@
             this.Controls.Add(this.tbLastName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "PlayersEditForm";
-            this.Text = "PlayersEditForm";
+            this.Text = "Edit Player";
             this.Load += new System.EventHandler(this.PlayersEditForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -293,7 +294,7 @@
         private System.Windows.Forms.CheckedListBox clbGames;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox cbTeam;
+        private System.Windows.Forms.ComboBox cbTeams;
         private System.Windows.Forms.TextBox tbCareer;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnCancel;

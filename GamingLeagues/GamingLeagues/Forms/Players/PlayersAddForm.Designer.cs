@@ -45,7 +45,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.tbCareer = new System.Windows.Forms.TextBox();
-            this.cbTeam = new System.Windows.Forms.ComboBox();
+            this.cbTeams = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.clbGames = new System.Windows.Forms.CheckedListBox();
@@ -182,15 +182,16 @@
             this.btnCancel.TabIndex = 15;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(145, 163);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(82, 13);
+            this.label7.Size = new System.Drawing.Size(108, 13);
             this.label7.TabIndex = 16;
-            this.label7.Text = "Career Earnings";
+            this.label7.Text = "Career Earnings (in $)";
             // 
             // tbCareer
             // 
@@ -199,13 +200,13 @@
             this.tbCareer.Size = new System.Drawing.Size(100, 20);
             this.tbCareer.TabIndex = 17;
             // 
-            // cbTeam
+            // cbTeams
             // 
-            this.cbTeam.FormattingEnabled = true;
-            this.cbTeam.Location = new System.Drawing.Point(145, 275);
-            this.cbTeam.Name = "cbTeam";
-            this.cbTeam.Size = new System.Drawing.Size(200, 21);
-            this.cbTeam.TabIndex = 18;
+            this.cbTeams.FormattingEnabled = true;
+            this.cbTeams.Location = new System.Drawing.Point(145, 275);
+            this.cbTeams.Name = "cbTeams";
+            this.cbTeams.Size = new System.Drawing.Size(200, 21);
+            this.cbTeams.TabIndex = 18;
             // 
             // label8
             // 
@@ -259,7 +260,7 @@
             this.Controls.Add(this.clbGames);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.cbTeam);
+            this.Controls.Add(this.cbTeams);
             this.Controls.Add(this.tbCareer);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnCancel);
@@ -277,8 +278,9 @@
             this.Controls.Add(this.tbLastName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "PlayersAddForm";
-            this.Text = "PlayersAddForm";
+            this.Text = "Add Player";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -303,7 +305,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox tbCareer;
-        private System.Windows.Forms.ComboBox cbTeam;
+        private System.Windows.Forms.ComboBox cbTeams;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckedListBox clbGames;
