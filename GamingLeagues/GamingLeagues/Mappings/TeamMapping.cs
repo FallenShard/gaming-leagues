@@ -20,7 +20,7 @@ namespace GamingLeagues.Mappings
             // Attribute mapping
             Map(x => x.Name);
             Map(x => x.DateCreated);
-            Map(x => x.DateDisbanded);
+            Map(x => x.Tag);
             Map(x => x.Country);
             
             // One-to-many mapping

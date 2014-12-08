@@ -22,6 +22,7 @@ namespace GamingLeagues.Forms.Players
 
         // List of available games
         private IList<Game> m_games;
+        private IList<Team> m_teams;
 
         public PlayersEditForm(ISession session, Player player)
         {
@@ -32,16 +33,26 @@ namespace GamingLeagues.Forms.Players
             m_player = player;
 
             // Load the available games
-            GetGames();
+            GetGamesAndTeams();
 
             clbGames.Items.Clear();
             clbGames.DataSource = m_games;
             clbGames.DisplayMember = "Title";
+
+            cbTeams.Items.Clear();
+            cbTeams.DataSource = m_teams;
+            cbTeams.DisplayMember = "Name";
+            cbTeams.SelectedItem = cbTeams.Items[cbTeams.Items.Count - 1];
         }
 
-        private void GetGames()
+        private void GetGamesAndTeams()
         {
             m_games = m_session.CreateQuery("FROM Game").List<Game>();
+
+            m_teams = m_session.CreateQuery("FROM Team").List<Team>();
+            Team nullTeam = new Team();
+            nullTeam.Name = "(None)";
+            m_teams.Add(nullTeam);
         }
 
         private void InitializePlayerData()
@@ -54,8 +65,20 @@ namespace GamingLeagues.Forms.Players
             dtpBirth.Value = m_player.DateOfBirth;
             dtpPro.Value = m_player.DateTurnedPro;
 
-            if (m_player.Gender == 'M') rbMale.Checked = true;
-            else rbFemale.Checked = true;
+            if (m_player.Gender == 'M') 
+                rbMale.Checked = true;
+            else 
+                rbFemale.Checked = true;
+
+            // Team
+            if (m_player.CurrentTeam != null)
+            {
+                foreach (Team team in m_teams)
+                    if (m_player.CurrentTeam.Id == team.Id)
+                        cbTeams.SelectedItem = team;
+            }
+            else
+                cbTeams.SelectedItem = cbTeams.Items[cbTeams.Items.Count - 1];
 
             // Check all games that player is linked to
             IList<Game> playerGames = m_player.Games;
@@ -81,6 +104,12 @@ namespace GamingLeagues.Forms.Players
             player.CareerEarnings = float.Parse(tbCareer.Text, CultureInfo.InvariantCulture);
             player.Gender = rbMale.Checked ? 'M' : 'F';
 
+            Team team = cbTeams.SelectedItem as Team;
+            if (team.Name != "(None)")
+                player.CurrentTeam = team;
+            else
+                player.CurrentTeam = null;
+
             // Games
             CheckedListBox.CheckedItemCollection selectedGames = clbGames.CheckedItems;
 
@@ -95,8 +124,61 @@ namespace GamingLeagues.Forms.Players
 
         private bool ValidateInput()
         {
-            // TODO
-            return true;
+            // Concatenated error messages from multiple inputs
+            IList<string> errorMessages = new List<string>();
+
+            // First name
+            if (tbName.Text.Length == 0 || tbName.Text.Length > 20)
+                errorMessages.Add("First name should be 1-20 characters long");
+            if (System.Text.RegularExpressions.Regex.IsMatch(tbName.Text, @"\d"))
+                errorMessages.Add("First name should contain only alphabet characters");
+
+            // Last name
+            if (tbLastName.Text.Length == 0 || tbLastName.Text.Length > 20)
+                errorMessages.Add("First name should be 1-20 characters long");
+            if (System.Text.RegularExpressions.Regex.IsMatch(tbLastName.Text, @"\d"))
+                errorMessages.Add("First name should contain only alphabet characters");
+
+            // Gender
+            if (!rbFemale.Checked && !rbMale.Checked)
+                errorMessages.Add("Please select a gender for the player");
+
+            // Birth date
+            DateTime pickedDate = dtpBirth.Value;
+            if (DateTime.Now.Year - pickedDate.Year < 5)
+                errorMessages.Add("Player should be at least 5 years old");
+
+            // Pro date
+            DateTime proDate = dtpPro.Value;
+            if (proDate < pickedDate)
+                errorMessages.Add("Player cannot become pro before being born");
+
+            // Country
+            if (tbCountry.Text.Length > 40)
+                errorMessages.Add("Country should be 0-40 characters long");
+            if (System.Text.RegularExpressions.Regex.IsMatch(tbCountry.Text, @"\d"))
+                errorMessages.Add("Country should contain only alphabet characters");
+
+            try
+            {
+                float temp = float.Parse(tbCareer.Text);
+            }
+            catch (Exception)
+            {
+                errorMessages.Add("Career earnings has to be a number");
+            }
+
+            if (errorMessages.Count == 0)
+                return true;
+            else
+            {
+                string message = "The following errors have been found: " + Environment.NewLine + Environment.NewLine;
+                foreach (string error in errorMessages)
+                    message += "  -  " + error + Environment.NewLine;
+
+                MessageBox.Show(message, Text);
+                return false;
+            }
         }
 
         private void PlayersEditForm_Load(object sender, EventArgs e)

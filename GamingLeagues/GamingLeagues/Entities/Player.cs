@@ -21,6 +21,14 @@ namespace GamingLeagues.Entities
         public virtual DateTime DateTurnedPro { get; set; }
         public virtual float CareerEarnings { get; set; }
 
+        public virtual string NameNickLast
+        { 
+            get
+            {
+                return Name + "\"" + NickName + "\"" + LastName;
+            } 
+        }
+
         // Many-to-one relationship
         public virtual Team CurrentTeam { get; set; }
 

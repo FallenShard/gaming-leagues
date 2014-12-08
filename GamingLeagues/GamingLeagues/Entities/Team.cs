@@ -13,8 +13,8 @@ namespace GamingLeagues.Entities
 
         // Attributes
         public virtual string Name { get; set; }
+        public virtual string Tag { get; set; }
         public virtual DateTime DateCreated { get; set; }
-        public virtual DateTime DateDisbanded { get; set; }
         public virtual string Country { get; set; }
 
         // One-to-many relationship

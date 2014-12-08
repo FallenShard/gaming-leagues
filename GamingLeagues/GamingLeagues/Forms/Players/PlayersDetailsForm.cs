@@ -27,8 +27,6 @@ namespace GamingLeagues.Forms.Players
 
             lbGames.Items.Clear();
             lbLeagues.Items.Clear();
-
-
         }
 
         private void PlayersDetailsForm_Load(object sender, EventArgs e)
