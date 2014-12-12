@@ -45,8 +45,6 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.tbCareer = new System.Windows.Forms.TextBox();
-            this.cbTeams = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.clbGames = new System.Windows.Forms.CheckedListBox();
             this.tbCountry = new System.Windows.Forms.TextBox();
@@ -55,24 +53,24 @@
             // 
             // tbName
             // 
-            this.tbName.Location = new System.Drawing.Point(12, 78);
+            this.tbName.Location = new System.Drawing.Point(114, 53);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(100, 20);
-            this.tbName.TabIndex = 0;
+            this.tbName.Size = new System.Drawing.Size(200, 20);
+            this.tbName.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 62);
+            this.label1.Location = new System.Drawing.Point(51, 56);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(57, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Name";
+            this.label1.Text = "First Name";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 116);
+            this.label2.Location = new System.Drawing.Point(50, 82);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 3;
@@ -80,15 +78,15 @@
             // 
             // tbLastName
             // 
-            this.tbLastName.Location = new System.Drawing.Point(12, 135);
+            this.tbLastName.Location = new System.Drawing.Point(114, 79);
             this.tbLastName.Name = "tbLastName";
-            this.tbLastName.Size = new System.Drawing.Size(100, 20);
-            this.tbLastName.TabIndex = 2;
+            this.tbLastName.Size = new System.Drawing.Size(200, 20);
+            this.tbLastName.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 170);
+            this.label3.Location = new System.Drawing.Point(53, 30);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 13);
             this.label3.TabIndex = 5;
@@ -96,15 +94,15 @@
             // 
             // tbNickName
             // 
-            this.tbNickName.Location = new System.Drawing.Point(12, 186);
+            this.tbNickName.Location = new System.Drawing.Point(114, 27);
             this.tbNickName.Name = "tbNickName";
-            this.tbNickName.Size = new System.Drawing.Size(100, 20);
-            this.tbNickName.TabIndex = 4;
+            this.tbNickName.Size = new System.Drawing.Size(200, 20);
+            this.tbNickName.TabIndex = 1;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 217);
+            this.label4.Location = new System.Drawing.Point(66, 157);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(42, 13);
             this.label4.TabIndex = 7;
@@ -113,10 +111,10 @@
             // rbMale
             // 
             this.rbMale.AutoSize = true;
-            this.rbMale.Location = new System.Drawing.Point(12, 234);
+            this.rbMale.Location = new System.Drawing.Point(114, 155);
             this.rbMale.Name = "rbMale";
             this.rbMale.Size = new System.Drawing.Size(48, 17);
-            this.rbMale.TabIndex = 8;
+            this.rbMale.TabIndex = 5;
             this.rbMale.TabStop = true;
             this.rbMale.Text = "Male";
             this.rbMale.UseVisualStyleBackColor = true;
@@ -124,32 +122,32 @@
             // rbFemale
             // 
             this.rbFemale.AutoSize = true;
-            this.rbFemale.Location = new System.Drawing.Point(12, 258);
+            this.rbFemale.Location = new System.Drawing.Point(168, 155);
             this.rbFemale.Name = "rbFemale";
             this.rbFemale.Size = new System.Drawing.Size(59, 17);
-            this.rbFemale.TabIndex = 9;
+            this.rbFemale.TabIndex = 6;
             this.rbFemale.TabStop = true;
             this.rbFemale.Text = "Female";
             this.rbFemale.UseVisualStyleBackColor = true;
             // 
             // dtpPro
             // 
-            this.dtpPro.Location = new System.Drawing.Point(145, 132);
+            this.dtpPro.Location = new System.Drawing.Point(114, 235);
             this.dtpPro.Name = "dtpPro";
             this.dtpPro.Size = new System.Drawing.Size(200, 20);
-            this.dtpPro.TabIndex = 10;
+            this.dtpPro.TabIndex = 8;
             // 
             // dtpBirth
             // 
-            this.dtpBirth.Location = new System.Drawing.Point(145, 81);
+            this.dtpBirth.Location = new System.Drawing.Point(114, 129);
             this.dtpBirth.Name = "dtpBirth";
             this.dtpBirth.Size = new System.Drawing.Size(200, 20);
-            this.dtpBirth.TabIndex = 11;
+            this.dtpBirth.TabIndex = 4;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(145, 61);
+            this.label5.Location = new System.Drawing.Point(42, 135);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(66, 13);
             this.label5.TabIndex = 12;
@@ -158,7 +156,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(145, 115);
+            this.label6.Location = new System.Drawing.Point(22, 241);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(86, 13);
             this.label6.TabIndex = 13;
@@ -166,9 +164,10 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(89, 469);
+            this.btnOk.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOk.Location = new System.Drawing.Point(12, 439);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 23);
+            this.btnOk.Size = new System.Drawing.Size(150, 50);
             this.btnOk.TabIndex = 14;
             this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = true;
@@ -176,9 +175,10 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(170, 469);
+            this.btnCancel.Font = new System.Drawing.Font("Impact", 18F);
+            this.btnCancel.Location = new System.Drawing.Point(172, 439);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(150, 50);
             this.btnCancel.TabIndex = 15;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -187,40 +187,23 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(145, 163);
+            this.label7.Location = new System.Drawing.Point(11, 264);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(108, 13);
+            this.label7.Size = new System.Drawing.Size(97, 13);
             this.label7.TabIndex = 16;
-            this.label7.Text = "Career Earnings (in $)";
+            this.label7.Text = "Career Earnings ($)";
             // 
             // tbCareer
             // 
-            this.tbCareer.Location = new System.Drawing.Point(145, 180);
+            this.tbCareer.Location = new System.Drawing.Point(114, 261);
             this.tbCareer.Name = "tbCareer";
-            this.tbCareer.Size = new System.Drawing.Size(100, 20);
-            this.tbCareer.TabIndex = 17;
-            // 
-            // cbTeams
-            // 
-            this.cbTeams.FormattingEnabled = true;
-            this.cbTeams.Location = new System.Drawing.Point(145, 275);
-            this.cbTeams.Name = "cbTeams";
-            this.cbTeams.Size = new System.Drawing.Size(200, 21);
-            this.cbTeams.TabIndex = 18;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(145, 258);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(34, 13);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "Team";
+            this.tbCareer.Size = new System.Drawing.Size(200, 20);
+            this.tbCareer.TabIndex = 9;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(9, 301);
+            this.label9.Location = new System.Drawing.Point(38, 287);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(70, 13);
             this.label9.TabIndex = 21;
@@ -229,22 +212,22 @@
             // clbGames
             // 
             this.clbGames.FormattingEnabled = true;
-            this.clbGames.Location = new System.Drawing.Point(12, 328);
+            this.clbGames.Location = new System.Drawing.Point(114, 287);
             this.clbGames.Name = "clbGames";
-            this.clbGames.Size = new System.Drawing.Size(120, 94);
-            this.clbGames.TabIndex = 22;
+            this.clbGames.Size = new System.Drawing.Size(200, 94);
+            this.clbGames.TabIndex = 10;
             // 
             // tbCountry
             // 
-            this.tbCountry.Location = new System.Drawing.Point(145, 234);
+            this.tbCountry.Location = new System.Drawing.Point(114, 178);
             this.tbCountry.Name = "tbCountry";
-            this.tbCountry.Size = new System.Drawing.Size(100, 20);
-            this.tbCountry.TabIndex = 23;
+            this.tbCountry.Size = new System.Drawing.Size(200, 20);
+            this.tbCountry.TabIndex = 7;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(145, 216);
+            this.label10.Location = new System.Drawing.Point(65, 181);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(43, 13);
             this.label10.TabIndex = 24;
@@ -254,13 +237,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(362, 504);
+            this.ClientSize = new System.Drawing.Size(334, 501);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.tbCountry);
             this.Controls.Add(this.clbGames);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.cbTeams);
             this.Controls.Add(this.tbCareer);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnCancel);
@@ -279,7 +260,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "PlayersAddForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Player";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -305,8 +288,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox tbCareer;
-        private System.Windows.Forms.ComboBox cbTeams;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckedListBox clbGames;
         private System.Windows.Forms.TextBox tbCountry;

@@ -29,10 +29,10 @@ namespace GamingLeagues.Forms.Players
             clbGames.DataSource = m_games;
             clbGames.DisplayMember = "Title";
 
-            cbTeams.Items.Clear();
-            cbTeams.DataSource = m_teams;
-            cbTeams.DisplayMember = "Name";
-            cbTeams.SelectedItem = cbTeams.Items[cbTeams.Items.Count - 1];
+            //cbTeams.Items.Clear();
+            //cbTeams.DataSource = m_teams;
+            //cbTeams.DisplayMember = "Name";
+            //cbTeams.SelectedItem = cbTeams.Items[cbTeams.Items.Count - 1];
         }
 
         private void GetGamesAndTeams()
@@ -42,10 +42,10 @@ namespace GamingLeagues.Forms.Players
             m_games = session.CreateQuery("FROM Game").List<Game>();
 
             // Add a null option for teams
-            m_teams = session.CreateQuery("FROM Team").List<Team>();
-            Team nullTeam = new Team();
-            nullTeam.Name = "(None)";
-            m_teams.Add(nullTeam);
+            //m_teams = session.CreateQuery("FROM Team").List<Team>();
+            //Team nullTeam = new Team();
+            //nullTeam.Name = "(None)";
+            //m_teams.Add(nullTeam);
 
             session.Close();
         }
@@ -61,9 +61,9 @@ namespace GamingLeagues.Forms.Players
             player.CareerEarnings = float.Parse(tbCareer.Text, CultureInfo.InvariantCulture);
             player.Gender = rbMale.Checked ? 'M' : 'F';
 
-            Team team = cbTeams.SelectedItem as Team;
-            if (team.Name != "(None)")
-                player.CurrentTeam = team;
+            //Team team = cbTeams.SelectedItem as Team;
+            //if (team.Name != "(None)")
+            //    player.CurrentTeam = team;
 
             // Games
             CheckedListBox.CheckedItemCollection selectedGames = clbGames.CheckedItems;
