@@ -44,6 +44,8 @@ namespace GamingLeagues.Forms.Games
             this.clbPlayers = new System.Windows.Forms.CheckedListBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancle = new System.Windows.Forms.Button();
+            this.btnAddPlatform = new System.Windows.Forms.Button();
+            this.btnDeletePlatform = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -90,7 +92,6 @@ namespace GamingLeagues.Forms.Games
             // dtpReleaseDate
             // 
             this.dtpReleaseDate.Location = new System.Drawing.Point(12, 103);
-            this.dtpReleaseDate.MaxDate = new System.DateTime(2014, 12, 8, 0, 0, 0, 0);
             this.dtpReleaseDate.Name = "dtpReleaseDate";
             this.dtpReleaseDate.Size = new System.Drawing.Size(130, 20);
             this.dtpReleaseDate.TabIndex = 5;
@@ -183,11 +184,33 @@ namespace GamingLeagues.Forms.Games
             this.btnCancle.UseVisualStyleBackColor = true;
             this.btnCancle.Click += new System.EventHandler(this.btnCancle_Click);
             // 
+            // btnAddPlatform
+            // 
+            this.btnAddPlatform.Location = new System.Drawing.Point(151, 130);
+            this.btnAddPlatform.Name = "btnAddPlatform";
+            this.btnAddPlatform.Size = new System.Drawing.Size(49, 23);
+            this.btnAddPlatform.TabIndex = 16;
+            this.btnAddPlatform.Text = "Add";
+            this.btnAddPlatform.UseVisualStyleBackColor = true;
+            this.btnAddPlatform.Click += new System.EventHandler(this.btnAddPlatform_Click);
+            // 
+            // btnDeletePlatform
+            // 
+            this.btnDeletePlatform.Location = new System.Drawing.Point(219, 130);
+            this.btnDeletePlatform.Name = "btnDeletePlatform";
+            this.btnDeletePlatform.Size = new System.Drawing.Size(49, 23);
+            this.btnDeletePlatform.TabIndex = 17;
+            this.btnDeletePlatform.Text = "Delete";
+            this.btnDeletePlatform.UseVisualStyleBackColor = true;
+            this.btnDeletePlatform.Click += new System.EventHandler(this.btnDeletePlatform_Click);
+            // 
             // GamesAddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(278, 320);
+            this.Controls.Add(this.btnDeletePlatform);
+            this.Controls.Add(this.btnAddPlatform);
             this.Controls.Add(this.btnCancle);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.clbPlayers);
@@ -229,5 +252,7 @@ namespace GamingLeagues.Forms.Games
         private System.Windows.Forms.CheckedListBox clbPlayers;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancle;
+        private System.Windows.Forms.Button btnAddPlatform;
+        private System.Windows.Forms.Button btnDeletePlatform;
     }
 }

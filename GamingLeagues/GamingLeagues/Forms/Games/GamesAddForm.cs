@@ -33,12 +33,19 @@ namespace GamingLeagues.Forms.Games
             clbPlayers.DataSource = m_players;
             clbPlayers.DisplayMember = "Nickname";
 
-            m_leagues = m_dataManager.getLeagues();
+            IList<League> leagues = m_dataManager.getLeagues();
+            foreach (League league in leagues)
+                if (league.Game == null)
+                    m_leagues.Add(league);
             clbLeagues.Items.Clear();
             clbLeagues.DataSource = m_leagues;
             clbLeagues.DisplayMember = "Name";
 
-            m_platforms = m_dataManager.getPlatforms();
+            IList<Platform> platforms = m_dataManager.getPlatforms();
+            foreach (Platform platform in platforms)
+                if (platform.VideoGame == null)
+                    m_platforms.Add(platform);
+            //////////NASTAVITI
             clbSupportedPlatforms.Items.Clear();
             clbSupportedPlatforms.DataSource = m_platforms;
             clbSupportedPlatforms.DisplayMember = "PlatformTitle";
@@ -101,6 +108,45 @@ namespace GamingLeagues.Forms.Games
         private void btnCancle_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
+        }
+        private Platform getSelectedPlatform()
+        {
+            if (clbPlayers.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select a platform first.", "Error");
+                return null;
+            }
+
+            //Platform platform = (Platform)clbPlayers.SelectedItems[0].Tag;
+            //return platform;
+
+            return new Platform();
+        }
+
+        private void refreshPlatforms()
+        {
+            IList<Platform> allPlatforms = m_dataManager.getPlatforms();
+            foreach (Platform platform in allPlatforms)
+                ;
+        }
+
+        private void btnAddPlatform_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDeletePlatform_Click(object sender, EventArgs e)
+        {
+            Platform platform = getSelectedPlatform();
+
+            if (platform != null &&
+                MessageBox.Show("Are you sure you want to delete selected platform?",
+                                "Delete Game",
+                                MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                m_dataManager.deletePlatform(platform);
+                refreshPlatforms();
+            }
         }
     }
 }
