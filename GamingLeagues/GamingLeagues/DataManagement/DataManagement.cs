@@ -32,8 +32,6 @@ namespace GamingLeagues.DataManagement
                                         DateTime dateTurnedPro,
                                         float careerEarnings)
         {
-            //m_session = DataAccessLayer.DataAccessLayer.GetSession();
-
             Player player = new Player();
             player.Name = name;
             player.LastName = lastName;
@@ -46,8 +44,6 @@ namespace GamingLeagues.DataManagement
 
             m_session.SaveOrUpdate(player);
             m_session.Flush();
-
-            //m_session.Close();
 
             return player;
         }
@@ -136,7 +132,8 @@ namespace GamingLeagues.DataManagement
                                             List<Game> games,
                                             List<League> leagues)
         {
-            connectPlayerTeam(player, currentTeam);
+            if (currentTeam != null)
+                connectPlayerTeam(player, currentTeam);
 
             foreach (Game game in games)
                 connectPlayerGame(player, game);
@@ -161,7 +158,8 @@ namespace GamingLeagues.DataManagement
                                             List<Sponsor> sponsors,
                                             List<Player> players)
         {
-            connectLeagueGame(league, game);
+            if (game != null)
+                connectLeagueGame(league, game);
 
             foreach (Sponsor sponsor in sponsors)
                 connectLeagueSponsor(league, sponsor);
@@ -199,7 +197,8 @@ namespace GamingLeagues.DataManagement
         private void insertPlatformRelations(Platform platform,
                                             Game videoGame)
         {
-            connectGamePlatform(videoGame, platform);
+            if (videoGame != null)
+                connectGamePlatform(videoGame, platform);
         }
 
         #endregion
@@ -306,6 +305,8 @@ namespace GamingLeagues.DataManagement
                                         int points)
         {
             PlaysInLeague ranking = new PlaysInLeague();
+            ranking.Player = player;
+            ranking.League = league;
             ranking.Points = points;
 
             m_session.SaveOrUpdate(ranking);
@@ -534,7 +535,8 @@ namespace GamingLeagues.DataManagement
         public void disconnectLeagueGame(League league, Game game)
         {
             league.Game = null;
-            game.Leagues.Remove(league);
+            if (game != null)
+                game.Leagues.Remove(league);
 
             m_session.SaveOrUpdate(league);
             m_session.Flush();
@@ -609,7 +611,7 @@ namespace GamingLeagues.DataManagement
 
         public IList<League> getLeagues()
         {
-            return m_session.CreateQuery("FROM Team").List<League>();
+            return m_session.CreateQuery("FROM League").List<League>();
         }
 
         public IList<Sponsor> getSponsors()

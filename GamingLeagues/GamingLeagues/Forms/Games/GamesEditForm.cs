@@ -37,7 +37,11 @@ namespace GamingLeagues.Forms.Games
             clbPlayers.DataSource = m_players;
             clbPlayers.DisplayMember = "Nickname";
 
-            m_leagues = m_dataManager.getLeagues();
+            IList<League> leagues = m_dataManager.getLeagues();
+            foreach (League league in leagues)
+                if (league.Game == null ||
+                    league.Game == m_game)
+                    m_leagues.Add(league);
             clbLeagues.Items.Clear();
             clbLeagues.DataSource = m_leagues;
             clbLeagues.DisplayMember = "Name";

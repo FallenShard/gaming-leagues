@@ -136,7 +136,6 @@
             // dtpReleaseDate
             // 
             this.dtpReleaseDate.Location = new System.Drawing.Point(21, 101);
-            this.dtpReleaseDate.MaxDate = new System.DateTime(2014, 12, 8, 0, 0, 0, 0);
             this.dtpReleaseDate.Name = "dtpReleaseDate";
             this.dtpReleaseDate.Size = new System.Drawing.Size(130, 20);
             this.dtpReleaseDate.TabIndex = 21;

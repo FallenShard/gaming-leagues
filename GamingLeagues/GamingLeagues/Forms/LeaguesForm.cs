@@ -16,7 +16,7 @@ namespace GamingLeagues.Forms
 {
     public partial class LeaguesForm : Form
     {
-        private ISession m_session;
+        private DataManagement.DataManagement m_dataManager;
 
         private IList<League> m_leagues;
 
@@ -24,7 +24,7 @@ namespace GamingLeagues.Forms
         {
             InitializeComponent();
 
-            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+            m_dataManager = new DataManagement.DataManagement();
 
             lvLeagues.Clear();
             lvLeagues.Columns.Add("NAME");
@@ -33,14 +33,16 @@ namespace GamingLeagues.Forms
             lvLeagues.Columns.Add("BUDGET");
         }
 
+        private void onLoad(object sender, EventArgs e)
+        {
+            RefreshLeagues();
+        }
+
         private void RefreshLeagues()
         {
-            // Clear the items inside the listView
             lvLeagues.Items.Clear();
 
-            // Grab the players with a query from the open session
-            IQuery q = m_session.CreateQuery("FROM League");
-            m_leagues = q.List<League>();
+            m_leagues = m_dataManager.getLeagues();
 
             // Iterate and add data from the players
             foreach (League league in m_leagues)
@@ -66,9 +68,21 @@ namespace GamingLeagues.Forms
             }
         }
 
+        private League getSelectedLeague()
+        {
+            if (lvLeagues.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select a league first.", "Error");
+                return null;
+            }
+
+            League league = (League)lvLeagues.SelectedItems[0].Tag;
+            return league;
+        }
+
         #region Button clicks
 
-        private void addLeague_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
             LeaguesAddForm addForm = new LeaguesAddForm();
 
@@ -76,22 +90,37 @@ namespace GamingLeagues.Forms
                 RefreshLeagues();
         }
 
-        private void editLeague_Click(object sender, EventArgs e)
+        private void btnEdit_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void deleteLeague_Click(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
+            League selectedLeague = getSelectedLeague();
 
+            if (selectedLeague != null &&
+                MessageBox.Show("Are you sure you want to delete selected league?",
+                                "Delete League",
+                                MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                m_dataManager.deleteLeague(selectedLeague);
+                RefreshLeagues();
+            }
         }
 
-        private void detailsLeague_Click(object sender, EventArgs e)
+        private void btnDetails_Click(object sender, EventArgs e)
         {
+            League selectedLeague = getSelectedLeague();
 
+            if (selectedLeague != null)
+            {
+                LeaguesDetailsForm detailsForm = new LeaguesDetailsForm(selectedLeague);
+                detailsForm.Show();
+            }
         }
 
-        private void closeLeagues_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
         }

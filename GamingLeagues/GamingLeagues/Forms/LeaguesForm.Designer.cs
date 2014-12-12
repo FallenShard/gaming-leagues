@@ -28,63 +28,63 @@ namespace GamingLeagues.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.addLeague = new System.Windows.Forms.Button();
-            this.editLeague = new System.Windows.Forms.Button();
-            this.deleteLeague = new System.Windows.Forms.Button();
-            this.detailsLeague = new System.Windows.Forms.Button();
-            this.closeLeagues = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnDetails = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.lvLeagues = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
-            // addLeague
+            // btnAdd
             // 
-            this.addLeague.Location = new System.Drawing.Point(12, 12);
-            this.addLeague.Name = "addLeague";
-            this.addLeague.Size = new System.Drawing.Size(110, 23);
-            this.addLeague.TabIndex = 0;
-            this.addLeague.Text = "Add League";
-            this.addLeague.UseVisualStyleBackColor = true;
-            this.addLeague.Click += new System.EventHandler(this.addLeague_Click);
+            this.btnAdd.Location = new System.Drawing.Point(12, 12);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(110, 23);
+            this.btnAdd.TabIndex = 0;
+            this.btnAdd.Text = "Add League";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // editLeague
+            // btnEdit
             // 
-            this.editLeague.Location = new System.Drawing.Point(12, 41);
-            this.editLeague.Name = "editLeague";
-            this.editLeague.Size = new System.Drawing.Size(110, 23);
-            this.editLeague.TabIndex = 1;
-            this.editLeague.Text = "Edit League";
-            this.editLeague.UseVisualStyleBackColor = true;
-            this.editLeague.Click += new System.EventHandler(this.editLeague_Click);
+            this.btnEdit.Location = new System.Drawing.Point(12, 41);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(110, 23);
+            this.btnEdit.TabIndex = 1;
+            this.btnEdit.Text = "Edit League";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // deleteLeague
+            // btnDelete
             // 
-            this.deleteLeague.Location = new System.Drawing.Point(12, 70);
-            this.deleteLeague.Name = "deleteLeague";
-            this.deleteLeague.Size = new System.Drawing.Size(110, 23);
-            this.deleteLeague.TabIndex = 2;
-            this.deleteLeague.Text = "Delete League";
-            this.deleteLeague.UseVisualStyleBackColor = true;
-            this.deleteLeague.Click += new System.EventHandler(this.deleteLeague_Click);
+            this.btnDelete.Location = new System.Drawing.Point(12, 70);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(110, 23);
+            this.btnDelete.TabIndex = 2;
+            this.btnDelete.Text = "Delete League";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // detailsLeague
+            // btnDetails
             // 
-            this.detailsLeague.Location = new System.Drawing.Point(12, 99);
-            this.detailsLeague.Name = "detailsLeague";
-            this.detailsLeague.Size = new System.Drawing.Size(110, 23);
-            this.detailsLeague.TabIndex = 3;
-            this.detailsLeague.Text = "Details For League";
-            this.detailsLeague.UseVisualStyleBackColor = true;
-            this.detailsLeague.Click += new System.EventHandler(this.detailsLeague_Click);
+            this.btnDetails.Location = new System.Drawing.Point(12, 99);
+            this.btnDetails.Name = "btnDetails";
+            this.btnDetails.Size = new System.Drawing.Size(110, 23);
+            this.btnDetails.TabIndex = 3;
+            this.btnDetails.Text = "Details For League";
+            this.btnDetails.UseVisualStyleBackColor = true;
+            this.btnDetails.Click += new System.EventHandler(this.btnDetails_Click);
             // 
-            // closeLeagues
+            // btnClose
             // 
-            this.closeLeagues.Location = new System.Drawing.Point(12, 327);
-            this.closeLeagues.Name = "closeLeagues";
-            this.closeLeagues.Size = new System.Drawing.Size(110, 23);
-            this.closeLeagues.TabIndex = 4;
-            this.closeLeagues.Text = "Close";
-            this.closeLeagues.UseVisualStyleBackColor = true;
-            this.closeLeagues.Click += new System.EventHandler(this.closeLeagues_Click);
+            this.btnClose.Location = new System.Drawing.Point(12, 327);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(110, 23);
+            this.btnClose.TabIndex = 4;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // lvLeagues
             // 
@@ -93,6 +93,7 @@ namespace GamingLeagues.Forms
             this.lvLeagues.Size = new System.Drawing.Size(444, 338);
             this.lvLeagues.TabIndex = 5;
             this.lvLeagues.UseCompatibleStateImageBehavior = false;
+            this.lvLeagues.View = System.Windows.Forms.View.Details;
             // 
             // LeaguesForm
             // 
@@ -100,24 +101,25 @@ namespace GamingLeagues.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 362);
             this.Controls.Add(this.lvLeagues);
-            this.Controls.Add(this.closeLeagues);
-            this.Controls.Add(this.detailsLeague);
-            this.Controls.Add(this.deleteLeague);
-            this.Controls.Add(this.editLeague);
-            this.Controls.Add(this.addLeague);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnDetails);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnEdit);
+            this.Controls.Add(this.btnAdd);
             this.Name = "LeaguesForm";
             this.Text = "LeaguesForm";
+            this.Load += new System.EventHandler(this.onLoad);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button addLeague;
-        private System.Windows.Forms.Button editLeague;
-        private System.Windows.Forms.Button deleteLeague;
-        private System.Windows.Forms.Button detailsLeague;
-        private System.Windows.Forms.Button closeLeagues;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnDetails;
+        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.ListView lvLeagues;
     }
 }
