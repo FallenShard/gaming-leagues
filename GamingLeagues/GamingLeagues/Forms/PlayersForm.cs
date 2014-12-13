@@ -49,6 +49,7 @@ namespace GamingLeagues.Forms
             m_players = q.List<Player>();
 
             // Iterate and add data from the players
+            bool colorizer = false;
             foreach (Player pl in m_players)
             {
                 ListViewItem lvi = new ListViewItem(pl.NickName);
@@ -58,9 +59,14 @@ namespace GamingLeagues.Forms
                 lvi.SubItems.Add(pl.DateOfBirth.ToString("dd/MM/yyyy"));
                 lvi.SubItems.Add(pl.Country);
                 lvi.SubItems.Add(pl.DateTurnedPro.ToString("dd/MM/yyyy"));
-                lvi.SubItems.Add(pl.CareerEarnings.ToString());
+                lvi.SubItems.Add(pl.CareerEarnings.ToString() + " $");
                 lvi.SubItems.Add(pl.CurrentTeam != null ? pl.CurrentTeam.Name : "--None--");
                 lvi.Tag = pl;
+                if (colorizer == false)
+                    lvi.BackColor = Color.Orange;
+                else
+                    lvi.BackColor = Color.Moccasin;
+                colorizer = !colorizer;
 
                 lvPlayers.Items.Add(lvi);
             }
@@ -141,13 +147,11 @@ namespace GamingLeagues.Forms
             {
                 // Remove all links to matches played
                 selPlayer.MatchesPlayed.Clear();
-                m_session.SaveOrUpdate(selPlayer);
-                m_session.Flush();
 
                 // Remove all games associated with player
                 selPlayer.Games.Clear();
-                m_session.SaveOrUpdate(selPlayer);
-                m_session.Flush();
+
+                selPlayer.CurrentTeam = null;
 
                 // Remove this player from all leagues
                 foreach (PlaysInLeague leaguePlays in selPlayer.Rankings)

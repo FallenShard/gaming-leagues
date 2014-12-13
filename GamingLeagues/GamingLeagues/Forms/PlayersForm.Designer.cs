@@ -39,10 +39,9 @@
             // lvPlayers
             // 
             this.lvPlayers.FullRowSelect = true;
-            this.lvPlayers.GridLines = true;
             this.lvPlayers.Location = new System.Drawing.Point(12, 12);
             this.lvPlayers.Name = "lvPlayers";
-            this.lvPlayers.Size = new System.Drawing.Size(790, 495);
+            this.lvPlayers.Size = new System.Drawing.Size(754, 487);
             this.lvPlayers.TabIndex = 0;
             this.lvPlayers.UseCompatibleStateImageBehavior = false;
             this.lvPlayers.View = System.Windows.Forms.View.Details;
@@ -50,9 +49,11 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(874, 13);
+            this.btnAdd.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnAdd.Location = new System.Drawing.Point(772, 12);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.Size = new System.Drawing.Size(150, 50);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "Add Player";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -60,9 +61,11 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(874, 42);
+            this.btnEdit.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnEdit.Location = new System.Drawing.Point(772, 68);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 23);
+            this.btnEdit.Size = new System.Drawing.Size(150, 50);
             this.btnEdit.TabIndex = 2;
             this.btnEdit.Text = "Edit Player";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -70,9 +73,11 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(874, 71);
+            this.btnDelete.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnDelete.Location = new System.Drawing.Point(772, 124);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.Size = new System.Drawing.Size(150, 50);
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -80,9 +85,11 @@
             // 
             // btnDetails
             // 
-            this.btnDetails.Location = new System.Drawing.Point(874, 100);
+            this.btnDetails.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDetails.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnDetails.Location = new System.Drawing.Point(772, 180);
             this.btnDetails.Name = "btnDetails";
-            this.btnDetails.Size = new System.Drawing.Size(75, 23);
+            this.btnDetails.Size = new System.Drawing.Size(150, 50);
             this.btnDetails.TabIndex = 4;
             this.btnDetails.Text = "Details";
             this.btnDetails.UseVisualStyleBackColor = true;
@@ -90,9 +97,11 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(874, 484);
+            this.btnClose.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnClose.Location = new System.Drawing.Point(772, 449);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.Size = new System.Drawing.Size(150, 50);
             this.btnClose.TabIndex = 5;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -102,7 +111,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(961, 519);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ClientSize = new System.Drawing.Size(934, 511);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnDetails);
             this.Controls.Add(this.btnDelete);
@@ -112,6 +122,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "PlayersForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Players";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PlayersForm_FormClosing);
             this.Load += new System.EventHandler(this.PlayersForm_Load);
