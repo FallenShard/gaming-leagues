@@ -74,8 +74,8 @@ namespace GamingLeagues.Forms.Players
             IList<League> leagues = player.Leagues;
             if (leagues.Count > 0)
             {
-                lbGames.DataSource = leagues;
-                lbGames.DisplayMember = "Name";
+                lbLeagues.DataSource = leagues;
+                lbLeagues.DisplayMember = "Name";
             }
 
             IList<Match> matches = player.MatchesPlayed;

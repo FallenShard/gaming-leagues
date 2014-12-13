@@ -980,6 +980,7 @@ namespace GamingLeagues.DataManagement
             insertGameBasic("Quake III Arena", "id Software", new DateTime(1999, 12, 2), "First-person shooter");
             insertGameBasic("PES 2015", "PES Productions", new DateTime(2014, 11, 11), "Sport");
             insertGameBasic("NBA 2K15", "Visual Concepts", new DateTime(2014, 10, 7), "Sport");
+            insertGameBasic("Dota 2", "Valve", new DateTime(2011, 4, 7), "MOBA");
 
             insertTeamBasic("Natus Vincere", new DateTime(2009, 12, 1), "NaVi'", "Ukraine");
             insertTeamBasic("Evil Geniuses", new DateTime(1999, 05, 12), "EG.", "United States");
@@ -994,8 +995,12 @@ namespace GamingLeagues.DataManagement
             insertSponsorBasic("Steelseries", "Winning never felt this good.");
             insertSponsorBasic("Nvidia", "The way it's meant to be played");
             insertSponsorBasic("AMD", "Gaming evolved");
+            insertSponsorBasic("Razer", "By gamers. For gamers.");
 
-            
+            insertLeagueBasic("StarLeague", new DateTime(2013, 04, 12), new DateTime(2013, 06, 12), 150000);
+            insertLeagueBasic("DreamLeague", new DateTime(2013, 08, 5), new DateTime(2014, 2, 5), 250000);
+            insertLeagueBasic("Republic of Games", new DateTime(2014, 10, 12), new DateTime(2013, 11, 12), 50000);
+            insertLeagueBasic("Ladder Series", new DateTime(2012, 7, 22), new DateTime(2013, 8, 23), 500000);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace GamingLeagues.Forms
 {
     public partial class LeaguesForm : Form
     {
-        private DataManagement.DataManagement m_dataManager;
+        private ISession m_session;
 
         private IList<League> m_leagues;
 
@@ -24,7 +24,7 @@ namespace GamingLeagues.Forms
         {
             InitializeComponent();
 
-            m_dataManager = new DataManagement.DataManagement();
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
 
             lvLeagues.Clear();
             lvLeagues.Columns.Add("NAME");
@@ -42,9 +42,10 @@ namespace GamingLeagues.Forms
         {
             lvLeagues.Items.Clear();
 
-            m_leagues = m_dataManager.getLeagues();
+            m_leagues = m_session.CreateQuery("FROM League").List<League>();
 
-            // Iterate and add data from the players
+            // Iterate and add data from the leagues
+            bool colorizer = false;
             foreach (League league in m_leagues)
             {
                 ListViewItem lvi = new ListViewItem(league.Name);
@@ -52,6 +53,11 @@ namespace GamingLeagues.Forms
                 lvi.SubItems.Add(league.EndDate.ToString("dd/MM/yyyy"));
                 lvi.SubItems.Add(league.Budget.ToString());
                 lvi.Tag = league;
+                if (colorizer == false)
+                    lvi.BackColor = Color.Orange;
+                else
+                    lvi.BackColor = Color.Moccasin;
+                colorizer = !colorizer;
 
                 lvLeagues.Items.Add(lvi);
             }
@@ -68,7 +74,7 @@ namespace GamingLeagues.Forms
             }
         }
 
-        private League getSelectedLeague()
+        private League GetSelectedLeague()
         {
             if (lvLeagues.SelectedItems.Count == 0)
             {
@@ -92,26 +98,49 @@ namespace GamingLeagues.Forms
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            League selLeague = GetSelectedLeague();
 
+            if (selLeague != null)
+            {
+                LeaguesEditForm editLeague = new LeaguesEditForm(m_session, selLeague);
+
+                if (editLeague.ShowDialog() == DialogResult.OK)
+                {
+                    // Refresh the listView if user confirmed the edit
+                    RefreshLeagues();
+                }
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            League selectedLeague = getSelectedLeague();
+            League selectedLeague = GetSelectedLeague();
 
             if (selectedLeague != null &&
                 MessageBox.Show("Are you sure you want to delete selected league?",
                                 "Delete League",
                                 MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                m_dataManager.deleteLeague(selectedLeague);
+                selectedLeague.Matches.Clear();
+                selectedLeague.Players.Clear();
+
+                foreach (Sponsor sponsor in selectedLeague.Sponsors)
+                    sponsor.Leagues.Remove(selectedLeague);
+                selectedLeague.Sponsors.Clear();
+
+                m_session.SaveOrUpdate(selectedLeague);
+                m_session.Flush();
+
+                m_session.Delete(selectedLeague);
+                m_session.Flush();
+
                 RefreshLeagues();
             }
         }
 
         private void btnDetails_Click(object sender, EventArgs e)
         {
-            League selectedLeague = getSelectedLeague();
+            League selectedLeague = GetSelectedLeague();
 
             if (selectedLeague != null)
             {
@@ -126,5 +155,15 @@ namespace GamingLeagues.Forms
         }
 
         #endregion
+
+        private void LeaguesForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            m_session.Close();
+        }
+
+        private void lvLeagues_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 }
