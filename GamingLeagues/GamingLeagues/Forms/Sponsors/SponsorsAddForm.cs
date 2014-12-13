@@ -67,6 +67,7 @@ namespace GamingLeagues.Forms.Sponsors
 
         private bool ValidateInput()
         {
+            //Only check list boxes in SponsorAddForm, so input is always valid
             return true;
         }
 

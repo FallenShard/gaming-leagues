@@ -40,8 +40,8 @@
             this.lblGame = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.lbSponsors = new System.Windows.Forms.ListBox();
+            this.lbMatches = new System.Windows.Forms.ListBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnAddMatch = new System.Windows.Forms.Button();
             this.btnEditMatch = new System.Windows.Forms.Button();
@@ -175,21 +175,21 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "Players";
             // 
-            // listBox1
+            // lbSponsors
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(15, 303);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 95);
-            this.listBox1.TabIndex = 12;
+            this.lbSponsors.FormattingEnabled = true;
+            this.lbSponsors.Location = new System.Drawing.Point(15, 303);
+            this.lbSponsors.Name = "lbSponsors";
+            this.lbSponsors.Size = new System.Drawing.Size(120, 95);
+            this.lbSponsors.TabIndex = 12;
             // 
-            // listBox2
+            // lbMatches
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(223, 241);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(747, 199);
-            this.listBox2.TabIndex = 13;
+            this.lbMatches.FormattingEnabled = true;
+            this.lbMatches.Location = new System.Drawing.Point(223, 241);
+            this.lbMatches.Name = "lbMatches";
+            this.lbMatches.Size = new System.Drawing.Size(747, 199);
+            this.lbMatches.TabIndex = 13;
             // 
             // btnClose
             // 
@@ -213,6 +213,7 @@
             this.btnAddMatch.TabIndex = 19;
             this.btnAddMatch.Text = "Add Match";
             this.btnAddMatch.UseVisualStyleBackColor = true;
+            this.btnAddMatch.Click += new System.EventHandler(this.btnAddMatch_Click);
             // 
             // btnEditMatch
             // 
@@ -224,6 +225,7 @@
             this.btnEditMatch.TabIndex = 20;
             this.btnEditMatch.Text = "Edit Match";
             this.btnEditMatch.UseVisualStyleBackColor = true;
+            this.btnEditMatch.Click += new System.EventHandler(this.btnEditMatch_Click);
             // 
             // btnDeleteMatch
             // 
@@ -235,6 +237,7 @@
             this.btnDeleteMatch.TabIndex = 21;
             this.btnDeleteMatch.Text = "Delete Match";
             this.btnDeleteMatch.UseVisualStyleBackColor = true;
+            this.btnDeleteMatch.Click += new System.EventHandler(this.btnDeleteMatch_Click);
             // 
             // lbPlayers
             // 
@@ -266,8 +269,8 @@
             this.Controls.Add(this.btnEditMatch);
             this.Controls.Add(this.btnAddMatch);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.listBox2);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.lbMatches);
+            this.Controls.Add(this.lbSponsors);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblGame);
@@ -282,6 +285,7 @@
             this.Controls.Add(this.label1);
             this.Name = "LeaguesDetailsForm";
             this.Text = "LeaguesDetailsForm";
+            this.Load += new System.EventHandler(this.onLoad);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,8 +305,8 @@
         private System.Windows.Forms.Label lblGame;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox lbSponsors;
+        private System.Windows.Forms.ListBox lbMatches;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnAddMatch;
         private System.Windows.Forms.Button btnEditMatch;
