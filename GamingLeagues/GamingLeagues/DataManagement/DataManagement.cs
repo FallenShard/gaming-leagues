@@ -138,8 +138,8 @@ namespace GamingLeagues.DataManagement
             foreach (Game game in games)
                 connectPlayerGame(player, game);
 
-            foreach (League league in leagues)
-                insertPlaysInLeague(player, league, 0);
+            //foreach (League league in leagues)
+            //    insertPlaysInLeague(player, league, 0);
         }
 
         private void insertTeamRelations(Team team,
@@ -164,8 +164,8 @@ namespace GamingLeagues.DataManagement
             foreach (Sponsor sponsor in sponsors)
                 connectLeagueSponsor(league, sponsor);
 
-            foreach (Player player in players)
-                insertPlaysInLeague(player, league, 0);
+            //foreach (Player player in players)
+            //    insertPlaysInLeague(player, league, 0);
         }
 
         private void insertSponsorRelations(Sponsor sponsor,
@@ -280,41 +280,41 @@ namespace GamingLeagues.DataManagement
                                     videoGame);
         }
 
-        public void insertMatch(DateTime datePlayed,
-                                Player homePlayer,
-                                Player awayPlayer,
-                                int homeScore,
-                                int awayScore,
-                                League league)
-        {
-            Match match = new Match();
-            match.DatePlayed = datePlayed;
-            match.HomeScore = homeScore;
-            match.AwayScore = awayScore;
+        //public void insertMatch(DateTime datePlayed,
+        //                        Player homePlayer,
+        //                        Player awayPlayer,
+        //                        int homeScore,
+        //                        int awayScore,
+        //                        League league)
+        //{
+        //    Match match = new Match();
+        //    match.DatePlayed = datePlayed;
+        //    match.HomeScore = homeScore;
+        //    match.AwayScore = awayScore;
 
-            m_session.SaveOrUpdate(match);
-            m_session.Flush();
+        //    m_session.SaveOrUpdate(match);
+        //    m_session.Flush();
 
-            connectHomePlayerMatch(homePlayer, match);
-            connectAwayPlayerMatch(awayPlayer, match);
-            connectLeagueMatch(league, match);
-        }
+        //    connectHomePlayerMatch(homePlayer, match);
+        //    connectAwayPlayerMatch(awayPlayer, match);
+        //    connectLeagueMatch(league, match);
+        //}
 
-        public void insertPlaysInLeague(Player player,
-                                        League league,
-                                        int points)
-        {
-            PlaysInLeague ranking = new PlaysInLeague();
-            ranking.Player = player;
-            ranking.League = league;
-            ranking.Points = points;
+        //public void insertPlaysInLeague(Player player,
+        //                                League league,
+        //                                int points)
+        //{
+        //    PlaysInLeague ranking = new PlaysInLeague();
+        //    ranking.Player = player;
+        //    ranking.League = league;
+        //    ranking.Points = points;
 
-            m_session.SaveOrUpdate(ranking);
-            m_session.Flush();
+        //    m_session.SaveOrUpdate(ranking);
+        //    m_session.Flush();
 
-            connectPlayerRanking(player, ranking);
-            connectLeagueRanking(league, ranking);
-        }
+        //    connectPlayerRanking(player, ranking);
+        //    connectLeagueRanking(league, ranking);
+        //}
 
         #endregion
 
@@ -348,41 +348,41 @@ namespace GamingLeagues.DataManagement
             m_session.Flush();
         }
 
-        public void connectPlayerRanking(Player player, PlaysInLeague ranking)
-        {
-            player.Rankings.Add(ranking);
-            ranking.Player = player;
+        //public void connectPlayerRanking(Player player, PlaysInLeague ranking)
+        //{
+        //    player.Rankings.Add(ranking);
+        //    ranking.Player = player;
 
-            m_session.SaveOrUpdate(player);
-            m_session.Flush();
+        //    m_session.SaveOrUpdate(player);
+        //    m_session.Flush();
 
-            m_session.SaveOrUpdate(ranking);
-            m_session.Flush();
-        }
+        //    m_session.SaveOrUpdate(ranking);
+        //    m_session.Flush();
+        //}
 
-        public void connectHomePlayerMatch(Player player, Match match)
-        {
-            player.MatchesPlayed.Add(match);
-            match.HomePlayer = player;
+        //public void connectHomePlayerMatch(Player player, Match match)
+        //{
+        //    player.MatchesPlayed.Add(match);
+        //    match.HomePlayer = player;
 
-            m_session.SaveOrUpdate(player);
-            m_session.Flush();
+        //    m_session.SaveOrUpdate(player);
+        //    m_session.Flush();
 
-            m_session.SaveOrUpdate(match);
-            m_session.Flush();
-        }
+        //    m_session.SaveOrUpdate(match);
+        //    m_session.Flush();
+        //}
 
-        public void connectAwayPlayerMatch(Player player, Match match)
-        {
-            player.MatchesPlayed.Add(match);
-            match.AwayPlayer = player;
+        //public void connectAwayPlayerMatch(Player player, Match match)
+        //{
+        //    player.MatchesPlayed.Add(match);
+        //    match.AwayPlayer = player;
 
-            m_session.SaveOrUpdate(player);
-            m_session.Flush();
+        //    m_session.SaveOrUpdate(player);
+        //    m_session.Flush();
 
-            m_session.SaveOrUpdate(match);
-            m_session.Flush();
-        }
+        //    m_session.SaveOrUpdate(match);
+        //    m_session.Flush();
+        //}
 
         public void connectTeamSponsor(Team team, Sponsor sponsor)
         {
@@ -420,15 +420,15 @@ namespace GamingLeagues.DataManagement
             m_session.Flush();
         }
 
-        public void connectLeagueRanking(League league, PlaysInLeague ranking)
+        public void connectLeagueRanking(League league, Player player)
         {
-            league.Rankings.Add(ranking);
-            ranking.League = league;
+            league.Players.Add(player);
+            player.Leagues.Add(league);
 
             m_session.SaveOrUpdate(league);
             m_session.Flush();
 
-            m_session.SaveOrUpdate(ranking);
+            m_session.SaveOrUpdate(player);
             m_session.Flush();
         }
 
@@ -484,41 +484,41 @@ namespace GamingLeagues.DataManagement
             m_session.Flush();
         }
 
-        public void disconnectPlayerRanking(Player player, PlaysInLeague ranking)
-        {
-            player.Rankings.Remove(ranking);
-            ranking.Player = null;
+        //public void disconnectPlayerRanking(Player player, PlaysInLeague ranking)
+        //{
+        //    player.Rankings.Remove(ranking);
+        //    ranking.Player = null;
 
-            m_session.SaveOrUpdate(player);
-            m_session.Flush();
+        //    m_session.SaveOrUpdate(player);
+        //    m_session.Flush();
 
-            m_session.SaveOrUpdate(ranking);
-            m_session.Flush();
-        }
+        //    m_session.SaveOrUpdate(ranking);
+        //    m_session.Flush();
+        //}
 
-        public void disconnectHomePlayerMatch(Player player, Match match)
-        {
-            player.MatchesPlayed.Remove(match);
-            match.HomePlayer = null;
+        //public void disconnectHomePlayerMatch(Player player, Match match)
+        //{
+        //    player.MatchesPlayed.Remove(match);
+        //    match.HomePlayer = null;
 
-            m_session.SaveOrUpdate(player);
-            m_session.Flush();
+        //    m_session.SaveOrUpdate(player);
+        //    m_session.Flush();
 
-            m_session.SaveOrUpdate(match);
-            m_session.Flush();
-        }
+        //    m_session.SaveOrUpdate(match);
+        //    m_session.Flush();
+        //}
 
-        public void disconnectAwayPlayerMatch(Player player, Match match)
-        {
-            player.MatchesPlayed.Remove(match);
-            match.AwayPlayer = null;
+        //public void disconnectAwayPlayerMatch(Player player, Match match)
+        //{
+        //    player.MatchesPlayed.Remove(match);
+        //    match.AwayPlayer = null;
 
-            m_session.SaveOrUpdate(player);
-            m_session.Flush();
+        //    m_session.SaveOrUpdate(player);
+        //    m_session.Flush();
 
-            m_session.SaveOrUpdate(match);
-            m_session.Flush();
-        }
+        //    m_session.SaveOrUpdate(match);
+        //    m_session.Flush();
+        //}
 
         public void disconnectTeamSponsor(Team team, Sponsor sponsor)
         {
@@ -557,17 +557,17 @@ namespace GamingLeagues.DataManagement
             m_session.Flush();
         }
 
-        public void disconnectLeagueRanking(League league, PlaysInLeague ranking)
-        {
-            league.Rankings.Remove(ranking);
-            ranking.League = null;
+        //public void disconnectLeagueRanking(League league, Player player)
+        //{
+        //    league.Players.Remove(ranking);
+        //    ranking.League = null;
 
-            m_session.SaveOrUpdate(league);
-            m_session.Flush();
+        //    m_session.SaveOrUpdate(league);
+        //    m_session.Flush();
 
-            m_session.SaveOrUpdate(ranking);
-            m_session.Flush();
-        }
+        //    m_session.SaveOrUpdate(ranking);
+        //    m_session.Flush();
+        //}
 
         public void disconnectLeagueMatch(League league, Match match)
         {
@@ -799,47 +799,47 @@ namespace GamingLeagues.DataManagement
             m_session.Flush();
         }
 
-        public void updateMatch(Match match,
-                                DateTime datePlayed,
-                                Player homePlayer,
-                                Player awayPlayer,
-                                int homeScore,
-                                int awayScore,
-                                League league)
-        {
-            match.DatePlayed = datePlayed;
-            match.HomeScore = homeScore;
-            match.AwayScore = awayScore;
+        //public void updateMatch(Match match,
+        //                        DateTime datePlayed,
+        //                        Player homePlayer,
+        //                        Player awayPlayer,
+        //                        int homeScore,
+        //                        int awayScore,
+        //                        League league)
+        //{
+        //    match.DatePlayed = datePlayed;
+        //    match.HomeScore = homeScore;
+        //    match.AwayScore = awayScore;
 
-            disconnectHomePlayerMatch(match.HomePlayer, match);
-            connectHomePlayerMatch(homePlayer, match);
+        //    disconnectHomePlayerMatch(match.HomePlayer, match);
+        //    connectHomePlayerMatch(homePlayer, match);
 
-            disconnectAwayPlayerMatch(match.AwayPlayer, match);
-            connectAwayPlayerMatch(awayPlayer, match);
+        //    disconnectAwayPlayerMatch(match.AwayPlayer, match);
+        //    connectAwayPlayerMatch(awayPlayer, match);
 
-            disconnectLeagueMatch(match.League, match);
-            connectLeagueMatch(league, match);
+        //    disconnectLeagueMatch(match.League, match);
+        //    connectLeagueMatch(league, match);
 
-            m_session.SaveOrUpdate(match);
-            m_session.Flush();
-        }
+        //    m_session.SaveOrUpdate(match);
+        //    m_session.Flush();
+        //}
 
-        public void insertPlaysInLeague(PlaysInLeague ranking,
-                                        Player player,
-                                        League league,
-                                        int points)
-        {
-            ranking.Points = points;
+        //public void insertPlaysInLeague(PlaysInLeague ranking,
+        //                                Player player,
+        //                                League league,
+        //                                int points)
+        //{
+        //    ranking.Points = points;
             
-            disconnectPlayerRanking(ranking.Player, ranking);
-            connectPlayerRanking(player, ranking);
+        //    disconnectPlayerRanking(ranking.Player, ranking);
+        //    connectPlayerRanking(player, ranking);
 
-            disconnectLeagueRanking(ranking.League, ranking);
-            connectLeagueRanking(league, ranking);
+        //    disconnectLeagueRanking(ranking.League, ranking);
+        //    connectLeagueRanking(league, ranking);
 
-            m_session.SaveOrUpdate(ranking);
-            m_session.Flush();
-        }
+        //    m_session.SaveOrUpdate(ranking);
+        //    m_session.Flush();
+        //}
 
         #endregion
 
@@ -863,7 +863,7 @@ namespace GamingLeagues.DataManagement
 
             player.Games.Clear();
             player.MatchesPlayed.Clear();
-            player.Rankings.Clear();
+            player.Leagues.Clear();
 
             m_session.Delete(player);
             m_session.Flush();
@@ -899,7 +899,7 @@ namespace GamingLeagues.DataManagement
 
             league.Sponsors.Clear();
             league.Matches.Clear();
-            league.Rankings.Clear();
+            league.Players.Clear();
 
             m_session.Delete(league);
             m_session.Flush();
@@ -952,24 +952,24 @@ namespace GamingLeagues.DataManagement
             m_session.Flush();
         }
 
-        public void deleteMatch(Match match)
-        {
-            disconnectHomePlayerMatch(match.HomePlayer, match);
-            disconnectAwayPlayerMatch(match.AwayPlayer, match);
-            disconnectLeagueMatch(match.League, match);
+        //public void deleteMatch(Match match)
+        //{
+        //    disconnectHomePlayerMatch(match.HomePlayer, match);
+        //    disconnectAwayPlayerMatch(match.AwayPlayer, match);
+        //    disconnectLeagueMatch(match.League, match);
 
-            m_session.Delete(match);
-            m_session.Flush();
-        }
+        //    m_session.Delete(match);
+        //    m_session.Flush();
+        //}
 
-        public void deletePlaysInLeague(PlaysInLeague ranking)
-        {
-            disconnectPlayerRanking(ranking.Player, ranking);
-            disconnectLeagueRanking(ranking.League, ranking);
+        //public void deletePlaysInLeague(PlaysInLeague ranking)
+        //{
+        //    disconnectPlayerRanking(ranking.Player, ranking);
+        //    //disconnectLeagueRanking(ranking.League, ranking);
 
-            m_session.Delete(ranking);
-            m_session.Flush();
-        }
+        //    m_session.Delete(ranking);
+        //    m_session.Flush();
+        //}
 
         #endregion
 
@@ -990,9 +990,12 @@ namespace GamingLeagues.DataManagement
             insertPlayerBasic("Daniel", "Ishutin", "Dendi", 'M', new DateTime(1989, 12, 30), "Ukraine", new DateTime(2005, 02, 13), 569495.84f);
             insertPlayerBasic("Jang", "Min Chul", "MC", 'M', new DateTime(1991, 06, 17), "South Korea", new DateTime(2007, 12, 3), 460500);
 
+
             insertSponsorBasic("Steelseries", "Winning never felt this good.");
             insertSponsorBasic("Nvidia", "The way it's meant to be played");
             insertSponsorBasic("AMD", "Gaming evolved");
+
+            
         }
     }
 }

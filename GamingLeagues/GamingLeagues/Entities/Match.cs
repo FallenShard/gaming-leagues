@@ -16,15 +16,15 @@ namespace GamingLeagues.Entities
         public virtual int HomeScore { get; set; }
         public virtual int AwayScore { get; set; }
 
+        // Many-to-many relationship
+        public virtual IList<Player> Players { get; set; }
+
         // Many-to-one relationship
-        public virtual Player HomePlayer { get; set; }
-        public virtual Player AwayPlayer { get; set; }
         public virtual League League { get; set; }
 
         public Match()
         {
-            HomePlayer = null;
-            AwayPlayer = null;
+            Players = new List<Player>();
             League = null;
         }
     }

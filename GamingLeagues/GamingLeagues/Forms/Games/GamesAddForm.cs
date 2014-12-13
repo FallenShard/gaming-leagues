@@ -19,7 +19,7 @@ namespace GamingLeagues.Forms.Games
         {
             InitializeComponent();
 
-            var suppPlatforms = new[] { "Windows", "Mac OS X", "Linux", "XBox", "PS", "Wii" };
+            var suppPlatforms = new[] { "Windows", "Mac OS X", "Linux", "XBox", "PlayStation", "Wii" };
             
             clbSupportedPlatforms.Items.Clear();
             clbSupportedPlatforms.DataSource = suppPlatforms;

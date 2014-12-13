@@ -23,19 +23,28 @@ namespace GamingLeagues.Mappings
             Map(x => x.EndDate);
             Map(x => x.Budget);
 
-            // Many-to-one mapping
-            References(x => x.Game);
+            // Many-to-one mapping to games
+            References(x => x.Game)
+                .Column("GameID");
 
-            // Many-to-many mapping
+            // Many-to-many mapping to sponsors
             HasManyToMany(x => x.Sponsors)
+                .Table("SponsorsLeague")
+                .ParentKeyColumn("LeagueID").ChildKeyColumn("SponsorID")
                 .Cascade.All()
-                .Table("SponsorsLeague").Inverse();
+                .Inverse();
 
-            // One-to-many mapping
-            HasMany(x => x.Rankings).Inverse().Cascade.All();
+            // Many-to-many mapping to players
+            HasManyToMany(x => x.Players)
+                .Table("PlaysInLeague")
+                .ParentKeyColumn("LeagueID").ChildKeyColumn("PlayerID")
+                .Cascade.All();
 
-            // One-to-many
-            HasMany(x => x.Matches).Inverse().Cascade.All();
+            // One-to-many mapping to matches
+            HasMany(x => x.Matches)
+                .KeyColumn("LeagueID")
+                .Cascade.All()
+                .Inverse();
         }
     }
 }

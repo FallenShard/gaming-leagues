@@ -23,13 +23,15 @@ namespace GamingLeagues.Mappings
             
             // Many-to-many mapping
             HasManyToMany(x => x.Teams)
-                .Cascade.All()
-                .Table("SponsorsTeam");
+                .Table("SponsorsTeam")
+                .ParentKeyColumn("SponsorID").ChildKeyColumn("TeamID")
+                .Cascade.All();
 
             // Many-to-many mapping
             HasManyToMany(x => x.Leagues)
-                .Cascade.All()
-                .Table("SponsorsLeague");
+                .Table("SponsorsLeague")
+                .ParentKeyColumn("SponsorID").ChildKeyColumn("LeagueID")
+                .Cascade.All();
         }
     }
 }

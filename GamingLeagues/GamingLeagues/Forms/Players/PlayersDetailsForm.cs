@@ -13,6 +13,7 @@ using GamingLeagues.Entities;
 using GamingLeagues.DataAccessLayer;
 using GamingLeagues.Forms.Games;
 using GamingLeagues.Forms.Leagues;
+using GamingLeagues.Forms.Teams;
 
 namespace GamingLeagues.Forms.Players
 {
@@ -59,6 +60,7 @@ namespace GamingLeagues.Forms.Players
             lblTurnedPro.Text      = player.DateTurnedPro.ToString("dd/MM/yyyy");;
             lblCareerEarnings.Text = player.CareerEarnings.ToString();
             lblTeam.Text           = player.CurrentTeam != null ? player.CurrentTeam.Name : "--None--";
+            lblTeam.Tag            = player.CurrentTeam;
             
             // Games
             IList<Game> games = player.Games;
@@ -69,11 +71,11 @@ namespace GamingLeagues.Forms.Players
             }
 
             // Leagues
-            IList<PlaysInLeague> playsInLeague = player.Rankings;
-            if (playsInLeague.Count > 0)
+            IList<League> leagues = player.Leagues;
+            if (leagues.Count > 0)
             {
-                foreach (PlaysInLeague play in playsInLeague)
-                    lbLeagues.Items.Add(play.League.Name);
+                lbGames.DataSource = leagues;
+                lbGames.DisplayMember = "Name";
             }
 
             IList<Match> matches = player.MatchesPlayed;
@@ -90,9 +92,9 @@ namespace GamingLeagues.Forms.Players
                 {
                     string opponent;
                     string result;
-                    if (match.HomePlayer.NickName == player.NickName)
+                    if (match.Players[0].NickName == player.NickName)
                     {
-                        opponent = match.AwayPlayer.NickName;
+                        opponent = match.Players[1].NickName;
                         if (match.HomeScore > match.AwayScore)
                             result = "W";
                         else if (match.HomeScore < match.AwayScore)
@@ -102,7 +104,7 @@ namespace GamingLeagues.Forms.Players
                     }
                     else
                     {
-                        opponent = match.HomePlayer.NickName;
+                        opponent = match.Players[0].NickName;
                         if (match.HomeScore > match.AwayScore)
                             result = "L";
                         else if (match.HomeScore < match.AwayScore)
@@ -163,6 +165,16 @@ namespace GamingLeagues.Forms.Players
             //    TeamsDetailsForm teamDetailsForm = new TeamsDetailsForm(team.Id);
             //    teamDetailsForm.Show();
             //}
+        }
+
+        private void lblTeam_Click(object sender, EventArgs e)
+        {
+            Team team = lblTeam.Tag as Team;
+            if (team != null)
+            {
+                TeamsDetailsForm teamDetailsForm = new TeamsDetailsForm(team.Id);
+                teamDetailsForm.Show();
+            }
         }
     }
 }

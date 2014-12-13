@@ -19,7 +19,7 @@ namespace GamingLeagues.Forms.Games
 
         private Game m_game;
 
-        private string[] suppPlatforms = new[] { "Windows", "Mac OS X", "Linux", "XBox", "PS", "Wii" };
+        private string[] suppPlatforms = new[] { "Windows", "Mac OS X", "Linux", "XBox", "PlayStation", "Wii" };
 
         public GamesEditForm(ISession session, Game game)
         {
