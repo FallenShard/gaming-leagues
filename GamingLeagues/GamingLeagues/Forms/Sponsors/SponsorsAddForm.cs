@@ -46,7 +46,7 @@ namespace GamingLeagues.Forms.Sponsors
         private void SetAttributes(Sponsor sponsor)
         {
             sponsor.Name = tbName.Text;
-            sponsor.Logo = tbLogo.Text;
+            sponsor.Slogan = tbLogo.Text;
 
             CheckedListBox.CheckedItemCollection selectedTeams = clbTeams.CheckedItems;
             sponsor.Teams.Clear();
