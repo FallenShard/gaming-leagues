@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using NHibernate;
 using GamingLeagues.Entities;
 using GamingLeagues.Forms.Games;
+using GamingLeagues.Forms.Leagues;
+using GamingLeagues.Forms.Players;
 
 namespace GamingLeagues.Forms.Games
 {
@@ -45,6 +47,7 @@ namespace GamingLeagues.Forms.Games
             ISession session = DataAccessLayer.DataAccessLayer.GetSession();
             Game game = session.Get<Game>(m_gameId);
 
+            Text = game.Title;
             lblTitle.Text       = game.Title;
             lblDeveloper.Text   = game.Developer;
             lblReleaseDate.Text = game.ReleaseDate.ToString("dd/MM/yyyy");
@@ -72,6 +75,18 @@ namespace GamingLeagues.Forms.Games
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void lbPlayers_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = lbPlayers.IndexFromPoint(e.Location);
+            if (index != System.Windows.Forms.ListBox.NoMatches)
+            {
+                Player player = lbPlayers.Items[index] as Player;
+
+                PlayersDetailsForm playerDetailsForm = new PlayersDetailsForm(player.Id);
+                playerDetailsForm.Show();
+            }
         }
     }
 }

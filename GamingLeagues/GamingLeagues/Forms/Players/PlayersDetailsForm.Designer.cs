@@ -182,13 +182,14 @@
             // lblTeam
             // 
             this.lblTeam.AutoSize = true;
-            this.lblTeam.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTeam.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTeam.ForeColor = System.Drawing.Color.Orange;
             this.lblTeam.Location = new System.Drawing.Point(290, 22);
             this.lblTeam.Name = "lblTeam";
             this.lblTeam.Size = new System.Drawing.Size(82, 25);
             this.lblTeam.TabIndex = 13;
             this.lblTeam.Text = "label13";
+            this.lblTeam.Click += new System.EventHandler(this.lblTeam_Click);
             // 
             // label14
             // 

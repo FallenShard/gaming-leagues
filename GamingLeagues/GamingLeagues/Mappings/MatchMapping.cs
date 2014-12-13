@@ -22,10 +22,15 @@ namespace GamingLeagues.Mappings
             Map(x => x.HomeScore);
             Map(x => x.AwayScore);
             
-            // Many-to-one mapping
-            References(x => x.HomePlayer);
-            References(x => x.AwayPlayer);
-            References(x => x.League);
+            // Many-to-one mapping to leagues
+            References(x => x.League)
+                .Column("LeagueID");
+
+            // Many-to-many mapping to players
+            HasManyToMany(x => x.Players)
+                .Table("PlaysMatch")
+                .ParentKeyColumn("MatchID").ChildKeyColumn("PlayerID")
+                .Cascade.All();
         }
     }
 }

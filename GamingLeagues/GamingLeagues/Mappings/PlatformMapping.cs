@@ -14,8 +14,9 @@ namespace GamingLeagues.Mappings
     {
         public PlatformMapping()
         {
-            CompositeId().KeyReference(x => x.VideoGame)
-                         .KeyProperty(x => x.PlatformTitle);
+            // Primary key mapping
+            CompositeId().KeyReference(x => x.VideoGame, "GameID")
+                         .KeyProperty(x => x.PlatformTitle, "Title");
         }
     }
 }

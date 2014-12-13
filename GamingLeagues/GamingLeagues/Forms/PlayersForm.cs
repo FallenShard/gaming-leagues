@@ -154,13 +154,14 @@ namespace GamingLeagues.Forms
                 selPlayer.CurrentTeam = null;
 
                 // Remove this player from all leagues
-                foreach (PlaysInLeague leaguePlays in selPlayer.Rankings)
+                foreach (League league in selPlayer.Leagues)
                 {
-                    leaguePlays.League.Rankings.Remove(leaguePlays);
-                    m_session.SaveOrUpdate(leaguePlays.League);
+                    league.Players.Remove(selPlayer);
+                    m_session.SaveOrUpdate(league);
                     m_session.Flush();
                 }
-                selPlayer.Rankings.Clear();
+                selPlayer.Leagues.Clear();
+
                 m_session.SaveOrUpdate(selPlayer);
                 m_session.Flush();
 

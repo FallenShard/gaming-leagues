@@ -45,7 +45,7 @@ namespace GamingLeagues.Forms.Sponsors
             ISession session = DataAccessLayer.DataAccessLayer.GetSession();
             Sponsor sponsor = session.Get<Sponsor>(m_sponsorId);
 
-            Text = sponsor.Name + " - " + sponsor.Slogan;
+            Text = sponsor.Name;
 
             lblName.Text = sponsor.Name;
             lblLogo.Text = sponsor.Slogan;

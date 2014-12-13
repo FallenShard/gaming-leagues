@@ -27,19 +27,28 @@ namespace GamingLeagues.Mappings
             Map(x => x.DateTurnedPro);
             Map(x => x.CareerEarnings);
             
-            // Many-to-one mapping
+            // Many-to-one mapping to current team
             References(x => x.CurrentTeam).Column("CurrentTeamID");
 
-            // Many-to-many mapping
+            // Many-to-many mapping to games
             HasManyToMany(x => x.Games)
+                .Table("PlaysGames")
+                .ParentKeyColumn("PlayerID").ChildKeyColumn("GameID")
+                .Cascade.All();
+
+            // Many-to-many mapping to leagues
+            HasManyToMany(x => x.Leagues)
+                .Table("PlaysInLeague")
+                .ParentKeyColumn("PlayerID").ChildKeyColumn("LeagueID")
                 .Cascade.All()
-                .Table("PlaysGames").ParentKeyColumn("PlayerID").ChildKeyColumn("GameID");
+                .Inverse();
 
-            // One-to-many mapping
-            HasMany(x => x.Rankings).Inverse().Cascade.All();
-
-            // One-to-many mapping
-            HasMany(x => x.MatchesPlayed).Cascade.AllDeleteOrphan().Inverse();
+            // Many-to-many mapping to matches
+            HasManyToMany(x => x.MatchesPlayed)
+                .Table("PlaysMatch")
+                .ParentKeyColumn("PlayerID").ChildKeyColumn("MatchID")
+                .Cascade.AllDeleteOrphan()
+                .Inverse();
         }
     }
 }
