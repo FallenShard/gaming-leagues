@@ -39,7 +39,7 @@ namespace GamingLeagues.Forms
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnAdd.Location = new System.Drawing.Point(772, 12);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(150, 50);
@@ -51,7 +51,7 @@ namespace GamingLeagues.Forms
             // btnEdit
             // 
             this.btnEdit.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnEdit.Location = new System.Drawing.Point(772, 68);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(150, 50);
@@ -63,7 +63,7 @@ namespace GamingLeagues.Forms
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnDelete.Location = new System.Drawing.Point(772, 124);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(150, 50);
@@ -75,7 +75,7 @@ namespace GamingLeagues.Forms
             // btnDetails
             // 
             this.btnDetails.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDetails.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnDetails.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnDetails.Location = new System.Drawing.Point(772, 180);
             this.btnDetails.Name = "btnDetails";
             this.btnDetails.Size = new System.Drawing.Size(150, 50);
@@ -87,7 +87,7 @@ namespace GamingLeagues.Forms
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnClose.Location = new System.Drawing.Point(772, 449);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(150, 50);
@@ -98,12 +98,14 @@ namespace GamingLeagues.Forms
             // 
             // lvLeagues
             // 
+            this.lvLeagues.FullRowSelect = true;
             this.lvLeagues.Location = new System.Drawing.Point(12, 12);
             this.lvLeagues.Name = "lvLeagues";
             this.lvLeagues.Size = new System.Drawing.Size(754, 487);
             this.lvLeagues.TabIndex = 5;
             this.lvLeagues.UseCompatibleStateImageBehavior = false;
             this.lvLeagues.View = System.Windows.Forms.View.Details;
+            this.lvLeagues.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvLeagues_MouseDoubleClick);
             // 
             // LeaguesForm
             // 
@@ -122,6 +124,7 @@ namespace GamingLeagues.Forms
             this.Name = "LeaguesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Leagues";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LeaguesForm_FormClosing);
             this.Load += new System.EventHandler(this.onLoad);
             this.ResumeLayout(false);
 

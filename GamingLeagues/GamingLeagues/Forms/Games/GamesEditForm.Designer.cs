@@ -171,7 +171,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tbTitle);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "GamesEditForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edit Game";
             this.Load += new System.EventHandler(this.onLoad);
             this.ResumeLayout(false);

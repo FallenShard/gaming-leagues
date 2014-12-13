@@ -93,12 +93,6 @@
     <Compile Include="Forms\Games\GamesEditForm.Designer.cs">
       <DependentUpon>GamesEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Games\PlatformsAddForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Games\PlatformsAddForm.Designer.cs">
-      <DependentUpon>PlatformsAddForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\LeaguesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,9 +216,6 @@
     <EmbeddedResource Include="Forms\Games\GamesEditForm.resx">
       <DependentUpon>GamesEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Games\PlatformsAddForm.resx">
-      <DependentUpon>PlatformsAddForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\LeaguesForm.resx">
       <DependentUpon>LeaguesForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -233,6 +224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Leagues\LeaguesDetailsForm.resx">
       <DependentUpon>LeaguesDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Leagues\LeaguesEditForm.resx">
+      <DependentUpon>LeaguesEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Players\PlayersAddForm.resx">
       <DependentUpon>PlayersAddForm.cs</DependentUpon>
