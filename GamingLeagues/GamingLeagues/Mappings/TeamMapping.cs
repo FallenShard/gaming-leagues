@@ -24,12 +24,12 @@ namespace GamingLeagues.Mappings
             Map(x => x.Country);
             
             // One-to-many mapping
-            HasMany(x => x.Players).Inverse().Cascade.All();
+            HasMany(x => x.Players).Inverse().Cascade.All().KeyColumn("CurrentTeamID");
 
             // Many-to-many mapping
             HasManyToMany(x => x.Sponsors)
                 .Cascade.All()
-                .Table("SponsorsTeam");
+                .Table("SponsorsTeam").Inverse();
         }
     }
 }

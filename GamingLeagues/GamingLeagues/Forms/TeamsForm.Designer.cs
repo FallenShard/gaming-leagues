@@ -38,9 +38,11 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(747, 485);
+            this.btnClose.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnClose.Location = new System.Drawing.Point(772, 449);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.Size = new System.Drawing.Size(150, 50);
             this.btnClose.TabIndex = 11;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -48,9 +50,11 @@
             // 
             // btnDetails
             // 
-            this.btnDetails.Location = new System.Drawing.Point(747, 101);
+            this.btnDetails.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDetails.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnDetails.Location = new System.Drawing.Point(772, 180);
             this.btnDetails.Name = "btnDetails";
-            this.btnDetails.Size = new System.Drawing.Size(75, 23);
+            this.btnDetails.Size = new System.Drawing.Size(150, 50);
             this.btnDetails.TabIndex = 10;
             this.btnDetails.Text = "Details";
             this.btnDetails.UseVisualStyleBackColor = true;
@@ -58,9 +62,11 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(747, 72);
+            this.btnDelete.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnDelete.Location = new System.Drawing.Point(772, 124);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.Size = new System.Drawing.Size(150, 50);
             this.btnDelete.TabIndex = 9;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -68,9 +74,11 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(747, 43);
+            this.btnEdit.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnEdit.Location = new System.Drawing.Point(772, 68);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 23);
+            this.btnEdit.Size = new System.Drawing.Size(150, 50);
             this.btnEdit.TabIndex = 8;
             this.btnEdit.Text = "Edit Team";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -78,9 +86,11 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(747, 14);
+            this.btnAdd.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnAdd.Location = new System.Drawing.Point(772, 12);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.Size = new System.Drawing.Size(150, 50);
             this.btnAdd.TabIndex = 7;
             this.btnAdd.Text = "Add Team";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -89,26 +99,30 @@
             // lvTeams
             // 
             this.lvTeams.FullRowSelect = true;
-            this.lvTeams.GridLines = true;
             this.lvTeams.Location = new System.Drawing.Point(12, 12);
             this.lvTeams.Name = "lvTeams";
-            this.lvTeams.Size = new System.Drawing.Size(729, 495);
+            this.lvTeams.Size = new System.Drawing.Size(754, 487);
             this.lvTeams.TabIndex = 6;
             this.lvTeams.UseCompatibleStateImageBehavior = false;
             this.lvTeams.View = System.Windows.Forms.View.Details;
+            this.lvTeams.DoubleClick += new System.EventHandler(this.lvTeams_DoubleClick);
             // 
             // TeamsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(832, 520);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ClientSize = new System.Drawing.Size(934, 511);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnDetails);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.lvTeams);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "TeamsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Teams";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TeamsForm_FormClosing);
             this.Load += new System.EventHandler(this.TeamsForm_Load);

@@ -104,7 +104,7 @@ namespace GamingLeagues.Forms.Teams
 
                 try
                 {
-                    // Try to save the current player
+                    // Try to save the current team
                     session.SaveOrUpdate(team);
                     session.Flush();
 
