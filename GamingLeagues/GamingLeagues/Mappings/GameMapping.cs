@@ -27,7 +27,7 @@ namespace GamingLeagues.Mappings
             // Many-to-many mapping
             HasManyToMany(x => x.Players)
                 .Cascade.All()
-                .Table("PlaysGames");
+                .Table("PlaysGames").ParentKeyColumn("GameID").ChildKeyColumn("PlayerID");
 
             // One-to-many
             HasMany(x => x.Leagues).Inverse().Cascade.All();
