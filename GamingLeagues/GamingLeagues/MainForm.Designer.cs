@@ -33,7 +33,6 @@
             this.btnLeagues = new System.Windows.Forms.Button();
             this.btnSponsors = new System.Windows.Forms.Button();
             this.btnGames = new System.Windows.Forms.Button();
-
             this.SuspendLayout();
             // 
             // btnPlayers
@@ -96,7 +95,10 @@
             this.Controls.Add(this.btnLeagues);
             this.Controls.Add(this.btnTeams);
             this.Controls.Add(this.btnPlayers);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gaming Leagues";
             this.Load += new System.EventHandler(this.onLoad);
             this.ResumeLayout(false);

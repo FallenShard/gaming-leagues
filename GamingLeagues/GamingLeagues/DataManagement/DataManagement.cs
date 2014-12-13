@@ -83,11 +83,11 @@ namespace GamingLeagues.DataManagement
         }
 
         private Sponsor insertSponsorBasic(string name,
-                                            string logo)
+                                            string slogan)
         {
             Sponsor sponsor = new Sponsor();
             sponsor.Name = name;
-            sponsor.Logo = logo;
+            sponsor.Slogan = slogan;
 
             m_session.SaveOrUpdate(sponsor);
             m_session.Flush();
@@ -732,7 +732,7 @@ namespace GamingLeagues.DataManagement
                                     List<League> leagues)
         {
             sponsor.Name = name;
-            sponsor.Logo = logo;
+            sponsor.Slogan = logo;
 
             //foreach (Team team in sponsor.Teams)
             //    disconnectTeamSponsor(team, sponsor);
@@ -980,6 +980,19 @@ namespace GamingLeagues.DataManagement
             insertGameBasic("Quake III Arena", "id Software", new DateTime(1999, 12, 2), "First-person shooter");
             insertGameBasic("PES 2015", "PES Productions", new DateTime(2014, 11, 11), "Sport");
             insertGameBasic("NBA 2K15", "Visual Concepts", new DateTime(2014, 10, 7), "Sport");
+
+            insertTeamBasic("Natus Vincere", new DateTime(2009, 12, 1), "NaVi'", "Ukraine");
+            insertTeamBasic("Evil Geniuses", new DateTime(1999, 05, 12), "EG.", "United States");
+            insertTeamBasic("Team Liquid", new DateTime(2000, 10, 3), "Liquid'", "Netherlands");
+            insertTeamBasic("KT Rolster", new DateTime(1999, 03, 17), "KT.", "South Korea");
+
+            insertPlayerBasic("Ilyes", "Satouri", "Stephano", 'M', new DateTime(1993, 03, 12), "France", new DateTime(2008, 06, 23), 248631.39f);
+            insertPlayerBasic("Daniel", "Ishutin", "Dendi", 'M', new DateTime(1989, 12, 30), "Ukraine", new DateTime(2005, 02, 13), 569495.84f);
+            insertPlayerBasic("Jang", "Min Chul", "MC", 'M', new DateTime(1991, 06, 17), "South Korea", new DateTime(2007, 12, 3), 460500);
+
+            insertSponsorBasic("Steelseries", "Winning never felt this good.");
+            insertSponsorBasic("Nvidia", "The way it's meant to be played");
+            insertSponsorBasic("AMD", "Gaming evolved");
         }
     }
 }

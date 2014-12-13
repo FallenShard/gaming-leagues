@@ -12,7 +12,7 @@ namespace GamingLeagues.Entities
         public virtual int Id { get; protected set; }
 
         public virtual string Name { get; set; }
-        public virtual string Logo { get; set; }
+        public virtual string Slogan { get; set; }
 
         // Many-to-many relationship
         public virtual IList<Team> Teams { get; set; }
