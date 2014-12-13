@@ -84,8 +84,32 @@ namespace GamingLeagues.Forms.Games
 
         private bool ValidateInput()
         {
-            // TO DO: check various bounds and legit cases for player
-            return true;
+            IList<string> errorMessages = new List<string>();
+
+            if (tbTitle.Text.Length == 0 || tbTitle.Text.Length > 40)
+                errorMessages.Add("Game name should be 1-40 characters long");
+
+            if (tbDeveloper.Text.Length == 0 || tbDeveloper.Text.Length > 40)
+                errorMessages.Add("Game developer name should be 1-40 characters long");
+
+            DateTime releaseDate = dtpReleaseDate.Value;
+            if (releaseDate > DateTime.Now)
+                errorMessages.Add("Game cannot be released in the future");
+
+            if (tbGenre.Text.Length == 0 || tbGenre.Text.Length > 30)
+                errorMessages.Add("Game genre should be 1-30 characters long");
+
+            if (errorMessages.Count == 0)
+                return true;
+            else
+            {
+                string message = "The following errors have been found: " + Environment.NewLine + Environment.NewLine;
+                foreach (string error in errorMessages)
+                    message += "  -  " + error + Environment.NewLine;
+
+                MessageBox.Show(message, Text);
+                return false;
+            }
         }
 
         private void btnOk_Click(object sender, EventArgs e)

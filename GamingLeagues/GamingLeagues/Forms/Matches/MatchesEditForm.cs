@@ -72,9 +72,12 @@ namespace GamingLeagues.Forms.Matches
         {
             IList<string> errorMessages = new List<string>();
 
+            if (cmbHomePlayer.SelectedItem == cmbAwayPlayer.SelectedItem)
+                errorMessages.Add("Home player and away player cannot be the same person");
+
             DateTime pickedDate = dtpMatchDate.Value;
-            if (DateTime.Now < pickedDate)
-                errorMessages.Add("Match cannot be played in the future.");
+            if (pickedDate < m_match.League.StartDate || pickedDate > m_match.League.EndDate)
+                errorMessages.Add("Match must be played within the league schedule");
 
             int temp;
 
@@ -82,22 +85,22 @@ namespace GamingLeagues.Forms.Matches
             {
                 temp = int.Parse(tbHomeScore.Text);
                 if (temp < 0)
-                    errorMessages.Add("Home score has to be a positive number");
+                    errorMessages.Add("Home score has to be a nonnegative number");
             }
             catch (Exception)
             {
-                errorMessages.Add("Career earnings has to be a number");
+                errorMessages.Add("Home score has to be a number");
             }
 
             try
             {
                 temp = int.Parse(tbAwayScore.Text);
                 if (temp < 0)
-                    errorMessages.Add("Away score has to be a positive number");
+                    errorMessages.Add("Away score has to be a nonnegative number");
             }
             catch (Exception)
             {
-                errorMessages.Add("Career earnings has to be a number");
+                errorMessages.Add("Away score has to be a number");
             }
 
             if (errorMessages.Count == 0)

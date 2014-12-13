@@ -58,7 +58,7 @@ namespace GamingLeagues.Forms.Players
             lblBirthDate.Text      = player.DateOfBirth.ToString("dd/MM/yyyy");
             lblCountry.Text        = player.Country;
             lblTurnedPro.Text      = player.DateTurnedPro.ToString("dd/MM/yyyy");;
-            lblCareerEarnings.Text = player.CareerEarnings.ToString();
+            lblCareerEarnings.Text = player.CareerEarnings.ToString() + "$";
             lblTeam.Text           = player.CurrentTeam != null ? player.CurrentTeam.Name : "--None--";
             lblTeam.Tag            = player.CurrentTeam;
             

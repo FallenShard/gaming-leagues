@@ -144,7 +144,7 @@ namespace GamingLeagues.Forms
 
             if (selectedLeague != null)
             {
-                LeaguesDetailsForm detailsForm = new LeaguesDetailsForm(selectedLeague);
+                LeaguesDetailsForm detailsForm = new LeaguesDetailsForm(selectedLeague.Id);
                 detailsForm.Show();
             }
         }

@@ -34,8 +34,41 @@ namespace GamingLeagues.Forms.Leagues
         }
         private bool ValidateInput()
         {
-            // TO DO: check various bounds and legit cases for league
-            return true;
+            IList<string> errorMessages = new List<string>();
+
+            if (tbName.Text.Length == 0 || tbName.Text.Length > 40)
+                errorMessages.Add("League name should be 1-40 characters long");
+
+            DateTime endDate = dtpEndDate.Value;
+            if (endDate > DateTime.Now)
+                errorMessages.Add("League cannot be ended in the future");
+
+            DateTime startDate = dtpStartDate.Value;
+            if (startDate > endDate)
+                errorMessages.Add("League cannot start after it is finished");
+
+            try
+            {
+                float temp = float.Parse(tbBudget.Text);
+                if (temp < 0)
+                    errorMessages.Add("League budget has to be a nonnegative number");
+            }
+            catch (Exception)
+            {
+                errorMessages.Add("League budget has to be a number");
+            }
+
+            if (errorMessages.Count == 0)
+                return true;
+            else
+            {
+                string message = "The following errors have been found: " + Environment.NewLine + Environment.NewLine;
+                foreach (string error in errorMessages)
+                    message += "  -  " + error + Environment.NewLine;
+
+                MessageBox.Show(message, Text);
+                return false;
+            }
         }
 
         private void SetAttributes(League league)

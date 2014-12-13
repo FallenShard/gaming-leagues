@@ -15,36 +15,41 @@ namespace GamingLeagues.Forms.Matches
 {
     public partial class MatchesAddForm : Form
     {
-        //private ISession m_session;
-
         private League m_league;
+        private IList<Player> m_players;
 
-        public MatchesAddForm(/*ISession session, */League league)
+        public MatchesAddForm(/*ISession session, League league*/int leagueId)
         {
             InitializeComponent();
 
-            //m_session = session;
-            m_league = league;
+            ISession session = DataAccessLayer.DataAccessLayer.GetSession();
+            m_league = session.Get<League>(leagueId);
+            m_players = new List<Player>();
 
-            //GetPlayers();
+            //Iz nekog razloga ako u oba combo box-a stavim isti data source
+            //kad selektujem item u jednoj isti se selektuje i u drugoj
+            //Zbog toga postoji pomocna lista player-a.
+            GetPlayers(session);
 
             cmbHomePlayer.Items.Clear();
             cmbHomePlayer.DataSource = m_league.Players;
             cmbHomePlayer.DisplayMember = "NameNickLast";
 
             cmbAwayPlayer.Items.Clear();
-            cmbAwayPlayer.DataSource = m_league.Players;
+            cmbAwayPlayer.DataSource = m_players;
             cmbAwayPlayer.DisplayMember = "NameNickLast";
+
+            session.Close();
         }
 
-        /*private void GetPlayers()
+        private void GetPlayers(ISession session)
         {
-            IList<Player> players = m_session.CreateQuery("FROM Player").List<Player>();
+            IList<Player> players = session.CreateQuery("FROM Player").List<Player>();
             for (int i = 0; i < players.Count; i++)
                 foreach (League league in players[i].Leagues)
                     if (league.Id == m_league.Id)
                         m_players.Add(players[i]);
-        }*/
+        }
 
         private void SetAttributes(Match match)
         {
@@ -63,9 +68,12 @@ namespace GamingLeagues.Forms.Matches
         {
             IList<string> errorMessages = new List<string>();
 
+            if (cmbHomePlayer.SelectedItem == cmbAwayPlayer.SelectedItem)
+                errorMessages.Add("Home player and away player cannot be the same person");
+
             DateTime pickedDate = dtpMatchDate.Value;
-            if (DateTime.Now < pickedDate)
-                errorMessages.Add("Match cannot be played in the future.");
+            if (pickedDate < m_league.StartDate || pickedDate > m_league.EndDate)
+                errorMessages.Add("Match must be played within the league schedule");
 
             int temp;
 
@@ -73,22 +81,22 @@ namespace GamingLeagues.Forms.Matches
             {
                 temp = int.Parse(tbHomeScore.Text);
                 if (temp < 0)
-                    errorMessages.Add("Home score has to be a positive number");
+                    errorMessages.Add("Home score has to be a nonnegative number");
             }
             catch (Exception)
             {
-                errorMessages.Add("Career earnings has to be a number");
+                errorMessages.Add("Home score has to be a number");
             }
 
             try
             {
                 temp = int.Parse(tbAwayScore.Text);
                 if (temp < 0)
-                    errorMessages.Add("Away score has to be a positive number");
+                    errorMessages.Add("Away score has to be a nonnegative number");
             }
             catch (Exception)
             {
-                errorMessages.Add("Career earnings has to be a number");
+                errorMessages.Add("Away score has to be a number");
             }
 
             if (errorMessages.Count == 0)
