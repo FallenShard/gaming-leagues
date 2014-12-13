@@ -117,6 +117,18 @@
     <Compile Include="Forms\Leagues\LeaguesEditForm.Designer.cs">
       <DependentUpon>LeaguesEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Matches\MatchesAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Matches\MatchesAddForm.Designer.cs">
+      <DependentUpon>MatchesAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Matches\MatchesEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Matches\MatchesEditForm.Designer.cs">
+      <DependentUpon>MatchesEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Players\PlayersAddForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,6 +239,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Leagues\LeaguesEditForm.resx">
       <DependentUpon>LeaguesEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Matches\MatchesAddForm.resx">
+      <DependentUpon>MatchesAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Matches\MatchesEditForm.resx">
+      <DependentUpon>MatchesEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Players\PlayersAddForm.resx">
       <DependentUpon>PlayersAddForm.cs</DependentUpon>
