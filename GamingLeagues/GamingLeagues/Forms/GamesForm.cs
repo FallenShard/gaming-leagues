@@ -16,7 +16,8 @@ namespace GamingLeagues.Forms
 {
     public partial class GamesForm : Form
     {
-        private DataManagement.DataManagement m_dataManager;
+
+        private ISession m_session;
 
         private IList<Game> m_games;
 
@@ -24,7 +25,7 @@ namespace GamingLeagues.Forms
         {
             InitializeComponent();
 
-            m_dataManager = new DataManagement.DataManagement();
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
 
             lvGames.Clear();
             lvGames.Columns.Add("TITLE");
@@ -42,8 +43,11 @@ namespace GamingLeagues.Forms
         {
             lvGames.Items.Clear();
 
-            m_games = m_dataManager.getGames();
+            // Grab the teams with a query from the open session
+            IQuery q = m_session.CreateQuery("FROM Game");
+            m_games = q.List<Game>();
 
+            bool colorizer = false;
             foreach (Game game in m_games)
             {
                 ListViewItem lvi = new ListViewItem(game.Title);
@@ -51,6 +55,11 @@ namespace GamingLeagues.Forms
                 lvi.SubItems.Add(game.ReleaseDate.ToString("dd/MM/yyyy"));
                 lvi.SubItems.Add(game.Genre);
                 lvi.Tag = game;
+                if (colorizer == false)
+                    lvi.BackColor = Color.Orange;
+                else
+                    lvi.BackColor = Color.Moccasin;
+                colorizer = !colorizer;
 
                 lvGames.Items.Add(lvi);
             }
@@ -66,7 +75,7 @@ namespace GamingLeagues.Forms
             }
         }
 
-        private Game getSelectedGame()
+        private Game GetSelectedGame()
         {
             if (lvGames.SelectedItems.Count == 0)
             {
@@ -90,11 +99,11 @@ namespace GamingLeagues.Forms
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            Game selectedGame = getSelectedGame();
+            Game selectedGame = GetSelectedGame();
 
             if (selectedGame != null)
             {
-                GamesEditForm editForm = new GamesEditForm(selectedGame, m_dataManager);
+                GamesEditForm editForm = new GamesEditForm(m_session, selectedGame);
 
                 if (editForm.ShowDialog() == DialogResult.OK)
                     RefreshGames();
@@ -103,25 +112,33 @@ namespace GamingLeagues.Forms
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            Game selectedGame = getSelectedGame();
+            Game selectedGame = GetSelectedGame();
 
             if (selectedGame != null &&
                 MessageBox.Show("Are you sure you want to delete selected game?",
                                 "Delete Game",
                                 MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                m_dataManager.deleteGame(selectedGame);
+                selectedGame.Leagues.Clear();
+                selectedGame.Players.Clear();
+
+                m_session.SaveOrUpdate(selectedGame);
+                m_session.Flush();
+
+                m_session.Delete(selectedGame);
+                m_session.Flush();
+
                 RefreshGames();
             }
         }
 
         private void btnDetails_Click(object sender, EventArgs e)
         {
-            Game selectedGame = getSelectedGame();
+            Game selectedGame = GetSelectedGame();
 
             if (selectedGame != null)
             {
-                GamesDetailsForm detailsForm = new GamesDetailsForm(selectedGame);
+                GamesDetailsForm detailsForm = new GamesDetailsForm(selectedGame.Id);
                 detailsForm.Show();
             }
         }
@@ -132,5 +149,22 @@ namespace GamingLeagues.Forms
         }
 
         #endregion
+
+        private void lvGames_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            // Get the selected game
+            Game selGame = GetSelectedGame();
+
+            if (selGame != null)
+            {
+                GamesDetailsForm gameDetailsForm = new GamesDetailsForm(selGame.Id);
+                gameDetailsForm.Show();
+            }
+        }
+
+        private void GamesForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            m_session.Close();
+        }
     }
 }

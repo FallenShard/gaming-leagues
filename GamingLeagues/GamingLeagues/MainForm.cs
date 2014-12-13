@@ -30,7 +30,7 @@ namespace GamingLeagues
         {
             m_dataManager = new DataManagement.DataManagement();
 
-            if (!DataAccessLayer.DataAccessLayer.DatabaseExists())
+            if (DataAccessLayer.DataAccessLayer.NeedsInitialization())
             {
                 m_dataManager.initializeDataBase();
             }

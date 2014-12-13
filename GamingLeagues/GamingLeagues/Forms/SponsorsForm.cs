@@ -38,11 +38,17 @@ namespace GamingLeagues.Forms
             IQuery q = m_session.CreateQuery("FROM Sponsor");
             m_sponsors = q.List<Sponsor>();
 
+            bool colorizer = false;
             foreach (Sponsor sponsor in m_sponsors)
             {
                 ListViewItem lvi = new ListViewItem(sponsor.Name);
-                lvi.SubItems.Add(sponsor.Logo);
+                lvi.SubItems.Add(sponsor.Slogan);
                 lvi.Tag = sponsor;
+                if (colorizer == false)
+                    lvi.BackColor = Color.Orange;
+                else
+                    lvi.BackColor = Color.Moccasin;
+                colorizer = !colorizer;
 
                 lvSponsors.Items.Add(lvi);
             }
@@ -136,14 +142,25 @@ namespace GamingLeagues.Forms
 
             if (selectedSponsor != null)
             {
-                SponsorsDetailsForm playersDetailsForm = new SponsorsDetailsForm(selectedSponsor.Id);
-                playersDetailsForm.Show();
+                SponsorsDetailsForm sponsorDetailsForm = new SponsorsDetailsForm(selectedSponsor.Id);
+                sponsorDetailsForm.Show();
             }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void lvSponsors_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Sponsor selectedSponsor = GetSelectedSponsor();
+
+            if (selectedSponsor != null)
+            {
+                SponsorsDetailsForm sponsorDetailsForm = new SponsorsDetailsForm(selectedSponsor.Id);
+                sponsorDetailsForm.Show();
+            }
         }
     }
 }

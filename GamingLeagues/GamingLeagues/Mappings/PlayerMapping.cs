@@ -28,12 +28,12 @@ namespace GamingLeagues.Mappings
             Map(x => x.CareerEarnings);
             
             // Many-to-one mapping
-            References(x => x.CurrentTeam);
+            References(x => x.CurrentTeam).Column("CurrentTeamID");
 
             // Many-to-many mapping
             HasManyToMany(x => x.Games)
                 .Cascade.All()
-                .Table("PlaysGames");
+                .Table("PlaysGames").ParentKeyColumn("PlayerID").ChildKeyColumn("GameID");
 
             // One-to-many mapping
             HasMany(x => x.Rankings).Inverse().Cascade.All();

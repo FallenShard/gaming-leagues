@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using NHibernate;
 using GamingLeagues.Entities;
 using GamingLeagues.DataAccessLayer;
+using GamingLeagues.Forms.Teams;
 
 namespace GamingLeagues.Forms.Sponsors
 {
@@ -44,10 +45,10 @@ namespace GamingLeagues.Forms.Sponsors
             ISession session = DataAccessLayer.DataAccessLayer.GetSession();
             Sponsor sponsor = session.Get<Sponsor>(m_sponsorId);
 
-            Text = sponsor.Name + " - " + sponsor.Logo;
+            Text = sponsor.Name + " - " + sponsor.Slogan;
 
             lblName.Text = sponsor.Name;
-            lblLogo.Text = sponsor.Logo;
+            lblLogo.Text = sponsor.Slogan;
 
             IList<Team> teams = sponsor.Teams;
             if (teams.Count > 0)
@@ -66,9 +67,21 @@ namespace GamingLeagues.Forms.Sponsors
             session.Close();
         }
 
-        private void btnCancle_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void lbTeams_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = lbTeams.IndexFromPoint(e.Location);
+            if (index != System.Windows.Forms.ListBox.NoMatches)
+            {
+                Team team = lbTeams.Items[index] as Team;
+
+                TeamsDetailsForm teamDetailsForm = new TeamsDetailsForm(team.Id);
+                teamDetailsForm.Show();
+            }
         }
     }
 }

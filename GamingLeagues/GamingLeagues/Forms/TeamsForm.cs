@@ -42,7 +42,8 @@ namespace GamingLeagues.Forms
             IQuery q = m_session.CreateQuery("FROM Team");
             m_teams = q.List<Team>();
 
-            // Iterate and add data from the players
+            // Iterate and add data from the teams
+            bool colorizer = false;
             foreach (Team team in m_teams)
             {
                 ListViewItem lvi = new ListViewItem(team.Name);
@@ -50,6 +51,11 @@ namespace GamingLeagues.Forms
                 lvi.SubItems.Add(team.DateCreated.ToString("dd/MM/yyyy"));
                 lvi.SubItems.Add(team.Country);
                 lvi.Tag = team;
+                if (colorizer == false)
+                    lvi.BackColor = Color.Orange;
+                else
+                    lvi.BackColor = Color.Moccasin;
+                colorizer = !colorizer;
 
                 lvTeams.Items.Add(lvi);
             }
@@ -110,13 +116,13 @@ namespace GamingLeagues.Forms
 
             if (selTeam != null)
             {
-                //TeamsEditForm editTeamForm = new TeamsEditForm(m_session, selTeam);
+                TeamsEditForm editTeamForm = new TeamsEditForm(m_session, selTeam);
 
-                //if (editTeamForm.ShowDialog() == DialogResult.OK)
-                //{
+                if (editTeamForm.ShowDialog() == DialogResult.OK)
+                {
                     // Refresh the listView if user confirmed the edit
-                //    RefreshTeams();
-                //}
+                    RefreshTeams();
+                }
             }
         }
 
@@ -130,8 +136,6 @@ namespace GamingLeagues.Forms
             {
                 // Remove all links to sponsors
                 selTeam.Sponsors.Clear();
-                m_session.SaveOrUpdate(selTeam);
-                m_session.Flush();
 
                 // Remove all associations with players
                 foreach (Player player in selTeam.Players)
@@ -140,7 +144,7 @@ namespace GamingLeagues.Forms
                 m_session.SaveOrUpdate(selTeam);
                 m_session.Flush();
 
-                // Delete the selected designer
+                // Delete the selected team
                 m_session.Delete(selTeam);
                 m_session.Flush();
 
@@ -155,15 +159,28 @@ namespace GamingLeagues.Forms
 
             if (selTeam != null)
             {
-                //TeamsDetailsForm teamDetailsForm = new TeamsDetailsForm(selTeam.Id);
+                TeamsDetailsForm teamDetailsForm = new TeamsDetailsForm(selTeam.Id);
 
-                //teamDetailsForm.Show();
+                teamDetailsForm.Show();
             }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void lvTeams_DoubleClick(object sender, EventArgs e)
+        {
+            // Get the selected team
+            Team selTeam = GetSelectedTeam();
+
+            if (selTeam != null)
+            {
+                TeamsDetailsForm teamDetailsForm = new TeamsDetailsForm(selTeam.Id);
+
+                teamDetailsForm.Show();
+            }
         }
     }
 }

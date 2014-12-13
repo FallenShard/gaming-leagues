@@ -16,33 +16,56 @@ namespace GamingLeagues.Forms.Games
 {
     public partial class GamesDetailsForm : Form
     {
-        private Game m_game;
+        private int m_gameId = -1;
 
-        public GamesDetailsForm(Game game)
+        public GamesDetailsForm(int gameId)
         {
             InitializeComponent();
+
+            m_gameId = gameId;
 
             lbPlayers.Items.Clear();
             lbLeagues.Items.Clear();
             lbSupportedPlatforms.Items.Clear();
-
-            m_game = game;
         }
 
         private void onLoad(object sender, EventArgs e)
         {
-            lblTitle.Text = m_game.Title;
-            lblDeveloper.Text = m_game.Developer;
-            lblReleaseDate.Text = m_game.ReleaseDate.ToString("dd/mm/yyyy");
-            lblGenre.Text = m_game.Genre;
+            if (m_gameId == -1)
+            {
+                MessageBox.Show("Error receiving data on game");
+                this.Close();
+            }
 
-            foreach (Player player in m_game.Players)
-                lbPlayers.Items.Add(player.NickName);
+            InitializeGameData();
+        }
 
-            foreach (League league in m_game.Leagues)
-                lbLeagues.Items.Add(league.Name);
+        private void InitializeGameData()
+        {
+            ISession session = DataAccessLayer.DataAccessLayer.GetSession();
+            Game game = session.Get<Game>(m_gameId);
 
-            foreach (Platform platform in m_game.SupportedPlatforms)
+            lblTitle.Text       = game.Title;
+            lblDeveloper.Text   = game.Developer;
+            lblReleaseDate.Text = game.ReleaseDate.ToString("dd/MM/yyyy");
+            lblGenre.Text       = game.Genre;
+
+            IList<Player> players = game.Players;
+            if (players.Count > 0)
+            {
+                lbPlayers.DataSource = players;
+                lbPlayers.DisplayMember = "NameNickLast";
+            }
+
+
+            IList<League> leagues = game.Leagues;
+            if (leagues.Count > 0)
+            {
+                lbLeagues.DataSource = leagues;
+                lbLeagues.DisplayMember = "Name";
+            }
+
+            foreach (Platform platform in game.SupportedPlatforms)
                 lbSupportedPlatforms.Items.Add(platform.PlatformTitle);
         }
 

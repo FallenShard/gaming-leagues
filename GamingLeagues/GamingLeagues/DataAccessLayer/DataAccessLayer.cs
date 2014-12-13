@@ -21,6 +21,7 @@ namespace GamingLeagues.DataAccessLayer
         private static ISessionFactory m_factory = null;
 
         private static string m_dbFile = "GamingLeagues.db";
+        private static bool m_needsInitialization = false;
 
         // Opens the session on demand, akin to singleton pattern
         public static ISession GetSession()
@@ -38,7 +39,7 @@ namespace GamingLeagues.DataAccessLayer
         // else a new file is created
         private static ISessionFactory CreateSessionFactory()
         {
-            if (DatabaseExists())
+            if (File.Exists(m_dbFile))
             {
                 return Fluently.Configure()
                 .Database(SQLiteConfiguration.Standard.UsingFile(m_dbFile))
@@ -48,6 +49,7 @@ namespace GamingLeagues.DataAccessLayer
             }
             else
             {
+                m_needsInitialization = true;
                 return Fluently.Configure()
                 .Database(SQLiteConfiguration.Standard.UsingFile(m_dbFile))
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<PlayerMapping>())
@@ -64,9 +66,9 @@ namespace GamingLeagues.DataAccessLayer
             new SchemaExport(config).Create(false, true);
         }
 
-        public static bool DatabaseExists()
+        public static bool NeedsInitialization()
         {
-            return File.Exists(m_dbFile);
+            return m_needsInitialization;
         }
     }
 }

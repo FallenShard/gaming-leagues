@@ -25,7 +25,7 @@ namespace GamingLeagues.Entities
         { 
             get
             {
-                return Name + "\"" + NickName + "\"" + LastName;
+                return Name + " \"" + NickName + "\" " + LastName;
             } 
         }
 

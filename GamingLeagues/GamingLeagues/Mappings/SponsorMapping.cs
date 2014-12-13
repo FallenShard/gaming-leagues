@@ -19,7 +19,7 @@ namespace GamingLeagues.Mappings
 
             // Attribute mapping
             Map(x => x.Name);
-            Map(x => x.Logo);
+            Map(x => x.Slogan);
             
             // Many-to-many mapping
             HasManyToMany(x => x.Teams)

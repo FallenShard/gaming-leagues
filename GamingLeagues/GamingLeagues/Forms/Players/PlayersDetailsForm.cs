@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using NHibernate;
 using GamingLeagues.Entities;
 using GamingLeagues.DataAccessLayer;
+using GamingLeagues.Forms.Games;
+using GamingLeagues.Forms.Leagues;
 
 namespace GamingLeagues.Forms.Players
 {
@@ -27,6 +29,7 @@ namespace GamingLeagues.Forms.Players
 
             lbGames.Items.Clear();
             lbLeagues.Items.Clear();
+            lvMatchHistory.Clear();
         }
 
         private void PlayersDetailsForm_Load(object sender, EventArgs e)
@@ -51,9 +54,9 @@ namespace GamingLeagues.Forms.Players
             lblNickname.Text       = player.NickName;
             lblFullName.Text       = player.Name + " " + player.LastName;
             lblGender.Text         = player.Gender == 'M' ? "Male" : "Female";
-            lblBirthDate.Text      = player.DateOfBirth.ToString("dd/mm/yyyy");
+            lblBirthDate.Text      = player.DateOfBirth.ToString("dd/MM/yyyy");
             lblCountry.Text        = player.Country;
-            lblTurnedPro.Text      = player.DateTurnedPro.ToString("dd/mm/yyyy");;
+            lblTurnedPro.Text      = player.DateTurnedPro.ToString("dd/MM/yyyy");;
             lblCareerEarnings.Text = player.CareerEarnings.ToString();
             lblTeam.Text           = player.CurrentTeam != null ? player.CurrentTeam.Name : "--None--";
             
@@ -119,12 +122,47 @@ namespace GamingLeagues.Forms.Players
                 }
             }
 
+            // Adjust initial column widths
+            ListView.ColumnHeaderCollection lch = lvMatchHistory.Columns;
+            for (int i = 0; i < lch.Count; i++)
+            {
+                lch[i].Width = -1;
+                int dataSize = lch[i].Width;
+                lch[i].Width = -2;
+                int colSize = lch[i].Width;
+                lch[i].Width = dataSize > colSize ? -1 : -2;
+            }
+
             session.Close();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void lbGames_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = lbGames.IndexFromPoint(e.Location);
+            if (index != System.Windows.Forms.ListBox.NoMatches)
+            {
+                Game game = lbGames.Items[index] as Game;
+
+                GamesDetailsForm gameDetailsForm = new GamesDetailsForm(game.Id);
+                gameDetailsForm.Show();
+            }
+        }
+
+        private void lbLeagues_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            //int index = lbTeams.IndexFromPoint(e.Location);
+            //if (index != System.Windows.Forms.ListBox.NoMatches)
+            //{
+            //    Team team = lbTeams.Items[index] as Team;
+
+            //    TeamsDetailsForm teamDetailsForm = new TeamsDetailsForm(team.Id);
+            //    teamDetailsForm.Show();
+            //}
         }
     }
 }

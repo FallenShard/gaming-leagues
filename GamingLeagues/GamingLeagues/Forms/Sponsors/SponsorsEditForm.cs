@@ -49,7 +49,7 @@ namespace GamingLeagues.Forms.Sponsors
         private void InitializeSponsorData()
         {
             tbName.Text = m_sponsor.Name;
-            tbLogo.Text = m_sponsor.Logo;
+            tbLogo.Text = m_sponsor.Slogan;
 
             IList<Team> sponsorTeams = m_sponsor.Teams;
             foreach (Team team in sponsorTeams)
@@ -77,7 +77,7 @@ namespace GamingLeagues.Forms.Sponsors
         private void SetAttributes(Sponsor sponsor)
         {
             sponsor.Name = tbName.Text;
-            sponsor.Logo = tbLogo.Text;
+            sponsor.Slogan = tbLogo.Text;
 
             CheckedListBox.CheckedItemCollection selectedTeams = clbTeams.CheckedItems;
             sponsor.Teams.Clear();
@@ -137,7 +137,7 @@ namespace GamingLeagues.Forms.Sponsors
             }
         }
 
-        private void btnCancle_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to close this window?",
                                 Text,

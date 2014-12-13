@@ -18,11 +18,10 @@ namespace GamingLeagues.Forms.Players
     {
         private ISession m_session;
 
-        private Player m_player;           // Designer currently being edited
+        private Player m_player;           // Player currently being edited
 
         // List of available games
         private IList<Game> m_games;
-        private IList<Team> m_teams;
 
         public PlayersEditForm(ISession session, Player player)
         {
@@ -33,26 +32,16 @@ namespace GamingLeagues.Forms.Players
             m_player = player;
 
             // Load the available games
-            GetGamesAndTeams();
+            GetGames();
 
             clbGames.Items.Clear();
             clbGames.DataSource = m_games;
             clbGames.DisplayMember = "Title";
-
-            cbTeams.Items.Clear();
-            cbTeams.DataSource = m_teams;
-            cbTeams.DisplayMember = "Name";
-            cbTeams.SelectedItem = cbTeams.Items[cbTeams.Items.Count - 1];
         }
 
-        private void GetGamesAndTeams()
+        private void GetGames()
         {
             m_games = m_session.CreateQuery("FROM Game").List<Game>();
-
-            m_teams = m_session.CreateQuery("FROM Team").List<Team>();
-            Team nullTeam = new Team();
-            nullTeam.Name = "(None)";
-            m_teams.Add(nullTeam);
         }
 
         private void InitializePlayerData()
@@ -69,16 +58,6 @@ namespace GamingLeagues.Forms.Players
                 rbMale.Checked = true;
             else 
                 rbFemale.Checked = true;
-
-            // Team
-            if (m_player.CurrentTeam != null)
-            {
-                foreach (Team team in m_teams)
-                    if (m_player.CurrentTeam.Id == team.Id)
-                        cbTeams.SelectedItem = team;
-            }
-            else
-                cbTeams.SelectedItem = cbTeams.Items[cbTeams.Items.Count - 1];
 
             // Check all games that player is linked to
             IList<Game> playerGames = m_player.Games;
@@ -103,12 +82,6 @@ namespace GamingLeagues.Forms.Players
             player.Country = tbCountry.Text;
             player.CareerEarnings = float.Parse(tbCareer.Text, CultureInfo.InvariantCulture);
             player.Gender = rbMale.Checked ? 'M' : 'F';
-
-            Team team = cbTeams.SelectedItem as Team;
-            if (team.Name != "(None)")
-                player.CurrentTeam = team;
-            else
-                player.CurrentTeam = null;
 
             // Games
             CheckedListBox.CheckedItemCollection selectedGames = clbGames.CheckedItems;
@@ -200,6 +173,7 @@ namespace GamingLeagues.Forms.Players
                 try
                 {
                     SetAttributes(m_player);
+
                     // Try to save the current player
                     m_session.SaveOrUpdate(m_player);
                     m_session.Flush();

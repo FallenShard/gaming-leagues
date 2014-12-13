@@ -38,20 +38,15 @@ namespace GamingLeagues.Forms.Games
             this.tbGenre = new System.Windows.Forms.TextBox();
             this.clbSupportedPlatforms = new System.Windows.Forms.CheckedListBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.clbLeagues = new System.Windows.Forms.CheckedListBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.clbPlayers = new System.Windows.Forms.CheckedListBox();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.btnCancle = new System.Windows.Forms.Button();
-            this.btnAddPlatform = new System.Windows.Forms.Button();
-            this.btnDeletePlatform = new System.Windows.Forms.Button();
+            this.btnOk = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label1.Location = new System.Drawing.Point(94, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 13);
             this.label1.TabIndex = 0;
@@ -59,15 +54,16 @@ namespace GamingLeagues.Forms.Games
             // 
             // tbTitle
             // 
-            this.tbTitle.Location = new System.Drawing.Point(12, 25);
+            this.tbTitle.Location = new System.Drawing.Point(127, 12);
             this.tbTitle.Name = "tbTitle";
-            this.tbTitle.Size = new System.Drawing.Size(130, 20);
+            this.tbTitle.Size = new System.Drawing.Size(200, 20);
             this.tbTitle.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 48);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label2.Location = new System.Drawing.Point(65, 41);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 2;
@@ -75,15 +71,16 @@ namespace GamingLeagues.Forms.Games
             // 
             // tbDeveloper
             // 
-            this.tbDeveloper.Location = new System.Drawing.Point(12, 64);
+            this.tbDeveloper.Location = new System.Drawing.Point(127, 38);
             this.tbDeveloper.Name = "tbDeveloper";
-            this.tbDeveloper.Size = new System.Drawing.Size(130, 20);
-            this.tbDeveloper.TabIndex = 3;
+            this.tbDeveloper.Size = new System.Drawing.Size(200, 20);
+            this.tbDeveloper.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 87);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label3.Location = new System.Drawing.Point(49, 70);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 13);
             this.label3.TabIndex = 4;
@@ -91,16 +88,17 @@ namespace GamingLeagues.Forms.Games
             // 
             // dtpReleaseDate
             // 
-            this.dtpReleaseDate.Location = new System.Drawing.Point(12, 103);
+            this.dtpReleaseDate.Location = new System.Drawing.Point(127, 64);
             this.dtpReleaseDate.Name = "dtpReleaseDate";
-            this.dtpReleaseDate.Size = new System.Drawing.Size(130, 20);
-            this.dtpReleaseDate.TabIndex = 5;
+            this.dtpReleaseDate.Size = new System.Drawing.Size(200, 20);
+            this.dtpReleaseDate.TabIndex = 3;
             this.dtpReleaseDate.Value = new System.DateTime(2014, 12, 8, 0, 0, 0, 0);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 126);
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label4.Location = new System.Drawing.Point(85, 93);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(36, 13);
             this.label4.TabIndex = 6;
@@ -108,115 +106,61 @@ namespace GamingLeagues.Forms.Games
             // 
             // tbGenre
             // 
-            this.tbGenre.Location = new System.Drawing.Point(12, 142);
+            this.tbGenre.Location = new System.Drawing.Point(127, 90);
             this.tbGenre.Name = "tbGenre";
-            this.tbGenre.Size = new System.Drawing.Size(130, 20);
-            this.tbGenre.TabIndex = 7;
+            this.tbGenre.Size = new System.Drawing.Size(200, 20);
+            this.tbGenre.TabIndex = 4;
             // 
             // clbSupportedPlatforms
             // 
             this.clbSupportedPlatforms.FormattingEnabled = true;
-            this.clbSupportedPlatforms.Location = new System.Drawing.Point(148, 29);
+            this.clbSupportedPlatforms.Location = new System.Drawing.Point(127, 116);
             this.clbSupportedPlatforms.Name = "clbSupportedPlatforms";
-            this.clbSupportedPlatforms.Size = new System.Drawing.Size(120, 94);
-            this.clbSupportedPlatforms.TabIndex = 8;
+            this.clbSupportedPlatforms.Size = new System.Drawing.Size(200, 109);
+            this.clbSupportedPlatforms.TabIndex = 5;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(148, 9);
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label5.Location = new System.Drawing.Point(19, 116);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(102, 13);
             this.label5.TabIndex = 9;
             this.label5.Text = "Supported Platforms";
             // 
-            // clbLeagues
+            // btnOk
             // 
-            this.clbLeagues.FormattingEnabled = true;
-            this.clbLeagues.Location = new System.Drawing.Point(12, 181);
-            this.clbLeagues.Name = "clbLeagues";
-            this.clbLeagues.Size = new System.Drawing.Size(120, 94);
-            this.clbLeagues.TabIndex = 10;
+            this.btnOk.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnOk.Location = new System.Drawing.Point(12, 258);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(150, 50);
+            this.btnOk.TabIndex = 14;
+            this.btnOk.Text = "OK";
+            this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
-            // label6
+            // btnCancel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 165);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(48, 13);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Leagues";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(148, 165);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(41, 13);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Players";
-            // 
-            // clbPlayers
-            // 
-            this.clbPlayers.FormattingEnabled = true;
-            this.clbPlayers.Location = new System.Drawing.Point(148, 181);
-            this.clbPlayers.Name = "clbPlayers";
-            this.clbPlayers.Size = new System.Drawing.Size(120, 94);
-            this.clbPlayers.TabIndex = 13;
-            // 
-            // btnOK
-            // 
-            this.btnOK.Location = new System.Drawing.Point(62, 281);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 14;
-            this.btnOK.Text = "Ok";
-            this.btnOK.UseVisualStyleBackColor = true;
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // btnCancle
-            // 
-            this.btnCancle.Location = new System.Drawing.Point(143, 281);
-            this.btnCancle.Name = "btnCancle";
-            this.btnCancle.Size = new System.Drawing.Size(75, 23);
-            this.btnCancle.TabIndex = 15;
-            this.btnCancle.Text = "Cancle";
-            this.btnCancle.UseVisualStyleBackColor = true;
-            this.btnCancle.Click += new System.EventHandler(this.btnCancle_Click);
-            // 
-            // btnAddPlatform
-            // 
-            this.btnAddPlatform.Location = new System.Drawing.Point(151, 130);
-            this.btnAddPlatform.Name = "btnAddPlatform";
-            this.btnAddPlatform.Size = new System.Drawing.Size(49, 23);
-            this.btnAddPlatform.TabIndex = 16;
-            this.btnAddPlatform.Text = "Add";
-            this.btnAddPlatform.UseVisualStyleBackColor = true;
-            this.btnAddPlatform.Click += new System.EventHandler(this.btnAddPlatform_Click);
-            // 
-            // btnDeletePlatform
-            // 
-            this.btnDeletePlatform.Location = new System.Drawing.Point(219, 130);
-            this.btnDeletePlatform.Name = "btnDeletePlatform";
-            this.btnDeletePlatform.Size = new System.Drawing.Size(49, 23);
-            this.btnDeletePlatform.TabIndex = 17;
-            this.btnDeletePlatform.Text = "Delete";
-            this.btnDeletePlatform.UseVisualStyleBackColor = true;
-            this.btnDeletePlatform.Click += new System.EventHandler(this.btnDeletePlatform_Click);
+            this.btnCancel.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnCancel.Location = new System.Drawing.Point(177, 258);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(150, 50);
+            this.btnCancel.TabIndex = 15;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // GamesAddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(278, 320);
-            this.Controls.Add(this.btnDeletePlatform);
-            this.Controls.Add(this.btnAddPlatform);
-            this.Controls.Add(this.btnCancle);
-            this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.clbPlayers);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.clbLeagues);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ClientSize = new System.Drawing.Size(339, 320);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnOk);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.clbSupportedPlatforms);
             this.Controls.Add(this.tbGenre);
@@ -227,8 +171,11 @@ namespace GamingLeagues.Forms.Games
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tbTitle);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "GamesAddForm";
-            this.Text = "GamesAddForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Add Game";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -246,13 +193,7 @@ namespace GamingLeagues.Forms.Games
         private System.Windows.Forms.TextBox tbGenre;
         private System.Windows.Forms.CheckedListBox clbSupportedPlatforms;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.CheckedListBox clbLeagues;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.CheckedListBox clbPlayers;
-        private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.Button btnCancle;
-        private System.Windows.Forms.Button btnAddPlatform;
-        private System.Windows.Forms.Button btnDeletePlatform;
+        private System.Windows.Forms.Button btnOk;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
