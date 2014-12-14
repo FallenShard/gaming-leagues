@@ -88,5 +88,17 @@ namespace GamingLeagues.Forms.Games
                 playerDetailsForm.Show();
             }
         }
+
+        private void lbLeagues_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = lbLeagues.IndexFromPoint(e.Location);
+            if (index != System.Windows.Forms.ListBox.NoMatches)
+            {
+                League league = lbLeagues.Items[index] as League;
+
+                LeaguesDetailsForm leagueDetailsForm = new LeaguesDetailsForm(league.Id);
+                leagueDetailsForm.Show();
+            }
+        }
     }
 }

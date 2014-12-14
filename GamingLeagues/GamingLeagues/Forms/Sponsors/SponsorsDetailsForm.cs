@@ -12,6 +12,7 @@ using NHibernate;
 using GamingLeagues.Entities;
 using GamingLeagues.DataAccessLayer;
 using GamingLeagues.Forms.Teams;
+using GamingLeagues.Forms.Leagues;
 
 namespace GamingLeagues.Forms.Sponsors
 {
@@ -81,6 +82,18 @@ namespace GamingLeagues.Forms.Sponsors
 
                 TeamsDetailsForm teamDetailsForm = new TeamsDetailsForm(team.Id);
                 teamDetailsForm.Show();
+            }
+        }
+
+        private void lbLeagues_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = lbLeagues.IndexFromPoint(e.Location);
+            if (index != System.Windows.Forms.ListBox.NoMatches)
+            {
+                League league = lbLeagues.Items[index] as League;
+
+                LeaguesDetailsForm leagueDetailsForm = new LeaguesDetailsForm(league.Id);
+                leagueDetailsForm.Show();
             }
         }
     }

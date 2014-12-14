@@ -30,7 +30,7 @@ namespace GamingLeagues.Mappings
             HasManyToMany(x => x.Players)
                 .Table("PlaysMatch")
                 .ParentKeyColumn("MatchID").ChildKeyColumn("PlayerID")
-                .Cascade.All();
+                .Cascade.SaveUpdate();
         }
     }
 }

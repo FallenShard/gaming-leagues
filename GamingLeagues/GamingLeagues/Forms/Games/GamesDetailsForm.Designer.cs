@@ -175,6 +175,7 @@
             this.lbLeagues.Name = "lbLeagues";
             this.lbLeagues.Size = new System.Drawing.Size(175, 134);
             this.lbLeagues.TabIndex = 15;
+            this.lbLeagues.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbLeagues_MouseDoubleClick);
             // 
             // lbSupportedPlatforms
             // 

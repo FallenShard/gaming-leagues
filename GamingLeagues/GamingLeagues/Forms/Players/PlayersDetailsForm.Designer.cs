@@ -57,7 +57,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(292, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 0;
@@ -66,11 +66,11 @@
             // lblNickname
             // 
             this.lblNickname.AutoSize = true;
-            this.lblNickname.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNickname.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNickname.ForeColor = System.Drawing.Color.Orange;
-            this.lblNickname.Location = new System.Drawing.Point(10, 22);
+            this.lblNickname.Location = new System.Drawing.Point(288, 22);
             this.lblNickname.Name = "lblNickname";
-            this.lblNickname.Size = new System.Drawing.Size(70, 25);
+            this.lblNickname.Size = new System.Drawing.Size(118, 42);
             this.lblNickname.TabIndex = 1;
             this.lblNickname.Text = "label2";
             // 
@@ -184,7 +184,7 @@
             this.lblTeam.AutoSize = true;
             this.lblTeam.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTeam.ForeColor = System.Drawing.Color.Orange;
-            this.lblTeam.Location = new System.Drawing.Point(290, 22);
+            this.lblTeam.Location = new System.Drawing.Point(10, 22);
             this.lblTeam.Name = "lblTeam";
             this.lblTeam.Size = new System.Drawing.Size(82, 25);
             this.lblTeam.TabIndex = 13;
@@ -195,7 +195,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label14.Location = new System.Drawing.Point(292, 9);
+            this.label14.Location = new System.Drawing.Point(12, 9);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(34, 13);
             this.label14.TabIndex = 12;
@@ -248,7 +248,7 @@
             this.lvMatchHistory.GridLines = true;
             this.lvMatchHistory.Location = new System.Drawing.Point(295, 124);
             this.lvMatchHistory.Name = "lvMatchHistory";
-            this.lvMatchHistory.Size = new System.Drawing.Size(386, 352);
+            this.lvMatchHistory.Size = new System.Drawing.Size(455, 352);
             this.lvMatchHistory.TabIndex = 20;
             this.lvMatchHistory.UseCompatibleStateImageBehavior = false;
             this.lvMatchHistory.View = System.Windows.Forms.View.Details;
@@ -285,7 +285,7 @@
             // 
             this.btnClose.Font = new System.Drawing.Font("Impact", 18F);
             this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.btnClose.Location = new System.Drawing.Point(531, 482);
+            this.btnClose.Location = new System.Drawing.Point(600, 482);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(150, 50);
             this.btnClose.TabIndex = 25;
@@ -298,7 +298,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(693, 544);
+            this.ClientSize = new System.Drawing.Size(762, 544);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lbLeagues);
             this.Controls.Add(this.lbGames);
