@@ -126,11 +126,14 @@ namespace GamingLeagues.Forms.Matches
                     session.SaveOrUpdate(match);
                     session.Flush();
 
+                    session.SaveOrUpdate(m_league);
+                    session.Flush();
+
                     this.DialogResult = DialogResult.OK;
                 }
                 catch (Exception saveExc)
                 {
-                    MessageBox.Show("Failed to save player in current session:\n" + saveExc.Message);
+                    MessageBox.Show("Failed to save match in current session:\n" + saveExc.Message);
                     this.DialogResult = DialogResult.Cancel;
                 }
                 finally
