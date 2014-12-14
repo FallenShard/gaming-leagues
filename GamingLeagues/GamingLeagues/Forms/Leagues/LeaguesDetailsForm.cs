@@ -19,6 +19,10 @@ using System.Collections;
 
 namespace GamingLeagues.Forms.Leagues
 {
+    //CELA FORMA JE MOZDA MALO SKARABUDZENA, ALI JE SKROZ POVEZANA SA MECEVIMA(ADD, EDIT, DELETE)
+    //ZA MECEVE BOLJE DA UZMEMO LISTVIEW KAO KOD IGRACA JER GA CENIM DA CE DA BUDE DOSTA LAKSE
+    //SAMO SAD SA LISTVIEW IMA PROBLEM STO MI NE RADI GetSelectedMatch() POGLEDAJ AKO MOZES TO DA RESIS
+    //TI AKO VIDIS JOS NEKI PROPUST JAVI PA CEMO DA RESIMO I TO
     public partial class LeaguesDetailsForm : Form
     {
         private int m_leagueId;
@@ -158,7 +162,6 @@ namespace GamingLeagues.Forms.Leagues
                 this.Close();
             }
 
-            // Load player data into UI controls
             InitializeLeagueData();
             RefreshPlayers();
             RefreshMatches();
@@ -205,12 +208,57 @@ namespace GamingLeagues.Forms.Leagues
 
         private void btnEditMatch_Click(object sender, EventArgs e)
         {
+            Match selMatch = GetSelectedMatch();
 
+            if (selMatch != null)
+            {
+                MatchesEditForm editMatchForm = new MatchesEditForm(m_session, selMatch);
+
+                if (editMatchForm.ShowDialog() == DialogResult.OK)
+                {
+                    m_session.Refresh(m_league);
+                    RefreshMatches();
+                    RefreshPlayers();
+                }
+            }
+            
         }
 
         private void btnDeleteMatch_Click(object sender, EventArgs e)
         {
+            Match selMatch = GetSelectedMatch();
 
+            if (selMatch != null && MessageBox.Show("Are you sure you want to delete the selected match?",
+                "Delete Match", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                m_league.Matches.Remove(selMatch);
+                selMatch.League = null;
+                selMatch.Players.Clear();
+                m_session.SaveOrUpdate(selMatch);
+                m_session.Flush();
+
+                m_session.Delete(selMatch);
+                m_session.Flush();
+
+                m_session.Refresh(m_league);
+                RefreshMatches();
+                RefreshPlayers();
+            }
+        }
+
+        //OVA F-JA UVEK VRACA NULL POGLEDAJ AKO UMES DA RESIS JA NISAM USPEO
+        //DOK JE BIO LISTBOX SVE JE RADILO OK TAKO DA EDIT I DELATE RADE OK
+        //PRETPOSTAVLJAM DA JE TO ZBOG TOGA STO NE USPE DA KASTUJE TAG U MATCH
+        public Match GetSelectedMatch()
+        {
+            if (lvMatches.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select a match first.", "Error");
+                return null;
+            }
+
+            Match match = (Match)lvMatches.SelectedItems[0].Tag;
+            return match;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -243,7 +291,6 @@ namespace GamingLeagues.Forms.Leagues
             if (selPlayer != null)
             {
                 PlayersDetailsForm playersDetailsForm = new PlayersDetailsForm(selPlayer.Id);
-
                 playersDetailsForm.Show();
             }
         }

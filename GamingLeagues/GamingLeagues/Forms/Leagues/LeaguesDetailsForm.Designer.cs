@@ -183,7 +183,6 @@
             this.lbSponsors.Size = new System.Drawing.Size(155, 134);
             this.lbSponsors.TabIndex = 12;
             this.lbSponsors.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbSponsors_MouseDoubleClick);
-            // 
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
