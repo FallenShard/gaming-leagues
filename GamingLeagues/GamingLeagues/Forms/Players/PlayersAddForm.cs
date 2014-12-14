@@ -27,6 +27,8 @@ namespace GamingLeagues.Forms.Players
             clbGames.Items.Clear();
             clbGames.DataSource = m_games;
             clbGames.DisplayMember = "Title";
+
+            rbMale.Checked = true;
         }
 
         private void GetGames()
