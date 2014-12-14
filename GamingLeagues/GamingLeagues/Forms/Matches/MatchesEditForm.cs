@@ -18,13 +18,14 @@ namespace GamingLeagues.Forms.Matches
         private ISession m_session;
 
         private Match m_match;
+        private IList<Player> m_players;
 
-        public MatchesEditForm(ISession session, Match match)
+        public MatchesEditForm(int matchId)
         {
             InitializeComponent();
 
-            m_session = session;
-            m_match = match;
+            m_session = DataAccessLayer.DataAccessLayer.GetSession();
+            m_match = m_session.Get<Match>(matchId);
         }
 
         private void onLoad(object sender, EventArgs e)
@@ -50,10 +51,25 @@ namespace GamingLeagues.Forms.Matches
             cmbHomePlayer.DisplayMember = "NameNickLast";
             cmbHomePlayer.SelectedItem = m_match.Players[0];
 
+            //Iz nekog razloga ako u oba combo box-a stavim isti data source
+            //kad selektujem item u jednoj isti se selektuje i u drugoj
+            //Zbog toga postoji pomocna lista player-a.
+            m_players = new List<Player>();
+            GetPlayers(m_session);
+
             cmbAwayPlayer.Items.Clear();
-            cmbAwayPlayer.DataSource = m_match.League.Players;
+            cmbAwayPlayer.DataSource = m_players;
             cmbAwayPlayer.DisplayMember = "NameNickLast";
             cmbAwayPlayer.SelectedItem = m_match.Players[1];
+        }
+
+        private void GetPlayers(ISession session)
+        {
+            IList<Player> players = session.CreateQuery("FROM Player").List<Player>();
+            for (int i = 0; i < players.Count; i++)
+                foreach (League league in players[i].Leagues)
+                    if (league.Id == m_match.League.Id)
+                        m_players.Add(players[i]);
         }
 
         private void SetAttributes(Match match)
