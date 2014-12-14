@@ -120,6 +120,10 @@ namespace GamingLeagues.Forms.Players
                     lvi.SubItems.Add(match.League.Name);
                     lvi.SubItems.Add(match.DatePlayed.ToString("dd/MM/yyyy"));
 
+                    if (result == "W") lvi.BackColor = Color.LightGreen;
+                    else if (result == "L") lvi.BackColor = Color.LightPink;
+                    else lvi.BackColor = Color.LightYellow;
+
                     lvMatchHistory.Items.Add(lvi);
                 }
             }
@@ -157,14 +161,14 @@ namespace GamingLeagues.Forms.Players
 
         private void lbLeagues_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            //int index = lbTeams.IndexFromPoint(e.Location);
-            //if (index != System.Windows.Forms.ListBox.NoMatches)
-            //{
-            //    Team team = lbTeams.Items[index] as Team;
+            int index = lbLeagues.IndexFromPoint(e.Location);
+            if (index != System.Windows.Forms.ListBox.NoMatches)
+            {
+                League league = lbLeagues.Items[index] as League;
 
-            //    TeamsDetailsForm teamDetailsForm = new TeamsDetailsForm(team.Id);
-            //    teamDetailsForm.Show();
-            //}
+                LeaguesDetailsForm leagueDetailsForm = new LeaguesDetailsForm(league.Id);
+                leagueDetailsForm.Show();
+            }
         }
 
         private void lblTeam_Click(object sender, EventArgs e)
