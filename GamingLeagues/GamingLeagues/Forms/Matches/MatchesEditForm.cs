@@ -20,14 +20,6 @@ namespace GamingLeagues.Forms.Matches
         private Match m_match;
         private IList<Player> m_players;
 
-        public MatchesEditForm(int matchId)
-        {
-            InitializeComponent();
-
-            m_session = DataAccessLayer.DataAccessLayer.GetSession();
-            m_match = m_session.Get<Match>(matchId);
-        }
-
         public MatchesEditForm(ISession session, Match match)
         {
             InitializeComponent();
@@ -49,6 +41,7 @@ namespace GamingLeagues.Forms.Matches
 
         private void InitializeMatchData()
         {
+            lblLeague.Left = (this.ClientSize.Width - lblLeague.Width) / 2;
             lblLeague.Text = m_match.League.Name;
             dtpMatchDate.Value = m_match.DatePlayed;
             tbHomeScore.Text = m_match.HomeScore.ToString();
@@ -56,7 +49,7 @@ namespace GamingLeagues.Forms.Matches
 
             cmbHomePlayer.Items.Clear();
             cmbHomePlayer.DataSource = m_match.League.Players;
-            cmbHomePlayer.DisplayMember = "NameNickLast";
+            cmbHomePlayer.DisplayMember = "ClanName";
             cmbHomePlayer.SelectedItem = m_match.Players[0];
 
             //Iz nekog razloga ako u oba combo box-a stavim isti data source
@@ -67,7 +60,7 @@ namespace GamingLeagues.Forms.Matches
 
             cmbAwayPlayer.Items.Clear();
             cmbAwayPlayer.DataSource = m_players;
-            cmbAwayPlayer.DisplayMember = "NameNickLast";
+            cmbAwayPlayer.DisplayMember = "ClanName";
             cmbAwayPlayer.SelectedItem = m_match.Players[1];
         }
 

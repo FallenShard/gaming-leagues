@@ -18,7 +18,7 @@ namespace GamingLeagues.Forms.Matches
         private League m_league;
         private IList<Player> m_players;
 
-        public MatchesAddForm(/*ISession session, League league*/int leagueId)
+        public MatchesAddForm(int leagueId)
         {
             InitializeComponent();
 
@@ -38,6 +38,43 @@ namespace GamingLeagues.Forms.Matches
             cmbAwayPlayer.Items.Clear();
             cmbAwayPlayer.DataSource = m_players;
             cmbAwayPlayer.DisplayMember = "NameNickLast";
+
+            session.Close();
+        }
+
+        public MatchesAddForm(int leagueId, int p1Id, int p2Id)
+        {
+            InitializeComponent();
+
+            ISession session = DataAccessLayer.DataAccessLayer.GetSession();
+            m_league = session.Get<League>(leagueId);
+            m_players = new List<Player>();
+
+            //Iz nekog razloga ako u oba combo box-a stavim isti data source
+            //kad selektujem item u jednoj isti se selektuje i u drugoj
+            //Zbog toga postoji pomocna lista player-a.
+            GetPlayers(session);
+
+            cmbHomePlayer.Items.Clear();
+            cmbHomePlayer.DataSource = m_league.Players;
+            cmbHomePlayer.DisplayMember = "NameNickLast";
+            for (int i = 0; i < cmbHomePlayer.Items.Count; i++)
+            {
+                Player player  = cmbHomePlayer.Items[i] as Player;
+                if (player.Id == p1Id)
+                    cmbHomePlayer.SelectedIndex = i;
+            }
+
+            cmbAwayPlayer.Items.Clear();
+            cmbAwayPlayer.DataSource = m_players;
+            cmbAwayPlayer.DisplayMember = "NameNickLast";
+
+            for (int i = 0; i < cmbAwayPlayer.Items.Count; i++)
+            {
+                Player player = cmbAwayPlayer.Items[i] as Player;
+                if (player.Id == p2Id)
+                    cmbAwayPlayer.SelectedIndex = i;
+            }
 
             session.Close();
         }

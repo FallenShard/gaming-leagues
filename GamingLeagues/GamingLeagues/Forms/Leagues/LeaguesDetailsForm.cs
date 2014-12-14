@@ -44,6 +44,9 @@ namespace GamingLeagues.Forms.Leagues
 
             lvPlayers.Clear();
             lvPlayers.Columns.Add("POINTS");
+            lvPlayers.Columns.Add("W");
+            lvPlayers.Columns.Add("D");
+            lvPlayers.Columns.Add("L");
             lvPlayers.Columns.Add("NICKNAME");
             lvPlayers.Columns.Add("FIRST NAME");
             lvPlayers.Columns.Add("LAST NAME");
@@ -118,12 +121,17 @@ namespace GamingLeagues.Forms.Leagues
             {
                 int playerPoints = CalcPlayerPoints(pl, m_league);
                 ListViewItem lvi = new ListViewItem(playerPoints.ToString());
+                int[] wdl = CalcPlayerWDL(pl, m_league);
+                lvi.SubItems.Add(wdl[0].ToString());
+                lvi.SubItems.Add(wdl[1].ToString());
+                lvi.SubItems.Add(wdl[2].ToString());
                 lvi.SubItems.Add(pl.ClanName);
                 lvi.SubItems.Add(pl.Name);
                 lvi.SubItems.Add(pl.LastName);
                 lvi.SubItems.Add(pl.CurrentTeam != null ? pl.CurrentTeam.Name : "--None--");
                 lvi.SubItems.Add(pl.DateOfBirth.ToString("dd/MM/yyyy"));
                 lvi.SubItems.Add(pl.Country);
+
                 lvi.Tag = pl;
                 
 
@@ -196,13 +204,29 @@ namespace GamingLeagues.Forms.Leagues
 
         private void btnAddMatch_Click(object sender, EventArgs e)
         {
-            MatchesAddForm addMatchForm = new MatchesAddForm(m_leagueId);
-
-            if (addMatchForm.ShowDialog() == DialogResult.OK)
+            if (lvPlayers.SelectedItems.Count == 2)
             {
-                m_session.Refresh(m_league);
-                RefreshMatches();
-                RefreshPlayers();
+                int p1Id = ((Player)lvPlayers.SelectedItems[0].Tag).Id;
+                int p2Id = ((Player)lvPlayers.SelectedItems[1].Tag).Id;
+                MatchesAddForm addMatchForm = new MatchesAddForm(m_leagueId, p1Id, p2Id);
+
+                if (addMatchForm.ShowDialog() == DialogResult.OK)
+                {
+                    m_session.Refresh(m_league);
+                    RefreshMatches();
+                    RefreshPlayers();
+                }
+            }
+            else
+            {
+                MatchesAddForm addMatchForm = new MatchesAddForm(m_leagueId);
+
+                if (addMatchForm.ShowDialog() == DialogResult.OK)
+                {
+                    m_session.Refresh(m_league);
+                    RefreshMatches();
+                    RefreshPlayers();
+                }
             }
         }
 
@@ -246,9 +270,6 @@ namespace GamingLeagues.Forms.Leagues
             }
         }
 
-        //OVA F-JA UVEK VRACA NULL POGLEDAJ AKO UMES DA RESIS JA NISAM USPEO
-        //DOK JE BIO LISTBOX SVE JE RADILO OK TAKO DA EDIT I DELATE RADE OK
-        //PRETPOSTAVLJAM DA JE TO ZBOG TOGA STO NE USPE DA KASTUJE TAG U MATCH
         public Match GetSelectedMatch()
         {
             if (lvMatches.SelectedItems.Count == 0)
@@ -330,6 +351,35 @@ namespace GamingLeagues.Forms.Leagues
             }
 
             return result;
+        }
+
+        private int[] CalcPlayerWDL(Player player, League league)
+        {
+            int[] wdl = new int[3];
+
+            for (int i = 0; i < league.Matches.Count; i++)
+            {
+                if (league.Matches[i].Players[0].Id == player.Id)
+                {
+                    if (league.Matches[i].HomeScore > league.Matches[i].AwayScore)
+                        wdl[0]++;
+                    else if (league.Matches[i].HomeScore == league.Matches[i].AwayScore)
+                        wdl[1]++;
+                    else
+                        wdl[2]++;
+                }
+                else if (league.Matches[i].Players[1].Id == player.Id)
+                {
+                    if (league.Matches[i].AwayScore > league.Matches[i].HomeScore)
+                        wdl[0]++;
+                    else if (league.Matches[i].AwayScore == league.Matches[i].HomeScore)
+                        wdl[1]++;
+                    else
+                        wdl[2]++;
+                }
+            }
+
+            return wdl;
         }
 
         class ListViewItemComparer : IComparer

@@ -31,19 +31,19 @@ namespace GamingLeagues.Mappings
             HasManyToMany(x => x.Sponsors)
                 .Table("SponsorsLeague")
                 .ParentKeyColumn("LeagueID").ChildKeyColumn("SponsorID")
-                .Cascade.All()
+                .Cascade.SaveUpdate()
                 .Inverse();
 
             // Many-to-many mapping to players
             HasManyToMany(x => x.Players)
                 .Table("PlaysInLeague")
                 .ParentKeyColumn("LeagueID").ChildKeyColumn("PlayerID")
-                .Cascade.All();
+                .Cascade.SaveUpdate();
 
             // One-to-many mapping to matches
             HasMany(x => x.Matches)
                 .KeyColumn("LeagueID")
-                .Cascade.All()
+                .Cascade.SaveUpdate()
                 .Inverse();
         }
     }

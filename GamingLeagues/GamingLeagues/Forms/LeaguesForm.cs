@@ -121,7 +121,19 @@ namespace GamingLeagues.Forms
                                 "Delete League",
                                 MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
+                IList<Match> matches = new List<Match>(selectedLeague.Matches);
+                foreach (Match match in matches)
+                {
+                    selectedLeague.Matches.Remove(match);
+                    match.League = null;
+                    match.Players.Clear();
+                    m_session.SaveOrUpdate(match);
+                    m_session.Delete(match);
+                }
                 selectedLeague.Matches.Clear();
+
+                foreach (Player player in selectedLeague.Players)
+                    player.Leagues.Remove(selectedLeague);
                 selectedLeague.Players.Clear();
 
                 foreach (Sponsor sponsor in selectedLeague.Sponsors)

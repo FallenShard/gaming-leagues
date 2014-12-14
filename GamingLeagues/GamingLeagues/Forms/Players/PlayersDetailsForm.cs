@@ -14,6 +14,7 @@ using GamingLeagues.DataAccessLayer;
 using GamingLeagues.Forms.Games;
 using GamingLeagues.Forms.Leagues;
 using GamingLeagues.Forms.Teams;
+using System.Collections;
 
 namespace GamingLeagues.Forms.Players
 {
@@ -81,7 +82,6 @@ namespace GamingLeagues.Forms.Players
             IList<Match> matches = player.MatchesPlayed;
             lvMatchHistory.Clear();
             lvMatchHistory.Columns.Add("OPPONENT");
-            lvMatchHistory.Columns.Add("RESULT");
             lvMatchHistory.Columns.Add("SCORE");
             lvMatchHistory.Columns.Add("GAME");
             lvMatchHistory.Columns.Add("LEAGUE");
@@ -92,9 +92,13 @@ namespace GamingLeagues.Forms.Players
                 {
                     string opponent;
                     string result;
+                    string plScore;
+                    string oppScore;
                     if (match.Players[0].NickName == player.NickName)
                     {
                         opponent = match.Players[1].NickName;
+                        plScore = match.HomeScore.ToString();
+                        oppScore = match.AwayScore.ToString();
                         if (match.HomeScore > match.AwayScore)
                             result = "W";
                         else if (match.HomeScore < match.AwayScore)
@@ -105,6 +109,8 @@ namespace GamingLeagues.Forms.Players
                     else
                     {
                         opponent = match.Players[0].NickName;
+                        plScore = match.AwayScore.ToString();
+                        oppScore = match.HomeScore.ToString();
                         if (match.HomeScore > match.AwayScore)
                             result = "L";
                         else if (match.HomeScore < match.AwayScore)
@@ -114,8 +120,7 @@ namespace GamingLeagues.Forms.Players
                     }
 
                     ListViewItem lvi = new ListViewItem(opponent);
-                    lvi.SubItems.Add(result);
-                    lvi.SubItems.Add(match.HomeScore.ToString() + " - " + match.AwayScore.ToString());
+                    lvi.SubItems.Add(plScore + " - " + oppScore);
                     lvi.SubItems.Add(match.League.Game.Title);
                     lvi.SubItems.Add(match.League.Name);
                     lvi.SubItems.Add(match.DatePlayed.ToString("dd/MM/yyyy"));
@@ -127,6 +132,9 @@ namespace GamingLeagues.Forms.Players
                     lvMatchHistory.Items.Add(lvi);
                 }
             }
+
+            lvMatchHistory.ListViewItemSorter = new ListViewItemComparer(4);
+            lvMatchHistory.Sort();
 
             // Adjust initial column widths
             ListView.ColumnHeaderCollection lch = lvMatchHistory.Columns;
@@ -178,6 +186,38 @@ namespace GamingLeagues.Forms.Players
             {
                 TeamsDetailsForm teamDetailsForm = new TeamsDetailsForm(team.Id);
                 teamDetailsForm.Show();
+            }
+        }
+
+        class ListViewItemComparer : IComparer
+        {
+            private int col;
+            public ListViewItemComparer()
+            {
+                col = 0;
+            }
+            public ListViewItemComparer(int column)
+            {
+                col = column;
+            }
+            public int Compare(object x, object y)
+            {
+                int returnVal;
+                try
+                {
+                    System.DateTime firstDate =
+                            DateTime.Parse(((ListViewItem)x).SubItems[col].Text);
+                    System.DateTime secondDate =
+                            DateTime.Parse(((ListViewItem)y).SubItems[col].Text);
+                    returnVal = DateTime.Compare(firstDate, secondDate);
+                }
+                catch
+                {
+                    returnVal = String.Compare(((ListViewItem)x).SubItems[col].Text,
+                                ((ListViewItem)y).SubItems[col].Text);
+                }
+
+                return -returnVal;
             }
         }
     }
