@@ -45,8 +45,8 @@
             this.btnAddMatch = new System.Windows.Forms.Button();
             this.btnEditMatch = new System.Windows.Forms.Button();
             this.btnDeleteMatch = new System.Windows.Forms.Button();
-            this.lbPlayers = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.lvPlayers = new System.Windows.Forms.ListView();
             this.lvMatches = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
@@ -180,9 +180,9 @@
             this.lbSponsors.FormattingEnabled = true;
             this.lbSponsors.Location = new System.Drawing.Point(15, 303);
             this.lbSponsors.Name = "lbSponsors";
-            this.lbSponsors.Size = new System.Drawing.Size(120, 95);
+            this.lbSponsors.Size = new System.Drawing.Size(155, 134);
             this.lbSponsors.TabIndex = 12;
-            // 
+            this.lbSponsors.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbSponsors_MouseDoubleClick);
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -231,31 +231,34 @@
             this.btnDeleteMatch.UseVisualStyleBackColor = true;
             this.btnDeleteMatch.Click += new System.EventHandler(this.btnDeleteMatch_Click);
             // 
-            // lbPlayers
-            // 
-            this.lbPlayers.FormattingEnabled = true;
-            this.lbPlayers.Location = new System.Drawing.Point(223, 47);
-            this.lbPlayers.Name = "lbPlayers";
-            this.lbPlayers.Size = new System.Drawing.Size(747, 160);
-            this.lbPlayers.TabIndex = 22;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label6.Location = new System.Drawing.Point(220, 225);
+            this.label6.Location = new System.Drawing.Point(220, 234);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(48, 13);
             this.label6.TabIndex = 23;
             this.label6.Text = "Matches";
             // 
+            // lvPlayers
+            // 
+            this.lvPlayers.FullRowSelect = true;
+            this.lvPlayers.Location = new System.Drawing.Point(223, 47);
+            this.lvPlayers.Name = "lvPlayers";
+            this.lvPlayers.Size = new System.Drawing.Size(747, 173);
+            this.lvPlayers.TabIndex = 24;
+            this.lvPlayers.UseCompatibleStateImageBehavior = false;
+            this.lvPlayers.View = System.Windows.Forms.View.Details;
+            this.lvPlayers.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvPlayers_MouseDoubleClick);
+            // 
             // lvMatches
             // 
             this.lvMatches.FullRowSelect = true;
-            this.lvMatches.Location = new System.Drawing.Point(223, 241);
+            this.lvMatches.Location = new System.Drawing.Point(223, 250);
             this.lvMatches.Name = "lvMatches";
-            this.lvMatches.Size = new System.Drawing.Size(747, 199);
-            this.lvMatches.TabIndex = 24;
+            this.lvMatches.Size = new System.Drawing.Size(747, 187);
+            this.lvMatches.TabIndex = 25;
             this.lvMatches.UseCompatibleStateImageBehavior = false;
             this.lvMatches.View = System.Windows.Forms.View.Details;
             // 
@@ -266,8 +269,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(982, 541);
             this.Controls.Add(this.lvMatches);
+            this.Controls.Add(this.lvPlayers);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.lbPlayers);
             this.Controls.Add(this.btnDeleteMatch);
             this.Controls.Add(this.btnEditMatch);
             this.Controls.Add(this.btnAddMatch);
@@ -285,7 +288,10 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "LeaguesDetailsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LeaguesDetailsForm";
             this.Load += new System.EventHandler(this.onLoad);
             this.ResumeLayout(false);
@@ -312,8 +318,8 @@
         private System.Windows.Forms.Button btnAddMatch;
         private System.Windows.Forms.Button btnEditMatch;
         private System.Windows.Forms.Button btnDeleteMatch;
-        private System.Windows.Forms.ListBox lbPlayers;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ListView lvPlayers;
         private System.Windows.Forms.ListView lvMatches;
     }
 }

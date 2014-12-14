@@ -29,6 +29,15 @@ namespace GamingLeagues.Entities
             } 
         }
 
+        public virtual string ClanName
+        {
+            get
+            {
+                string tag = CurrentTeam == null ? "" : CurrentTeam.Tag;
+                return tag + " " + NickName;
+            }
+        }
+
         // Many-to-one relationship
         public virtual Team CurrentTeam { get; set; }
 

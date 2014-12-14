@@ -163,7 +163,13 @@ namespace GamingLeagues.Forms
 
         private void lvLeagues_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            League selectedLeague = GetSelectedLeague();
 
+            if (selectedLeague != null)
+            {
+                LeaguesDetailsForm detailsForm = new LeaguesDetailsForm(selectedLeague.Id);
+                detailsForm.Show();
+            }
         }
     }
 }

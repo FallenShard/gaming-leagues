@@ -28,6 +28,14 @@ namespace GamingLeagues.Forms.Matches
             m_match = m_session.Get<Match>(matchId);
         }
 
+        public MatchesEditForm(ISession session, Match match)
+        {
+            InitializeComponent();
+
+            m_session = session;
+            m_match = match;
+        }
+
         private void onLoad(object sender, EventArgs e)
         {
             if (m_match == null)

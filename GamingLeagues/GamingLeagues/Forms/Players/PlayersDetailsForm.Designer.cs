@@ -248,7 +248,7 @@
             this.lvMatchHistory.GridLines = true;
             this.lvMatchHistory.Location = new System.Drawing.Point(295, 124);
             this.lvMatchHistory.Name = "lvMatchHistory";
-            this.lvMatchHistory.Size = new System.Drawing.Size(352, 352);
+            this.lvMatchHistory.Size = new System.Drawing.Size(386, 352);
             this.lvMatchHistory.TabIndex = 20;
             this.lvMatchHistory.UseCompatibleStateImageBehavior = false;
             this.lvMatchHistory.View = System.Windows.Forms.View.Details;
@@ -285,7 +285,7 @@
             // 
             this.btnClose.Font = new System.Drawing.Font("Impact", 18F);
             this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.btnClose.Location = new System.Drawing.Point(497, 482);
+            this.btnClose.Location = new System.Drawing.Point(531, 482);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(150, 50);
             this.btnClose.TabIndex = 25;
@@ -298,7 +298,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(659, 544);
+            this.ClientSize = new System.Drawing.Size(693, 544);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lbLeagues);
             this.Controls.Add(this.lbGames);
